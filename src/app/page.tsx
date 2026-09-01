@@ -1,66 +1,78 @@
-import Image from "next/image";
-import styles from "./page.module.css";
+import { Box } from "@mantine/core";
+import { Header, Footer, HeroSection } from "@/components";
 
-export default function Home() {
+const heroSections = [
+  {
+    id: "mission",
+    title: "Revolutionizing Transportation",
+    statement:
+      "Ascerex was founded to fulfill Henry Ford's unfinished legacy by developing the vehicles and infrastructure that will make personal aviation accessible, affordable, and practical for families and individuals everywhere.",
+    href: "/mission",
+    align: "left" as const,
+    media: {
+      type: "video" as const,
+      src: "/images/skyline.mp4",
+      poster: "/images/skylinestatic.png",
+    },
+  },
+  {
+    id: "vehicle",
+    title: "Building a New Class of Vehicle",
+    statement:
+      "Ascerex is pioneering a compact VTOL aircraft vehicle engineered for efficiency, reliability, and safe human transportation.",
+    href: "/vehicle",
+    align: "right" as const,
+    media: {
+      type: "image" as const,
+      src: "/images/vehicle.PNG",
+      alt: "VTOL Vehicle",
+    },
+  },
+  {
+    id: "skyway",
+    title: "Charting the Skyway Infrastructure",
+    statement:
+      "By mapping a seamless Skyway network of air traffic routes over existing paths, Ascerex plans to enable dense, scalable aerial transportation for the demands of tomorrow's airspace.",
+    href: "/skyway",
+    align: "left" as const,
+    media: {
+      type: "image" as const,
+      src: "/images/skyway.JPG",
+      alt: "Skyway Network",
+    },
+  },
+  {
+    id: "flight-autonomy",
+    title: "Delivering Autonomous Flight Systems",
+    statement:
+      "Ascerex vehicles will be embedded with fully autonomous flight intelligence to remove the need for human piloting, ensuring safe, reliable operations within the Skyway and opening aerial travel to everyone.",
+    href: "/pilot",
+    align: "right" as const,
+    media: {
+      type: "video" as const,
+      src: "/images/autonomy.mp4",
+      poster: "/images/autonomystatic.jpeg",
+    },
+  },
+];
+
+export default function HomePage() {
   return (
-    <div className={styles.page}>
-      <main className={styles.main}>
-        <Image
-          className={styles.logo}
-          src="/next.svg"
-          alt="Next.js logo"
-          width={100}
-          height={20}
-          priority
-        />
-        <div className={styles.intro}>
-          <h1>To get started, edit the page.tsx file.</h1>
-          <p>
-            Looking for a starting point or more instructions? Head over to{" "}
-            <a
-              href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              Templates
-            </a>{" "}
-            or the{" "}
-            <a
-              href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              Learning
-            </a>{" "}
-            center.
-          </p>
-        </div>
-        <div className={styles.ctas}>
-          <a
-            className={styles.primary}
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className={styles.logo}
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={16}
-              height={16}
-            />
-            Deploy Now
-          </a>
-          <a
-            className={styles.secondary}
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Documentation
-          </a>
-        </div>
-      </main>
-    </div>
+    <>
+      <Header />
+      <Box component="main">
+        {heroSections.map((section) => (
+          <HeroSection
+            key={section.id}
+            title={section.title}
+            statement={section.statement}
+            href={section.href}
+            align={section.align}
+            media={section.media}
+          />
+        ))}
+      </Box>
+      <Footer />
+    </>
   );
 }
