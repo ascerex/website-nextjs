@@ -1,0 +1,54 @@
+.stage {
+  position: fixed;
+  inset: 0 0 auto;
+  z-index: 1000;
+  transform: translate3d(0, 0, 0);
+  transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  will-change: transform;
+}
+
+.stage[data-state="isCollapsed"] {
+  transform: translate3d(0, -100%, 0);
+}
+
+.stage[data-state="isOpen"] {
+  transform: translate3d(0, 0, 0);
+}
+
+.desktopNavLink {
+  color: rgba(255, 255, 255, 0.82);
+  font-size: 0.875rem;
+  font-weight: 600;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  white-space: nowrap;
+  transition: color 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.desktopNavLink:hover,
+.desktopNavLink:focus-visible {
+  color: #fff;
+}
+
+.mobileNavLink {
+  color: rgba(255, 255, 255, 0.86);
+  font-weight: 600;
+}
+
+.mobileNavLink:hover,
+.mobileNavLink:focus-visible {
+  color: #fff;
+}
+
+@media (max-width: 1024px) {
+  .desktopNavLink {
+    font-size: 0.8rem;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .stage,
+  .desktopNavLink {
+    transition: none;
+  }
+}

@@ -1,6 +1,6 @@
 "use client";
 
-import { Box, Title, Text, Button, Container } from "@mantine/core";
+import { Box, Title, Text, Button } from "@mantine/core";
 import Link from "next/link";
 
 interface HeroSectionProps {
