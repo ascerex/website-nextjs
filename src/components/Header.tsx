@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useEffect, useRef, useState } from "react";
 import {
   Box,
   Group,
@@ -10,8 +10,11 @@ import {
   Image,
   Text,
 } from "@mantine/core";
-import { useDisclosure, useWindowScroll } from "@mantine/hooks";
+import { useDisclosure } from "@mantine/hooks";
 import Link from "next/link";
+import styles from "./Header.module.css";
+
+const SCROLL_THRESHOLD = 100;
 
 const navLinks = [
   { label: "Mission", href: "/mission" },
@@ -24,43 +27,77 @@ const navLinks = [
 
 export function Header() {
   const [opened, { toggle, close }] = useDisclosure(false);
-  const [scroll] = useWindowScroll();
   const [isVisible, setIsVisible] = useState(true);
-  const [lastScrollY, setLastScrollY] = useState(0);
+  const openedRef = useRef(opened);
+  const lastScrollYRef = useRef(0);
+  const animationFrameRef = useRef<number | null>(null);
 
   useEffect(() => {
-    const scrollThreshold = 100;
+    openedRef.current = opened;
+  }, [opened]);
 
-    if (opened) {
-      setIsVisible(true);
-      return;
-    }
+  useEffect(() => {
+    lastScrollYRef.current = Math.max(window.scrollY, 0);
 
-    if (scroll.y > scrollThreshold) {
-      if (scroll.y > lastScrollY) {
+    const updateHeader = () => {
+      const currentScrollY = Math.max(window.scrollY, 0);
+      const lastScrollY = lastScrollYRef.current;
+
+      if (openedRef.current) {
+        lastScrollYRef.current = currentScrollY;
+        animationFrameRef.current = null;
+        return;
+      }
+
+      if (currentScrollY <= SCROLL_THRESHOLD) {
+        setIsVisible(true);
+      } else if (currentScrollY > lastScrollY) {
         setIsVisible(false);
-      } else {
+      } else if (currentScrollY < lastScrollY) {
         setIsVisible(true);
       }
-    } else {
-      setIsVisible(true);
-    }
 
-    setLastScrollY(scroll.y);
-  }, [scroll.y, opened, lastScrollY]);
+      lastScrollYRef.current = currentScrollY;
+      animationFrameRef.current = null;
+    };
+
+    const handleScroll = () => {
+      if (animationFrameRef.current === null) {
+        animationFrameRef.current = window.requestAnimationFrame(updateHeader);
+      }
+    };
+
+    window.addEventListener("scroll", handleScroll, { passive: true });
+
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+      if (animationFrameRef.current !== null) {
+        window.cancelAnimationFrame(animationFrameRef.current);
+      }
+    };
+  }, []);
+
+  useEffect(() => {
+    if (!opened) return;
+
+    const handleEscape = (event: KeyboardEvent) => {
+      if (event.key === "Escape") close();
+    };
+
+    document.addEventListener("keydown", handleEscape);
+    return () => document.removeEventListener("keydown", handleEscape);
+  }, [close, opened]);
+
+  const handleMenuToggle = () => {
+    if (!opened) setIsVisible(true);
+    toggle();
+  };
 
   return (
     <Box
       component="header"
-      style={{
-        position: "fixed",
-        top: 0,
-        left: 0,
-        right: 0,
-        zIndex: 1000,
-        transform: isVisible ? "translateY(0)" : "translateY(-100%)",
-        transition: "transform 0.3s cubic-bezier(0.4, 0, 0.2, 1)",
-      }}
+      className={styles.stage}
+      data-state={isVisible ? "isOpen" : "isCollapsed"}
     >
       <Box
         style={{
@@ -82,6 +119,7 @@ export function Header() {
                   w="auto"
                 />
                 <Text
+                  c="#fff"
                   fw={700}
                   size="xl"
                   tt="uppercase"
@@ -99,19 +137,8 @@ export function Header() {
                   key={link.href}
                   component={Link}
                   href={link.href}
-                  c="dimmed"
-                  size="sm"
-                  fw={500}
-                  tt="uppercase"
-                  style={{
-                    letterSpacing: "0.05em",
-                    transition: "color 0.3s ease",
-                  }}
+                  className={styles.desktopNavLink}
                   underline="never"
-                  onMouseEnter={(e) => (e.currentTarget.style.color = "#fff")}
-                  onMouseLeave={(e) =>
-                    (e.currentTarget.style.color = "var(--mantine-color-dimmed)")
-                  }
                 >
                   {link.label}
                 </Anchor>
@@ -121,23 +148,33 @@ export function Header() {
             {/* Mobile Burger */}
             <Burger
               opened={opened}
-              onClick={toggle}
+              onClick={handleMenuToggle}
               hiddenFrom="md"
               color="white"
               size="sm"
+              aria-label={opened ? "Close navigation menu" : "Open navigation menu"}
+              aria-expanded={opened}
+              aria-controls="mobile-navigation"
             />
           </Group>
         </Box>
 
         {/* Mobile Navigation */}
         <Collapse in={opened}>
-          <Box px={{ base: "md", sm: "xl" }} pb="xl" hiddenFrom="md">
+          <Box
+            id="mobile-navigation"
+            component="nav"
+            aria-label="Mobile navigation"
+            px={{ base: "md", sm: "xl" }}
+            pb="xl"
+            hiddenFrom="md"
+          >
             {navLinks.map((link) => (
               <Anchor
                 key={link.href}
                 component={Link}
                 href={link.href}
-                c="dimmed"
+                className={styles.mobileNavLink}
                 display="block"
                 py="md"
                 tt="uppercase"
