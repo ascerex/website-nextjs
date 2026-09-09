@@ -20,6 +20,7 @@ test("mission route preserves the approved page structure", async () => {
   assert.match(page, /id="policy-and-compliance"/);
   assert.match(page, /<MissionPolicyExplorer \/>/);
   assert.match(page, /Explore the vehicle/);
+  assert.match(page, /The mission requires an integrated system/);
 });
 
 test("mission claims remain future-facing and evidence bounded", async () => {
@@ -52,8 +53,9 @@ test("architecture diagram preserves its network at narrow widths", async () => 
   );
   assert.match(
     stylesheet,
-    /@media \(max-width: 720px\)[\s\S]*?\.policyBubbles\s*\{[\s\S]*?position: static;/,
+    /@media \(max-width: 720px\)[\s\S]*?\.policyBubble\s*\{[\s\S]*?width: clamp\(3\.6rem, 19vw, 5\.25rem\);/,
   );
+  assert.doesNotMatch(stylesheet, /prefers-reduced-motion/);
 });
 
 test("policy categories are keyboard-operable controls", async () => {

@@ -726,40 +726,18 @@
 
   .policyNetwork {
     width: 100%;
-    aspect-ratio: auto;
+    aspect-ratio: 1;
   }
 
-  .policyConnectors,
   .policyCenter {
-    display: none;
+    width: clamp(4.4rem, 22vw, 6rem);
+    font-size: clamp(0.52rem, 2vw, 0.66rem);
   }
 
-  .policyBubbles {
-    position: static;
-    display: grid;
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-    gap: 0.6rem;
-  }
-
-  .policyBubble,
-  .policyPositionOne,
-  .policyPositionTwo,
-  .policyPositionThree,
-  .policyPositionFour,
-  .policyPositionFive,
-  .policyPositionSix,
-  .policyPositionSeven {
-    position: static;
-    width: 100%;
-    min-height: 3.25rem;
-    aspect-ratio: auto;
-    padding: 0.75rem;
-    border-radius: 0;
-    transform: none;
-  }
-
-  .policyBubble[data-active] {
-    transform: none;
+  .policyBubble {
+    width: clamp(3.6rem, 19vw, 5.25rem);
+    font-size: clamp(0.4rem, 1.7vw, 0.56rem);
+    overflow-wrap: anywhere;
   }
 }
 
@@ -796,10 +774,6 @@
     grid-template-columns: 2rem minmax(0, 1fr);
   }
 
-  .policyBubbles {
-    grid-template-columns: 1fr;
-  }
-
   .policyDetail {
     min-height: 25rem;
     padding: 1.5rem;
@@ -807,17 +781,5 @@
 
   .policyDetailMeta {
     gap: 1rem;
-  }
-}
-
-@media (prefers-reduced-motion: reduce) {
-  .heroMedia video {
-    display: none;
-  }
-
-  .policyBubble,
-  .policyNavigation button,
-  .vehicleLink {
-    transition: none;
   }
 }

@@ -133,7 +133,7 @@ export default function MissionPage() {
           <div className={styles.sectionFrame}>
             <header className={styles.centeredHeader}>
               <p className={styles.eyebrow}>Integrated system architecture</p>
-              <h2 id="architecture-title">One mission. Six dependent systems.</h2>
+              <h2 id="architecture-title">The mission requires an integrated system.</h2>
               <p>
                 Ascerex develops the vehicle, Skyway, autonomy, and policy
                 context as a coupled program. Computational studies test
