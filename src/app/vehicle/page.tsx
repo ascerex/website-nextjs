@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Image from "next/image";
 import Link from "next/link";
 import { Footer, Header } from "@/components";
 import { VehiclePropulsionGallery } from "@/components/VehiclePropulsionGallery";
@@ -10,216 +11,389 @@ export const metadata: Metadata = {
     "How Ascerex defines requirements, screens propulsion architectures, and evaluates an atmospheric Orbiter Mk1 concept.",
 };
 
-const developmentStages = [
-  "Performance requirements and operational envelope definition",
-  "Propulsion architecture screening and evaluation",
-  "Integrated vehicle modeling and simulation",
-  "System-level feasibility assessment",
-  "Configuration selection or continued iteration",
-];
-
-const requirementGroups = [
+const programRequirements = [
   {
-    title: "Propulsion requirements",
-    items: [
-      "Support vertical takeoff and landing — not yet verified",
-      "No exposed propellers or rotors — architecture dependent",
-      "Fine thrust control for hover, transition, maneuvering, and landing — threshold unresolved",
-      "Treat source and manufacturer claims as evidence inputs, not proof of feasibility",
-    ],
+    value: "1,000+",
+    unit: "LB",
+    label: "Payload requirement",
+    detail: "The working requirement is sized around five nominal 200 lb occupants.",
   },
   {
-    title: "Vehicle requirements",
-    items: [
-      "Atmospheric Mk1 scope; orbital and lunar operation remain outside the baseline",
-      "At least 1,000 lb payload, nominally five 200 lb occupants — no configuration to verify",
-      "Eight-foot stowed and road-width envelope — no configuration to verify",
-      "Eight-foot fixed flight span is the current baseline hypothesis under analytical study",
-    ],
+    value: "8",
+    unit: "FT",
+    label: "Road-width envelope",
+    detail: "The vehicle must fit within an eight-foot stowed width.",
   },
   {
-    title: "Shared system constraints",
-    items: [
-      "Close the full mass budget across unresolved vehicle systems",
-      "Define mission phases, diversion, and usable-energy reserves",
-      "Evaluate geometry, propulsion, structure, aerodynamics, thermal systems, and controls together",
-      "Define quantitative safety, noise, downwash, thermal, debris, and failure-case limits",
-    ],
+    value: "VTOL",
+    unit: "",
+    label: "Operating requirement",
+    detail: "Vertical takeoff and landing shape every downstream architecture trade.",
+  },
+  {
+    value: "0",
+    unit: "EXPOSED",
+    label: "Propellers or rotors",
+    detail: "The current requirement keeps thrust-producing hardware contained.",
   },
 ];
 
-const simulationGroups = [
+const decisionSequence = [
   {
-    title: "Mission energy and mass closure",
-    body: "Couple phase demand, usable energy, reserves, propulsion mass, structure, thermal systems, controls, landing systems, payload, and remaining mass. A complete Mk1 mission and full-system closure are still unresolved.",
+    number: "01",
+    title: "Define requirements",
+    status: "Established foundation",
+    body: "Establish mission, payload, geometry, containment, safety, and operating constraints.",
   },
   {
-    title: "Lift, thrust, and transition",
-    body: "Evaluate wing-borne lift and the powered-lift assistance required during VTOL, transition, low-speed flight, and any other insufficient-lift condition. Control thresholds and transition criteria remain to be defined.",
+    number: "02",
+    title: "Model mission demand",
+    status: "Analytical framework",
+    body: "Translate each flight phase into force, lift, power, energy, thermal, and control demands under explicit assumptions.",
   },
   {
-    title: "Aerodynamics and integration",
-    body: "Study drag, achievable lift, propulsion placement, body and wing interaction, center of mass, structure, and packaging. Current low-order evidence does not establish an integrated aircraft configuration.",
+    number: "03",
+    title: "Screen architectures",
+    status: "Current active stage",
+    body: "Qualify evidence and compare propulsion and energy approaches using applicable models and traceable gates.",
   },
   {
-    title: "Thermal, acoustic, and operational limits",
-    body: "Define thermal endurance, noise, downwash, heat, debris, bystander, weather, and contingency limits before a system can advance through named operational gates.",
+    number: "04",
+    title: "Integrate the vehicle",
+    status: "Coupled evaluation",
+    body: "Couple geometry, propulsion, aerodynamics, structure, mass, energy, thermal behavior, controls, packaging, and landing systems.",
+  },
+  {
+    number: "05",
+    title: "Advance viable configurations",
+    status: "Progressive fidelity",
+    body: "Move surviving configurations into higher-fidelity simulation, integration studies, subsystem testing, and controlled physical testing.",
   },
 ];
 
-export default function VehiclePage() {
+const integrationLeft = [
+  "Parametric geometry",
+  "Wing and body aerodynamics",
+  "Occupant and payload packaging",
+  "Structural load paths",
+  "Landing systems",
+];
+
+const integrationRight = [
+  "Propulsion placement",
+  "Center of mass and distribution",
+  "Energy storage and power",
+  "Thermal management",
+  "Controls and operating envelope",
+];
+
+const engineeringRules = [
+  "Requirements, assumptions, evidence, models, results, and decisions remain traceable.",
+  "Configured studies can be reproduced from versioned inputs and declared model boundaries.",
+  "Propulsion families route only to physics models that apply to their mechanisms.",
+  "Missing information remains unknown, and hard constraints are evaluated before comparison.",
+];
+
+const evaluationRecord = [
+  ["Study input", "Versioned requirements + fixed mission case"],
+  ["Evidence", "Linked, qualified, or explicitly unknown"],
+  ["Model dispatch", "Applicable family model or capability required"],
+  ["Evaluation", "Coupled demand, mass, power, energy, and packaging"],
+  ["Decision output", "Constraint vector before comparison"],
+  ["Provenance", "Configuration, model, environment, and assumptions"],
+];
+
+export default function VehiclePreviewPage() {
   return (
     <>
       <Header />
       <main className={styles.page}>
-        <section className={styles.hero} aria-labelledby="vehicle-title">
-          <div className={styles.heroInner}>
-            <div className={styles.heroCopy}>
-              <p className={styles.eyebrow}>Atmospheric vehicle concept</p>
-              <h1 id="vehicle-title">The Orbiter</h1>
-              <p className={styles.lede}>
-                Orbiter is the provisional name for a vehicle class under
-                development—not a finalized aircraft. Candidate configurations
-                emerge from approved requirements, propulsion evidence,
-                integrated modeling, and explicit feasibility gates.
+        <section className={styles.hero} aria-labelledby="preview-title">
+          <Image
+            className={styles.heroImage}
+            src="/images/vehicle.PNG"
+            alt="Concept visualization of the Orbiter vehicle"
+            fill
+            priority
+            sizes="100vw"
+          />
+          <div className={styles.heroShade} aria-hidden="true" />
+          <div className={styles.heroGrid} aria-hidden="true" />
+
+          <div className={styles.heroContent}>
+            <p className={styles.kicker}>Orbiter // Atmospheric vehicle program</p>
+            <h1 id="preview-title">The Orbiter</h1>
+            <p className={styles.heroThesis}>A vehicle shaped by the mission.</p>
+            <p className={styles.heroSummary}>
+              Ascerex is developing a compact VTOL aircraft around a demanding
+              premise: meaningful payload, road-width packaging, and contained
+              propulsion in one integrated system.
+            </p>
+            <a className={styles.heroLink} href="#vehicle-brief">
+              Explore the vehicle
+              <span aria-hidden="true">↓</span>
+            </a>
+          </div>
+
+          <div className={styles.heroStatus}>
+            <span className={styles.statusPulse} aria-hidden="true" />
+            <div>
+              <span>Current development focus</span>
+              <strong>
+                Computational evaluation — fixed-span flight + enclosed
+                vectored thrust
+              </strong>
+            </div>
+          </div>
+
+        </section>
+
+        <section className={styles.brief} id="vehicle-brief" aria-labelledby="brief-title">
+          <div className={styles.sectionFrame}>
+            <div className={styles.briefIntro}>
+              <p className={styles.kicker}>The vehicle brief</p>
+              <h2 id="brief-title">What the vehicle must do</h2>
+              <p>
+                Orbiter begins with a narrow set of non-negotiable design
+                inputs. Those inputs force propulsion, airframe, energy, and
+                control decisions to converge around the same vehicle.
               </p>
-              <p className={styles.statusLine}>
-                Current status: early concept development and analytical
-                screening. No aircraft or propulsion architecture has been
-                validated or selected.
+              <p className={styles.programStatus}>
+                Computational engineering and analytical screening are active.
+                Configuration selection follows integrated feasibility gates.
+              </p>
+              <p className={styles.scopeNote}>
+                These are program requirements for engineering evaluation, not
+                demonstrated aircraft performance.
               </p>
             </div>
 
-            <ol className={styles.stageList} aria-label="Vehicle development sequence">
-              {developmentStages.map((stage, index) => (
-                <li key={stage}>
-                  <span>{String(index + 1).padStart(2, "0")}</span>
-                  <strong>{stage}</strong>
+            <dl className={styles.requirementList}>
+              {programRequirements.map((requirement) => (
+                <div key={requirement.label} className={styles.requirement}>
+                  <dt>
+                    <span className={styles.requirementValue}>{requirement.value}</span>
+                    {requirement.unit && (
+                      <span className={styles.requirementUnit}>{requirement.unit}</span>
+                    )}
+                  </dt>
+                  <dd>
+                    <strong>{requirement.label}</strong>
+                    <span>{requirement.detail}</span>
+                  </dd>
+                </div>
+              ))}
+            </dl>
+          </div>
+        </section>
+
+        <section className={styles.program} aria-labelledby="program-title">
+          <div className={styles.sectionFrame}>
+            <div className={styles.programHeader}>
+              <p className={styles.kicker}>Orbiter architecture</p>
+              <h2 id="program-title">How Orbiter is developed</h2>
+              <p>
+                Orbiter is developed as one coupled system: vehicle envelope,
+                wing and body lift, contained propulsion, energy, structure,
+                thermal behavior, stability, and control must resolve the same
+                mission. The program advances through traceable gates, and new
+                evidence can return a configuration to an earlier stage.
+              </p>
+            </div>
+
+            <ol className={styles.decisionList}>
+              {decisionSequence.map((step, index) => (
+                <li key={step.title} className={index === 2 ? styles.currentStep : undefined}>
+                  <span className={styles.decisionNumber}>{step.number}</span>
+                  <div>
+                    <span className={styles.decisionStatus}>{step.status}</span>
+                    <h3>{step.title}</h3>
+                    <p>{step.body}</p>
+                  </div>
                 </li>
               ))}
             </ol>
-          </div>
-        </section>
 
-        <section className={styles.section} aria-labelledby="requirements-title">
-          <div className={styles.sectionInner}>
-            <p className={styles.eyebrow}>Constraint-first development</p>
-            <h2 id="requirements-title">Requirements &amp; operational envelope</h2>
-            <p className={styles.sectionIntro}>
-              Requirements define the boundary for every downstream decision.
-              Approval records design intent; it does not show that a vehicle
-              configuration satisfies the requirement.
+            <p className={styles.iterationNote}>
+              <span aria-hidden="true">↺</span>
+              The sequence is iterative. A result can revise an assumption,
+              requirement, model, or configuration before the program advances.
             </p>
-
-            <div className={styles.requirementsGrid}>
-              {requirementGroups.map((group) => (
-                <article key={group.title} className={styles.requirementGroup}>
-                  <h3>{group.title}</h3>
-                  <ul>
-                    {group.items.map((item) => (
-                      <li key={item}>{item}</li>
-                    ))}
-                  </ul>
-                </article>
-              ))}
-            </div>
           </div>
         </section>
 
-        <section className={`${styles.section} ${styles.alternate}`} aria-labelledby="propulsion-title">
-          <div className={styles.sectionInner}>
-            <p className={styles.eyebrow}>Research and screening</p>
-            <h2 id="propulsion-title">Propulsion architecture development</h2>
-            <div className={styles.splitIntro}>
-              <p className={styles.sectionIntro}>
-                Candidate families are routed to applicable models and tested
-                against declared gates before vehicle-integration effort. A
-                source listing, rendering, or manufacturer statement does not
-                establish compatibility or feasibility for Orbiter Mk1.
-              </p>
-              <p className={styles.supportingCopy}>
-                The current priority is an evidence-aware, constraint-first
-                comparison of enclosed propulsion approaches. The preferred
-                common-propulsor vectored-thrust direction remains a hypothesis,
-                not a selected architecture.
-              </p>
-            </div>
-
-            <VehiclePropulsionGallery />
-          </div>
-        </section>
-
-        <section className={styles.section} aria-labelledby="simulation-title">
-          <div className={styles.sectionInner}>
-            <p className={styles.eyebrow}>Conditional evidence</p>
-            <h2 id="simulation-title">Simulation &amp; testing framework</h2>
-            <p className={styles.sectionIntro}>
-              Models and simulations evaluate defined cases under explicit
-              assumptions. They support screening and model verification; they
-              are not physical validation or proof of a complete vehicle.
-            </p>
-
-            <div className={styles.disclosureList}>
-              {simulationGroups.map((group, index) => (
-                <details key={group.title} open={index === 0}>
-                  <summary>{group.title}</summary>
-                  <p>{group.body}</p>
-                </details>
-              ))}
-            </div>
-          </div>
-        </section>
-
-        <section className={`${styles.section} ${styles.alternate}`} aria-labelledby="chassis-title">
-          <div className={styles.sectionInner}>
-            <p className={styles.eyebrow}>Integrated vehicle synthesis</p>
-            <h2 id="chassis-title">Chassis development &amp; co-design</h2>
-            <p className={styles.sectionIntro}>
-              Chassis work is not a shell placed around a preferred propulsion
-              system. Propulsion, geometry, aerodynamics, structure, energy,
-              thermal management, control authority, landing systems, and human
-              accommodation must close together.
-            </p>
-
-            <div className={styles.chassisGrid}>
-              <article>
-                <span className={styles.cardNumber}>01</span>
-                <h3>Design methods</h3>
-                <p>
-                  Parametric geometry, requirements traceability, aerodynamic
-                  studies, structural reasoning, packaging trades, and explicit
-                  iteration when a coupled constraint fails.
-                </p>
-              </article>
-              <article>
-                <span className={styles.cardNumber}>02</span>
-                <h3>Verification path</h3>
-                <p>
-                  Versioned models, independent comparisons within their valid
-                  domains, sensitivity analysis, named gates, decision records,
-                  and eventually controlled physical testing.
-                </p>
-              </article>
-            </div>
-          </div>
-        </section>
-
-        <section className={styles.section} aria-labelledby="compliance-title">
-          <div className={styles.sectionInner}>
-            <p className={styles.eyebrow}>Evidence-led progression</p>
-            <h2 id="compliance-title">Compliance &amp; policy integration</h2>
-            <div className={styles.complianceGrid}>
+        <section className={styles.propulsion} aria-labelledby="propulsion-title">
+          <div className={styles.sectionFrame}>
+            <div className={styles.propulsionLead}>
+              <p className={styles.kicker}>Installed-system evaluation</p>
+              <h2 id="propulsion-title">Screening propulsion architectures</h2>
               <p>
-                Regulatory, safety, airspace, road-use, noise, and software or
-                control-assurance questions are design inputs from the start.
-                The certification basis and applicable standards remain
-                unresolved; this page does not claim compliance or approval.
+                Each concept below enters the same installed-system evaluation:
+                first it must fit the vehicle, then demonstrate the required
+                capability, and finally close as part of the complete aircraft.
               </p>
-              <Link href="/mission" className={styles.textLink}>
-                Explore the broader mission and policy framework
-                <span aria-hidden="true"> →</span>
-              </Link>
             </div>
+
+            <div
+              className={styles.gateRail}
+              role="group"
+              aria-label="Propulsion evaluation gates"
+            >
+              <span>Vehicle compatibility</span>
+              <i aria-hidden="true">→</i>
+              <span>Installed capability</span>
+              <i aria-hidden="true">→</i>
+              <span>Aircraft closure</span>
+            </div>
+
+            <div className={styles.galleryRegion}>
+              <div className={styles.galleryCaption}>
+                <p>Propulsion architecture studies</p>
+                <span>
+                  Public screening summaries—not vehicle selections or
+                  family-wide verdicts.
+                </span>
+              </div>
+              <VehiclePropulsionGallery />
+            </div>
+          </div>
+        </section>
+
+        <section className={styles.airframe} aria-labelledby="airframe-title">
+          <div className={styles.sectionFrame}>
+            <div className={styles.sectionHeading}>
+              <p className={styles.kicker}>Coupled aircraft architecture</p>
+              <h2 id="airframe-title">Airframe and vehicle integration</h2>
+              <p>
+                No subsystem can be selected independently of the complete
+                vehicle. Packaging, loads, power, heat, control, and aerodynamic
+                behavior must close around one configuration.
+              </p>
+            </div>
+
+            <div
+              className={styles.systemMap}
+              role="group"
+              aria-label="Orbiter system relationship map"
+            >
+              <ul className={styles.systemRail} aria-label="Airframe inputs">
+                {integrationLeft.map((item) => (
+                  <li key={item}>{item}</li>
+                ))}
+              </ul>
+
+              <div className={styles.integrationCore}>
+                <span>Coupled vehicle model</span>
+                <h3>Orbiter configuration</h3>
+                <p>
+                  Mission fit, road-width storage, installed performance, mass
+                  closure, and operating limits are resolved as one system.
+                </p>
+                <strong>8 FT STOWED ENVELOPE</strong>
+              </div>
+
+              <ul className={styles.systemRail} aria-label="Vehicle-system inputs">
+                {integrationRight.map((item) => (
+                  <li key={item}>{item}</li>
+                ))}
+              </ul>
+            </div>
+
+            <p className={styles.baselineNote}>
+              The fixed-span vehicle is the current baseline. A deployable wing
+              remains a fallback if the integrated fixed-span system does not
+              satisfy feasibility gates now being defined.
+            </p>
+          </div>
+        </section>
+
+        <section
+          className={styles.engineeringArtifacts}
+          aria-label="Engineering workflow artifacts"
+        >
+          <div className={styles.sectionFrame}>
+            <div className={styles.artifactGrid}>
+              <div>
+                <p className={styles.detailLabel}>
+                  Engineering rules encoded in the workflow
+                </p>
+                <ul className={styles.principleList}>
+                  {engineeringRules.map((rule) => (
+                    <li key={rule}>{rule}</li>
+                  ))}
+                </ul>
+              </div>
+
+              <aside className={styles.runArtifact} aria-labelledby="artifact-title">
+                <div className={styles.artifactHeader}>
+                  <div>
+                    <span>PUBLIC-SAFE CONTRACT</span>
+                    <h3 id="artifact-title">Evaluation record anatomy</h3>
+                  </div>
+                  <span>SCHEMA</span>
+                </div>
+                <dl>
+                  {evaluationRecord.map(([label, value]) => (
+                    <div key={label}>
+                      <dt>{label}</dt>
+                      <dd>{value}</dd>
+                    </div>
+                  ))}
+                </dl>
+                <p>
+                  Sanitized structure only. No private candidate inputs,
+                  rankings, or engineering results are published here.
+                </p>
+              </aside>
+            </div>
+          </div>
+        </section>
+
+        <section className={styles.assurance} aria-labelledby="assurance-title">
+          <div className={styles.sectionFrame}>
+            <p className={styles.kicker}>Program discipline</p>
+            <h2 id="assurance-title">Assurance begins with the requirements</h2>
+
+            <div className={styles.assuranceGrid}>
+              <article>
+                <span>Software assurance</span>
+                <p>
+                  Future airborne software will follow an assurance process
+                  appropriate to the vehicle&apos;s eventual system-safety
+                  classification and certification basis.
+                </p>
+              </article>
+              <article>
+                <span>Policy and compliance</span>
+                <p>
+                  Regulatory, safety, airspace, software-assurance, and
+                  operating-approval considerations enter the requirements and
+                  verification process from the beginning.
+                </p>
+                <Link href="/mission#policy-and-compliance">
+                  Explore the mission framework
+                  <b aria-hidden="true">↗</b>
+                </Link>
+              </article>
+            </div>
+          </div>
+        </section>
+
+        <section className={styles.closing} aria-labelledby="closing-title">
+          <div className={styles.closingMark} aria-hidden="true">Ω</div>
+          <div className={styles.closingContent}>
+            <p className={styles.kicker}>Next: The Skyway</p>
+            <h2 id="closing-title">The vehicle is one part of the system</h2>
+            <p>
+              The Skyway is the digital operating network intended to connect
+              vehicles, routes, infrastructure, access rules, and coordinated
+              flight operations. See how the Orbiter fits into that larger
+              transportation system.
+            </p>
+            <Link href="/skyway" className={styles.missionLink}>
+              Explore the Skyway
+              <span aria-hidden="true">↗</span>
+            </Link>
           </div>
         </section>
       </main>

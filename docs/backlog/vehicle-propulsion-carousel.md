@@ -1,6 +1,6 @@
 # Finish Vehicle Propulsion Carousel Interaction and Visual Parity
 
-**Status:** Integrated into the alternate Vehicle route; final interaction and
+**Status:** Integrated into the primary `/vehicle` route; final interaction and
 visual parity remain deferred until the page direction is approved.
 
 ## Context
@@ -9,7 +9,7 @@ The static reference is `../website/vehicle.html`, with behavior in
 `../website/assets/js/main.js` and presentation in
 `../website/assets/css/style.css`. The Next.js implementation is
 `src/components/VehiclePropulsionGallery.tsx`, currently rendered by
-`src/app/vehicle-preview/page.tsx`.
+`src/app/vehicle/page.tsx`.
 
 All cards must remain visibly classified as demonstrative UI examples, not
 engineering candidates or results.
