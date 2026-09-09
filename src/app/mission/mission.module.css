@@ -1,0 +1,789 @@
+.missionPage {
+  --mission-bg: #08090b;
+  --mission-panel: #0d0f12;
+  --mission-panel-raised: #111419;
+  --mission-text: #f4f5f6;
+  --mission-muted: rgba(244, 245, 246, 0.7);
+  --mission-faint: rgba(244, 245, 246, 0.43);
+  --mission-line: rgba(244, 245, 246, 0.12);
+  --mission-line-strong: rgba(244, 245, 246, 0.24);
+  --mission-accent: #ff6a4d;
+  min-height: 100vh;
+  color: var(--mission-text);
+  background: var(--mission-bg);
+}
+
+.hero {
+  position: relative;
+  display: grid;
+  min-height: 72svh;
+  place-items: center;
+  overflow: hidden;
+  padding: calc(var(--header-height) + 6rem) clamp(1.25rem, 5vw, 5rem) 7rem;
+  isolation: isolate;
+}
+
+.heroMedia,
+.heroOverlay {
+  position: absolute;
+  inset: 0;
+}
+
+.heroMedia {
+  z-index: -2;
+  background: url("/images/nightstatic.png") center / cover no-repeat;
+}
+
+.heroMedia video {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center 56%;
+}
+
+.heroOverlay {
+  z-index: -1;
+  background:
+    linear-gradient(180deg, rgba(8, 9, 11, 0.35) 0%, rgba(8, 9, 11, 0.18) 42%, var(--mission-bg) 100%),
+    radial-gradient(circle at 50% 40%, transparent 0%, rgba(8, 9, 11, 0.58) 78%);
+}
+
+.heroContent {
+  max-width: 72rem;
+  text-align: center;
+}
+
+.eyebrow {
+  color: var(--mission-faint);
+  font-size: 0.68rem;
+  font-weight: 700;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+}
+
+.heroContent h1 {
+  margin-top: 1rem;
+  font-size: clamp(4rem, 12vw, 9rem);
+  font-weight: 700;
+  line-height: 0.88;
+  letter-spacing: 0.08em;
+}
+
+.heroContent > p:last-child {
+  margin-top: 2rem;
+  color: rgba(244, 245, 246, 0.82);
+  font-size: clamp(0.72rem, 1.4vw, 1rem);
+  font-weight: 600;
+  letter-spacing: clamp(0.12em, 0.8vw, 0.28em);
+  text-transform: uppercase;
+}
+
+.statement,
+.architecture,
+.policy {
+  border-top: 1px solid var(--mission-line);
+}
+
+.statement {
+  padding: clamp(5rem, 10vw, 10rem) clamp(1.25rem, 5vw, 5rem);
+}
+
+.statementFrame,
+.sectionFrame {
+  width: min(100%, 88rem);
+  margin-inline: auto;
+}
+
+.statementFrame {
+  display: grid;
+  grid-template-columns: minmax(18rem, 0.9fr) minmax(24rem, 1.1fr);
+  gap: clamp(3rem, 8vw, 9rem);
+  align-items: start;
+}
+
+.sectionHeader {
+  position: sticky;
+  top: calc(var(--header-height) + 2rem);
+}
+
+.sectionHeader h2,
+.centeredHeader h2,
+.policyHeader h2 {
+  margin-top: 1.25rem;
+  font-size: clamp(2.2rem, 4.6vw, 4.75rem);
+  font-weight: 600;
+  line-height: 1.02;
+  letter-spacing: -0.04em;
+}
+
+.sectionHeader h2 {
+  max-width: 12ch;
+}
+
+.statementBody {
+  display: grid;
+  gap: 2rem;
+  color: var(--mission-muted);
+  font-size: clamp(1.05rem, 1.35vw, 1.22rem);
+  line-height: 1.8;
+}
+
+.statementConclusion {
+  margin-top: 1rem;
+  padding-top: 2rem;
+  color: var(--mission-text);
+  border-top: 1px solid var(--mission-line-strong);
+}
+
+.architecture {
+  padding: clamp(5rem, 9vw, 9rem) clamp(1.25rem, 5vw, 5rem);
+  background: var(--mission-panel);
+}
+
+.centeredHeader {
+  max-width: 62rem;
+  margin-inline: auto;
+  text-align: center;
+}
+
+.centeredHeader h2 {
+  max-width: 15ch;
+  margin-inline: auto;
+}
+
+.centeredHeader > p:last-child {
+  max-width: 50rem;
+  margin: 1.75rem auto 0;
+  color: var(--mission-muted);
+  font-size: clamp(1rem, 1.4vw, 1.16rem);
+  line-height: 1.75;
+}
+
+.architectureFigure {
+  max-width: 58rem;
+  margin: clamp(4rem, 7vw, 6.5rem) auto 0;
+}
+
+.architectureCanvas {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 20 / 13;
+}
+
+.architectureConnectors {
+  display: block;
+  width: 100%;
+  height: 100%;
+  overflow: visible;
+  color: rgba(244, 245, 246, 0.5);
+}
+
+.architectureConnectors path:not(.feedbackLine) {
+  fill: none;
+  stroke: var(--mission-line-strong);
+  stroke-width: 1.5;
+  vector-effect: non-scaling-stroke;
+}
+
+.architectureConnectors marker path {
+  fill: currentcolor;
+  stroke: none;
+}
+
+.architectureConnectors .feedbackLine {
+  fill: none;
+  stroke: rgba(244, 245, 246, 0.14);
+  stroke-width: 1;
+  stroke-dasharray: 5 7;
+  vector-effect: non-scaling-stroke;
+}
+
+.architectureConnectors .crossLine {
+  stroke: rgba(255, 106, 77, 0.4);
+}
+
+.architectureNodes {
+  position: absolute;
+  inset: 0;
+  margin: 0;
+  list-style: none;
+}
+
+.architectureNode {
+  position: absolute;
+  display: grid;
+  width: clamp(9.5rem, 21vw, 13.5rem);
+  min-height: 4.6rem;
+  padding: 0.8rem 1rem;
+  place-content: center;
+  text-align: center;
+  background: rgba(13, 15, 18, 0.96);
+  border: 1px solid var(--mission-line-strong);
+  transform: translate(-50%, -50%);
+}
+
+.architectureNode > span {
+  position: absolute;
+  top: 0.45rem;
+  left: 0.55rem;
+  color: var(--mission-accent);
+  font-size: 0.52rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+}
+
+.architectureNode strong {
+  font-size: clamp(0.7rem, 1.15vw, 0.86rem);
+  font-weight: 650;
+  letter-spacing: 0.015em;
+}
+
+.architectureNode small {
+  margin-top: 0.3rem;
+  color: var(--mission-faint);
+  font-size: clamp(0.52rem, 0.75vw, 0.64rem);
+  line-height: 1.35;
+}
+
+.architectureRequirements {
+  top: 84.6%;
+  left: 22.5%;
+}
+
+.architectureVehicle {
+  top: 54.8%;
+  left: 22.5%;
+}
+
+.architectureInfrastructure {
+  top: 84.6%;
+  left: 77.5%;
+}
+
+.architectureNavigation {
+  top: 54.8%;
+  left: 77.5%;
+}
+
+.architectureAutonomy {
+  top: 29.8%;
+  left: 50%;
+}
+
+.architecturePolicy {
+  top: 10.6%;
+  left: 50%;
+}
+
+.architectureFigure figcaption {
+  max-width: 42rem;
+  margin: 1.5rem auto 0;
+  color: var(--mission-faint);
+  font-size: 0.72rem;
+  line-height: 1.6;
+  text-align: center;
+}
+
+.architectureDetails {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  max-width: 70rem;
+  margin: clamp(4rem, 7vw, 7rem) auto 0;
+  list-style: none;
+  border-top: 1px solid var(--mission-line);
+}
+
+.architectureDetails li {
+  display: grid;
+  grid-template-columns: 2.5rem minmax(0, 1fr);
+  gap: 1rem;
+  padding: 2rem 2rem 2rem 0;
+  border-bottom: 1px solid var(--mission-line);
+}
+
+.architectureDetails li:nth-child(odd) {
+  border-right: 1px solid var(--mission-line);
+}
+
+.architectureDetails li:nth-child(even) {
+  padding-right: 0;
+  padding-left: 2rem;
+}
+
+.architectureDetails li > span {
+  color: var(--mission-accent);
+  font-size: 0.62rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+}
+
+.architectureDetails h3 {
+  font-size: 1.05rem;
+  font-weight: 650;
+  letter-spacing: 0.01em;
+}
+
+.architectureDetails p {
+  margin-top: 0.75rem;
+  color: var(--mission-muted);
+  font-size: 0.9rem;
+  line-height: 1.7;
+}
+
+.policy {
+  scroll-margin-top: calc(var(--header-height) + 1rem);
+  padding: clamp(5rem, 9vw, 9rem) clamp(1.25rem, 5vw, 5rem);
+  background:
+    radial-gradient(circle at 70% 40%, rgba(31, 42, 58, 0.3), transparent 42%),
+    var(--mission-bg);
+}
+
+.policyHeader {
+  display: grid;
+  grid-template-columns: minmax(18rem, 0.85fr) minmax(24rem, 1.15fr);
+  gap: clamp(3rem, 8vw, 9rem);
+  align-items: end;
+}
+
+.policyHeader .eyebrow {
+  grid-column: 1 / -1;
+}
+
+.policyHeader h2 {
+  max-width: 12ch;
+}
+
+.policyHeader > div {
+  display: grid;
+  gap: 1.25rem;
+  color: var(--mission-muted);
+  font-size: clamp(1rem, 1.25vw, 1.12rem);
+  line-height: 1.75;
+}
+
+.policyExplorer {
+  display: grid;
+  grid-template-columns: minmax(24rem, 0.95fr) minmax(24rem, 1.05fr);
+  gap: clamp(3rem, 7vw, 7rem);
+  align-items: center;
+  margin-top: clamp(4rem, 8vw, 8rem);
+}
+
+.policyNetwork {
+  position: relative;
+  width: min(100%, 32rem);
+  aspect-ratio: 1;
+  margin-inline: auto;
+}
+
+.policyConnectors {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
+.policyConnectors line {
+  stroke: var(--mission-line-strong);
+  stroke-width: 1;
+  vector-effect: non-scaling-stroke;
+}
+
+.policyCenter {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  display: grid;
+  width: clamp(5rem, 11vw, 6.75rem);
+  aspect-ratio: 1;
+  place-content: center;
+  color: var(--mission-text);
+  font-size: 0.68rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-align: center;
+  text-transform: uppercase;
+  background: rgba(244, 245, 246, 0.06);
+  border: 1px solid var(--mission-line-strong);
+  border-radius: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.policyCenter span {
+  display: block;
+  margin-top: 0.2rem;
+  color: var(--mission-faint);
+  font-size: 0.5rem;
+}
+
+.policyBubbles {
+  position: absolute;
+  inset: 0;
+}
+
+.policyBubble {
+  position: absolute;
+  display: grid;
+  width: clamp(4.6rem, 9vw, 6rem);
+  aspect-ratio: 1;
+  padding: 0.5rem;
+  place-content: center;
+  color: var(--mission-faint);
+  font: inherit;
+  font-size: clamp(0.48rem, 0.72vw, 0.6rem);
+  font-weight: 650;
+  line-height: 1.35;
+  text-align: center;
+  text-transform: uppercase;
+  background: rgba(244, 245, 246, 0.02);
+  border: 1px solid var(--mission-line);
+  border-radius: 50%;
+  cursor: pointer;
+  transform: translate(-50%, -50%);
+  transition:
+    color 180ms ease,
+    background-color 180ms ease,
+    border-color 180ms ease,
+    transform 180ms ease;
+}
+
+.policyBubble:hover,
+.policyBubble:focus-visible,
+.policyBubble[data-active] {
+  color: var(--mission-text);
+  background: rgba(244, 245, 246, 0.08);
+  border-color: rgba(255, 106, 77, 0.72);
+}
+
+.policyBubble:focus-visible,
+.policyNavigation button:focus-visible {
+  outline: 2px solid var(--mission-accent);
+  outline-offset: 4px;
+}
+
+.policyBubble[data-active] {
+  transform: translate(-50%, -50%) scale(1.05);
+}
+
+.policyPositionOne {
+  top: 11.5%;
+  left: 50%;
+}
+
+.policyPositionTwo {
+  top: 23.5%;
+  left: 79.5%;
+}
+
+.policyPositionThree {
+  top: 50%;
+  left: 87.5%;
+}
+
+.policyPositionFour {
+  top: 76.5%;
+  left: 79.5%;
+}
+
+.policyPositionFive {
+  top: 88.5%;
+  left: 50%;
+}
+
+.policyPositionSix {
+  top: 76.5%;
+  left: 20.5%;
+}
+
+.policyPositionSeven {
+  top: 50%;
+  left: 12.5%;
+}
+
+.policyDetail {
+  min-height: 24rem;
+  padding: clamp(2rem, 4vw, 3.5rem);
+  background: rgba(17, 20, 25, 0.84);
+  border: 1px solid var(--mission-line);
+}
+
+.policyDetailMeta {
+  display: flex;
+  justify-content: space-between;
+  color: var(--mission-faint);
+  font-size: 0.6rem;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+
+.policyDetailMeta span:first-child {
+  color: var(--mission-accent);
+}
+
+.policyDetail h3 {
+  margin-top: clamp(3rem, 6vw, 5rem);
+  font-size: clamp(1.8rem, 3.5vw, 3.2rem);
+  font-weight: 600;
+  line-height: 1.05;
+  letter-spacing: -0.035em;
+}
+
+.policyDetail > p {
+  max-width: 38rem;
+  margin-top: 1.5rem;
+  color: var(--mission-muted);
+  font-size: 1rem;
+  line-height: 1.75;
+}
+
+.policyNavigation {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 3rem;
+  padding-top: 1.25rem;
+  border-top: 1px solid var(--mission-line);
+}
+
+.policyNavigation button {
+  display: inline-flex;
+  gap: 0.75rem;
+  align-items: center;
+  padding: 0.6rem 0;
+  color: var(--mission-muted);
+  font: inherit;
+  font-size: 0.68rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  background: none;
+  border: 0;
+  cursor: pointer;
+  transition: color 180ms ease;
+}
+
+.policyNavigation button:hover {
+  color: var(--mission-text);
+}
+
+.policyNavigation button span {
+  color: var(--mission-accent);
+  font-size: 1rem;
+}
+
+@media (max-width: 960px) {
+  .statementFrame,
+  .policyHeader,
+  .policyExplorer {
+    grid-template-columns: 1fr;
+  }
+
+  .sectionHeader {
+    position: static;
+  }
+
+  .sectionHeader h2,
+  .policyHeader h2 {
+    max-width: 18ch;
+  }
+
+  .statementBody,
+  .policyHeader > div {
+    max-width: 46rem;
+  }
+
+  .policyExplorer {
+    gap: 4rem;
+  }
+
+  .policyNetwork {
+    width: min(100%, 30rem);
+  }
+
+  .policyDetail {
+    width: min(100%, 46rem);
+    min-height: 22rem;
+    margin-inline: auto;
+  }
+}
+
+@media (max-width: 720px) {
+  .hero {
+    min-height: 66svh;
+    padding-bottom: 5rem;
+  }
+
+  .heroContent h1 {
+    letter-spacing: 0.045em;
+  }
+
+  .architectureCanvas {
+    aspect-ratio: auto;
+  }
+
+  .architectureConnectors {
+    display: none;
+  }
+
+  .architectureNodes {
+    position: static;
+    display: grid;
+    gap: 0;
+  }
+
+  .architectureNode,
+  .architectureRequirements,
+  .architectureVehicle,
+  .architectureInfrastructure,
+  .architectureNavigation,
+  .architectureAutonomy,
+  .architecturePolicy {
+    position: relative;
+    top: auto;
+    left: auto;
+    width: 100%;
+    min-height: 5rem;
+    padding: 1rem 1rem 1rem 3.25rem;
+    place-content: center start;
+    text-align: left;
+    border-bottom: 0;
+    transform: none;
+  }
+
+  .architectureNode:last-child {
+    border-bottom: 1px solid var(--mission-line-strong);
+  }
+
+  .architectureNode:not(:last-child)::after {
+    position: absolute;
+    bottom: -0.55rem;
+    left: 1.35rem;
+    z-index: 2;
+    color: var(--mission-accent);
+    content: "↓";
+    font-size: 0.8rem;
+  }
+
+  .architectureNode > span {
+    top: 50%;
+    left: 1rem;
+    transform: translateY(-50%);
+  }
+
+  .architectureNode strong {
+    font-size: 0.84rem;
+  }
+
+  .architectureNode small {
+    font-size: 0.62rem;
+  }
+
+  .architectureFigure figcaption {
+    text-align: left;
+  }
+
+  .architectureDetails {
+    grid-template-columns: 1fr;
+  }
+
+  .architectureDetails li,
+  .architectureDetails li:nth-child(even) {
+    padding: 1.5rem 0;
+    border-right: 0;
+  }
+
+  .policyNetwork {
+    width: 100%;
+    aspect-ratio: auto;
+  }
+
+  .policyConnectors,
+  .policyCenter {
+    display: none;
+  }
+
+  .policyBubbles {
+    position: static;
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 0.6rem;
+  }
+
+  .policyBubble,
+  .policyPositionOne,
+  .policyPositionTwo,
+  .policyPositionThree,
+  .policyPositionFour,
+  .policyPositionFive,
+  .policyPositionSix,
+  .policyPositionSeven {
+    position: static;
+    width: 100%;
+    min-height: 3.25rem;
+    aspect-ratio: auto;
+    padding: 0.75rem;
+    border-radius: 0;
+    transform: none;
+  }
+
+  .policyBubble[data-active] {
+    transform: none;
+  }
+}
+
+@media (max-width: 480px) {
+  .hero {
+    min-height: 58svh;
+    padding-inline: 1rem;
+  }
+
+  .heroContent h1 {
+    font-size: clamp(3.15rem, 18vw, 5rem);
+  }
+
+  .heroContent > p:last-child {
+    max-width: 22rem;
+    line-height: 1.6;
+  }
+
+  .statementFrame {
+    gap: 2.5rem;
+  }
+
+  .sectionHeader h2,
+  .centeredHeader h2,
+  .policyHeader h2 {
+    font-size: clamp(2rem, 11vw, 3rem);
+  }
+
+  .architectureFigure {
+    margin-top: 3rem;
+  }
+
+  .architectureDetails li {
+    grid-template-columns: 2rem minmax(0, 1fr);
+  }
+
+  .policyBubbles {
+    grid-template-columns: 1fr;
+  }
+
+  .policyDetail {
+    min-height: 25rem;
+    padding: 1.5rem;
+  }
+
+  .policyDetailMeta {
+    gap: 1rem;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .heroMedia video {
+    display: none;
+  }
+
+  .policyBubble,
+  .policyNavigation button {
+    transition: none;
+  }
+}
