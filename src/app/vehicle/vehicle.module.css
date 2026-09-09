@@ -428,7 +428,8 @@
 }
 
 .propulsionLead h2 {
-  max-width: 16ch;
+  max-width: 25ch;
+  font-size: clamp(2.1rem, 3.6vw, 3.75rem);
 }
 
 .propulsionLead > p:last-child {
@@ -437,26 +438,135 @@
   color: var(--preview-muted);
 }
 
-.gateRail {
+.researchFlow {
   display: grid;
-  grid-template-columns: 1fr auto 1fr auto 1fr;
-  gap: 1rem;
-  align-items: center;
-  margin-top: 2rem;
-  padding: 1.1rem 1.5rem;
-  color: rgba(245, 245, 242, 0.86);
-  font-size: 0.68rem;
-  font-weight: 700;
-  letter-spacing: 0.1em;
-  text-align: center;
-  text-transform: uppercase;
-  background: rgba(255, 255, 255, 0.025);
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  margin: 2.5rem 0 2rem;
+  padding: 0;
+  list-style: none;
   border-block: 1px solid var(--preview-line);
 }
 
-.gateRail i {
+.researchFlow li {
+  position: relative;
+  min-width: 0;
+  padding: 1.25rem 1.5rem;
+}
+
+.researchFlow li + li {
+  border-left: 1px solid var(--preview-line);
+}
+
+.researchFlow li + li::before {
+  position: absolute;
+  top: 3.5rem;
+  left: -0.5rem;
+  width: 1rem;
+  color: var(--preview-accent);
+  content: "→";
+  background: var(--preview-surface-raised);
+}
+
+.researchFlow summary {
+  cursor: pointer;
+  list-style: none;
+}
+
+.researchFlow summary::-webkit-details-marker {
+  display: none;
+}
+
+.researchFlow summary:focus-visible {
+  outline: 2px solid var(--preview-accent);
+  outline-offset: 6px;
+}
+
+.researchFlow svg {
+  display: block;
+  width: 100%;
+  max-width: 19rem;
+  height: 6.5rem;
+  margin-bottom: 1rem;
+  overflow: visible;
+  fill: none;
+  stroke: rgba(245, 245, 242, 0.32);
+  stroke-width: 1;
+}
+
+.sourceSheets rect {
+  fill: var(--preview-surface-raised);
+}
+
+.flowArtifact text {
+  fill: var(--preview-muted);
+  stroke: none;
+  font-family: ui-monospace, monospace;
+  font-size: 9px;
+  letter-spacing: 0.5px;
+}
+
+.researchFlow .flowTrace,
+.researchFlow .flowOutputs {
+  stroke: var(--preview-accent);
+}
+
+.researchFlow .flowOutputs {
+  fill: var(--preview-accent);
+}
+
+.flowHeading {
+  display: flex;
+  gap: 0.65rem;
+  align-items: baseline;
+  color: var(--preview-ink);
+  font-size: clamp(0.85rem, 1.2vw, 1.05rem);
+  font-weight: 600;
+}
+
+.flowHeading b {
+  color: var(--preview-accent);
+  font-family: ui-monospace, monospace;
+  font-size: 0.6rem;
+}
+
+.flowHeading i {
+  margin-left: auto;
   color: var(--preview-accent);
   font-style: normal;
+  transition: transform 180ms ease;
+}
+
+.researchFlow details[open] .flowHeading i {
+  transform: rotate(45deg);
+}
+
+.researchFlow summary:hover svg,
+.researchFlow details[open] svg {
+  stroke: var(--preview-accent);
+}
+
+.flowSubtitle {
+  display: block;
+  margin-top: 0.5rem;
+  color: var(--preview-faint);
+  font-size: 0.73rem;
+  line-height: 1.5;
+}
+
+.researchFlow details > p {
+  margin-top: 1rem;
+  padding-top: 1rem;
+  color: var(--preview-muted);
+  font-size: 0.85rem;
+  line-height: 1.7;
+  border-top: 1px solid var(--preview-line);
+}
+
+.researchScope {
+  margin-top: 1rem;
+  color: var(--preview-faint);
+  font-size: 0.73rem;
+  line-height: 1.6;
 }
 
 .galleryRegion {
@@ -938,13 +1048,25 @@
     left: -0.75rem;
   }
 
-  .gateRail {
+  .researchFlow {
     grid-template-columns: 1fr;
-    gap: 0.65rem;
   }
 
-  .gateRail i {
-    transform: rotate(90deg);
+  .researchFlow li + li {
+    border-left: 0;
+    border-top: 1px solid var(--preview-line);
+  }
+
+  .researchFlow li + li::before {
+    top: -0.75rem;
+    left: 1.5rem;
+    content: "↓";
+    text-align: center;
+  }
+
+  .researchFlow svg {
+    height: 5rem;
+    max-width: 15rem;
   }
 
   .systemRail {
@@ -975,6 +1097,10 @@
 }
 
 @media (prefers-reduced-motion: reduce) {
+  .flowHeading i {
+    transition: none;
+  }
+
   .statusPulse {
     animation: none;
   }
