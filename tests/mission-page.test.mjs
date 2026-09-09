@@ -19,6 +19,7 @@ test("mission route preserves the approved page structure", async () => {
   assert.match(page, /Integrated system architecture/);
   assert.match(page, /id="policy-and-compliance"/);
   assert.match(page, /<MissionPolicyExplorer \/>/);
+  assert.match(page, /Explore the vehicle/);
 });
 
 test("mission claims remain future-facing and evidence bounded", async () => {
@@ -32,7 +33,7 @@ test("mission claims remain future-facing and evidence bounded", async () => {
   assert.doesNotMatch(publicCopy, /DO-178C/);
 });
 
-test("diagrams share responsive viewports and become linear on narrow screens", async () => {
+test("architecture diagram preserves its network at narrow widths", async () => {
   const page = await readFile(pagePath, "utf8");
   const explorer = await readFile(componentPath, "utf8");
   const stylesheet = await readFile(stylesheetPath, "utf8");
@@ -42,6 +43,10 @@ test("diagrams share responsive viewports and become linear on narrow screens", 
   assert.match(page, /preserveAspectRatio="xMidYMid meet"/);
   assert.match(explorer, /preserveAspectRatio="xMidYMid meet"/);
   assert.match(
+    stylesheet,
+    /@media \(max-width: 720px\)[\s\S]*?\.architectureCanvas\s*\{\s*aspect-ratio: 20 \/ 13;/,
+  );
+  assert.doesNotMatch(
     stylesheet,
     /@media \(max-width: 720px\)[\s\S]*?\.architectureConnectors\s*\{\s*display: none;/,
   );
@@ -59,4 +64,13 @@ test("policy categories are keyboard-operable controls", async () => {
   assert.match(explorer, /aria-controls="active-policy-category"/);
   assert.match(explorer, /Previous policy category/);
   assert.match(explorer, /Next policy category/);
+  assert.match(explorer, /title: "Autonomy Assurance"/);
+  assert.match(explorer, /title: "Vehicle Approval"/);
+});
+
+test("policy nodes hide connector lines behind opaque boundaries", async () => {
+  const stylesheet = await readFile(stylesheetPath, "utf8");
+
+  assert.match(stylesheet, /\.policyCenter\s*\{[\s\S]*?background: #111419;/);
+  assert.match(stylesheet, /\.policyBubble\s*\{[\s\S]*?background: #0d0f13;/);
 });

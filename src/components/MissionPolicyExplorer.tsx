@@ -23,7 +23,7 @@ const policyCategories: PolicyCategory[] = [
   {
     id: "autonomy",
     shortLabel: "Autonomy assurance",
-    title: "Autonomy Certification",
+    title: "Autonomy Assurance",
     description:
       "Addresses the evidence and assurance pathway eventually required for flight automation without an onboard pilot. The applicable process will depend on the vehicle's future safety classification and certification basis.",
     positionClass: "policyPositionTwo",
@@ -31,7 +31,7 @@ const policyCategories: PolicyCategory[] = [
   {
     id: "vehicle",
     shortLabel: "Vehicle approval",
-    title: "Vehicle Certification",
+    title: "Vehicle Approval",
     description:
       "Covers the future airworthiness and operating approvals for a new vehicle class. Certification assumptions remain requirements inputs; no certification basis or approval pathway has been selected.",
     positionClass: "policyPositionThree",
