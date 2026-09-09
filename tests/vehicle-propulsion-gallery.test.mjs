@@ -125,3 +125,15 @@ test("programmatic edge scrolling cannot be re-snapped at the 150ms manual snap 
   assert.match(component, /EDGE_SELECTION_DELAY_MS = 450/);
   assert.match(component, /SCROLL_END_MS = 150/);
 });
+
+test("arrow hover advances at the accelerated cadence", async () => {
+  const component = await readFile(componentPath, "utf8");
+
+  assert.match(component, /HOVER_START_MS = 200/);
+  assert.match(component, /HOVER_REPEAT_MS = 433/);
+  assert.match(component, /HOVER_CLICK_COOLDOWN_MS = 500/);
+  assert.match(
+    component,
+    /autoScrollCooldownRef\.current = false;\s*\}, HOVER_CLICK_COOLDOWN_MS\)/,
+  );
+});

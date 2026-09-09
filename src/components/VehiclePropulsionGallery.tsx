@@ -27,8 +27,9 @@ type ScreeningCard = {
 };
 
 const CLICK_COOLDOWN_MS = 400;
-const HOVER_START_MS = 300;
-const HOVER_REPEAT_MS = 650;
+const HOVER_CLICK_COOLDOWN_MS = 500;
+const HOVER_START_MS = 200;
+const HOVER_REPEAT_MS = 433;
 const SCROLL_END_MS = 150;
 const EDGE_SELECTION_DELAY_MS = 450;
 const PROGRAMMATIC_SCROLL_GUARD_MS = 700;
@@ -529,7 +530,7 @@ export function VehiclePropulsionGallery() {
 
       autoCooldownTimerRef.current = setTimeout(() => {
         autoScrollCooldownRef.current = false;
-      }, CLICK_COOLDOWN_MS);
+      }, HOVER_CLICK_COOLDOWN_MS);
 
       hoverTimerRef.current = setTimeout(() => {
         const canContinue =
