@@ -12,6 +12,60 @@
   overflow: visible;
 }
 
+.recordIndex {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem 2rem;
+  padding-block: 0.25rem 1.5rem;
+}
+
+.recordIndex button {
+  display: inline-flex;
+  gap: 0.7rem;
+  align-items: baseline;
+  min-height: 44px;
+  padding: 0.5rem 0;
+  color: rgba(255, 255, 255, 0.8);
+  font: inherit;
+  font-size: 0.75rem;
+  background: none;
+  border: 0;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+  cursor: pointer;
+}
+
+.recordIndex strong {
+  color: #fff;
+  font-family: ui-monospace, monospace;
+  font-size: 1.3rem;
+  font-weight: 500;
+}
+
+.recordIndex button:hover,
+.recordIndex button:focus-visible {
+  color: #ff725b;
+  border-color: currentcolor;
+}
+
+.recordIndex button:focus-visible {
+  outline: 2px solid currentcolor;
+  outline-offset: 4px;
+}
+
+.recordKind {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  left: 1rem;
+  color: rgba(255, 255, 255, 0.6);
+  font-size: 0.55rem;
+  font-weight: 600;
+  letter-spacing: 0.09em;
+  text-align: left;
+  text-transform: uppercase;
+  pointer-events: none;
+}
+
 .navField {
   position: absolute;
   top: 0;

@@ -11,8 +11,22 @@ The static reference is `../website/vehicle.html`, with behavior in
 `src/components/VehiclePropulsionGallery.tsx`, currently rendered by
 `src/app/vehicle/page.tsx`.
 
-All cards must remain visibly classified as demonstrative UI examples, not
-engineering candidates or results.
+The current records distinguish research families from bounded computational
+studies. Their statuses and findings remain scoped to the evidence described;
+they do not establish propulsion selection or physical validation.
+
+## Research presentation
+
+- The page introduces the records through three expandable illustrations:
+  evidence organization, model application, and decision recording.
+- Native disclosures keep supporting explanations available to keyboard and
+  touch users without expanding the default reading length.
+- Each card carries an explicit family/study kind. The two carousel shortcuts
+  derive their counts and destinations from that same data; they retain the
+  complete carousel and its status ordering.
+- The original gate strip and its responsive CSS have been removed.
+- Verify disclosure text fit, shortcut navigation, and card label placement at
+  320 px, 768 px, and 1440 px. Browser verification remains pending.
 
 ## Required parity
 

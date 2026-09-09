@@ -225,36 +225,92 @@ export default function VehiclePreviewPage() {
         <section className={styles.propulsion} aria-labelledby="propulsion-title">
           <div className={styles.sectionFrame}>
             <div className={styles.propulsionLead}>
-              <p className={styles.kicker}>Installed-system evaluation</p>
-              <h2 id="propulsion-title">Screening propulsion architectures</h2>
+              <p className={styles.kicker}>Propulsion research & development</p>
+              <h2 id="propulsion-title">From evidence to engineering decisions</h2>
               <p>
-                Each concept below enters the same installed-system evaluation:
-                first it must fit the vehicle, then demonstrate the required
-                capability, and finally close as part of the complete aircraft.
+                Ascerex is building a computational workflow that turns propulsion
+                research into vehicle-level decisions. The records below track
+                the families under investigation, the studies carried out, and
+                the constraints shaping the next step.
               </p>
             </div>
 
-            <div
-              className={styles.gateRail}
-              role="group"
-              aria-label="Propulsion evaluation gates"
-            >
-              <span>Vehicle compatibility</span>
-              <i aria-hidden="true">→</i>
-              <span>Installed capability</span>
-              <i aria-hidden="true">→</i>
-              <span>Aircraft closure</span>
-            </div>
+            <ol className={styles.researchFlow} aria-label="From research to a study record">
+              <li>
+                <details>
+                  <summary>
+                    <svg viewBox="0 0 260 120" aria-hidden="true">
+                      <g className={styles.sourceSheets}>
+                        <path d="M20 72V18h84v54M30 82V28h84v54" />
+                        <rect x="40" y="38" width="84" height="54" rx="2" />
+                        <path d="M52 53h48M52 65h35M52 77h22" />
+                      </g>
+                      <path className={styles.flowTrace} d="M124 65h28m-6-5 6 5-6 5" />
+                      <g className={styles.flowArtifact}>
+                        <text x="168" y="38">SOURCE</text>
+                        <text x="168" y="60">FAMILY</text>
+                        <text x="168" y="82">INPUTS</text>
+                        <path d="M158 25v66h83" />
+                      </g>
+                    </svg>
+                    <span className={styles.flowHeading}><b>01</b> Evidence organized <i aria-hidden="true">+</i></span>
+                    <span className={styles.flowSubtitle}>Sources → structured records</span>
+                  </summary>
+                  <p>Source claims are traced to their origin, classified by propulsion family, and checked for the inputs a model requires. Missing evidence stays visible.</p>
+                </details>
+              </li>
+              <li>
+                <details>
+                  <summary>
+                    <svg viewBox="0 0 260 120" aria-hidden="true">
+                      <g className={styles.flowArtifact}>
+                        <text x="14" y="31">DEMAND</text><text x="14" y="91">INPUTS</text>
+                        <path d="M66 27h22v30h20M66 87h22V63h20" />
+                        <rect x="108" y="38" width="70" height="44" rx="2" />
+                        <text x="143" y="64" textAnchor="middle">MODEL</text>
+                        <path d="M178 60h20V24h46M198 60h46M198 60v36h46" />
+                      </g>
+                      <g className={styles.flowOutputs}>
+                        <circle cx="244" cy="24" r="3" /><circle cx="244" cy="60" r="3" /><circle cx="244" cy="96" r="3" />
+                      </g>
+                    </svg>
+                    <span className={styles.flowHeading}><b>02</b> Models applied <i aria-hidden="true">+</i></span>
+                    <span className={styles.flowSubtitle}>Physics → power, energy & mass</span>
+                  </summary>
+                  <p>Applicable physics models connect flight demand to installed capability. Bounded studies vary assumptions to expose the constraints that dominate a case.</p>
+                </details>
+              </li>
+              <li>
+                <details>
+                  <summary>
+                    <svg viewBox="0 0 260 120" aria-hidden="true">
+                      <g className={styles.flowArtifact}>
+                        <path d="M20 60h42m0 0V24h36M62 60h36M62 60v36h36" />
+                        <text x="114" y="28">EVIDENCE GAP</text>
+                        <text x="114" y="64">MODEL LIMIT</text>
+                        <text x="114" y="100">CONSTRAINT</text>
+                      </g>
+                      <g className={styles.flowOutputs}>
+                        <circle cx="98" cy="24" r="3" /><circle cx="98" cy="60" r="3" /><circle cx="98" cy="96" r="3" />
+                      </g>
+                    </svg>
+                    <span className={styles.flowHeading}><b>03</b> Decisions recorded <i aria-hidden="true">+</i></span>
+                    <span className={styles.flowSubtitle}>Finding → status & next step</span>
+                  </summary>
+                  <p>Each record explains what the evidence supports, what limits the result, and why a study proceeds, pauses, or stops under its tested assumptions.</p>
+                </details>
+              </li>
+            </ol>
 
             <div className={styles.galleryRegion}>
               <div className={styles.galleryCaption}>
-                <p>Propulsion architecture studies</p>
+                <p>Research families & architecture studies</p>
                 <span>
-                  Public screening summaries—not vehicle selections or
-                  family-wide verdicts.
+                  Select a record to explore the evidence and takeaway.
                 </span>
               </div>
               <VehiclePropulsionGallery />
+              <p className={styles.researchScope}>Study outcomes apply to the configurations and assumptions evaluated. No propulsion architecture has been selected.</p>
             </div>
           </div>
         </section>

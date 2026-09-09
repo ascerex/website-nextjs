@@ -17,6 +17,7 @@ type ScreeningState =
 
 type ScreeningCard = {
   id: string;
+  kind: "family" | "study";
   title: string;
   architecture: string;
   state: ScreeningState;
@@ -38,6 +39,7 @@ const SCRAMBLE_CHARACTERS = "!<>-_\\/[]{}—=+*^?#________";
 const screeningCards: ScreeningCard[] = [
   {
     id: "ducted-electric-family",
+    kind: "family",
     title: "Ducted Electric Fan",
     architecture: "Vectored ducted fan",
     state: "in-screening",
@@ -48,6 +50,7 @@ const screeningCards: ScreeningCard[] = [
   },
   {
     id: "cyclorotor-family",
+    kind: "family",
     title: "Cyclorotor",
     architecture: "Vectored cyclorotor",
     state: "prospective",
@@ -58,6 +61,7 @@ const screeningCards: ScreeningCard[] = [
   },
   {
     id: "electric-rotor-family",
+    kind: "family",
     title: "Electric Rotor Adaptation",
     architecture: "Enclosed rotor study",
     state: "prospective",
@@ -68,6 +72,7 @@ const screeningCards: ScreeningCard[] = [
   },
   {
     id: "turbine-rotor-family",
+    kind: "family",
     title: "Turbine Rotor Adaptation",
     architecture: "Enclosed rotor study",
     state: "prospective",
@@ -78,6 +83,7 @@ const screeningCards: ScreeningCard[] = [
   },
   {
     id: "ducted-flapping-wing-family",
+    kind: "family",
     title: "Ducted Flapping Wing",
     architecture: "Oscillating-wing duct",
     state: "prospective",
@@ -88,6 +94,7 @@ const screeningCards: ScreeningCard[] = [
   },
   {
     id: "fluidic-propulsion-family",
+    kind: "family",
     title: "Fluidic Propulsion",
     architecture: "Fluid-amplified thrust",
     state: "prospective",
@@ -98,6 +105,7 @@ const screeningCards: ScreeningCard[] = [
   },
   {
     id: "fan-propulsor-family",
+    kind: "family",
     title: "Fan Propulsor",
     architecture: "Packaged fan concept",
     state: "prospective",
@@ -108,6 +116,7 @@ const screeningCards: ScreeningCard[] = [
   },
   {
     id: "plasma-propulsion-family",
+    kind: "family",
     title: "Plasma / EHD Research",
     architecture: "Plasma propulsion claim",
     state: "prospective",
@@ -118,6 +127,7 @@ const screeningCards: ScreeningCard[] = [
   },
   {
     id: "turbine-jet-family",
+    kind: "family",
     title: "Turbine Jet",
     architecture: "Vectored turbine jet",
     state: "prospective",
@@ -128,6 +138,7 @@ const screeningCards: ScreeningCard[] = [
   },
   {
     id: "magnetic-thruster-family",
+    kind: "family",
     title: "Magnetic Thruster Claim",
     architecture: "Linear-thrust claim",
     state: "prospective",
@@ -138,6 +149,7 @@ const screeningCards: ScreeningCard[] = [
   },
   {
     id: "devt-recovery",
+    kind: "study",
     title: "DEVT Recovery Branch",
     architecture: "DEVT recovery study",
     state: "deferred",
@@ -148,6 +160,7 @@ const screeningCards: ScreeningCard[] = [
   },
   {
     id: "devt-baseline",
+    kind: "study",
     title: "2021 DEVT Baseline",
     architecture: "DEVT baseline study",
     state: "does-not-advance",
@@ -158,6 +171,7 @@ const screeningCards: ScreeningCard[] = [
   },
   {
     id: "m400-static-reference",
+    kind: "study",
     title: "M400 Static Reference",
     architecture: "Shaft-driven fan study",
     state: "does-not-advance",
@@ -721,6 +735,24 @@ export function VehiclePropulsionGallery() {
 
   return (
     <div className={styles.gallery}>
+      <nav className={styles.recordIndex} aria-label="Jump to propulsion records">
+        {(["family", "study"] as const).map((kind) => (
+          <button
+            key={kind}
+            type="button"
+            onClick={() => {
+              handleNavLeave();
+              cancelEdgeSelection();
+              closeExpanded();
+              scrollToCard(screeningCards.findIndex((card) => card.kind === kind));
+            }}
+          >
+            <strong>{screeningCards.filter((card) => card.kind === kind).length}</strong>
+            <span>{kind === "family" ? "Research families" : "Computational studies"}</span>
+            <span aria-hidden="true">↗</span>
+          </button>
+        ))}
+      </nav>
       <div className={styles.carousel}>
         <button
           type="button"
@@ -791,6 +823,9 @@ export function VehiclePropulsionGallery() {
                     className={styles.cardCorners}
                     aria-hidden="true"
                   />
+                  <span className={styles.recordKind}>
+                    {card.kind === "family" ? "Propulsion family" : "Computational study"}
+                  </span>
                   <span className={styles.cardInner}>
                     <span className={styles.cardTitle}>
                       {card.title}
@@ -842,6 +877,7 @@ export function VehiclePropulsionGallery() {
               <header className={styles.expandedHeader}>
                 <h3>{activeCard.title}</h3>
                 <div className={styles.expandedMeta}>
+                  <span>{activeCard.kind === "family" ? "Propulsion family" : "Computational study"}</span>
                   <span>{activeCard.architecture}</span>
                   <strong>{activeCard.stateLabel}</strong>
                 </div>
