@@ -1,0 +1,388 @@
+.scene {
+  position: relative;
+  min-width: 0;
+  background: var(--pilot-bg);
+  color: var(--pilot-ink);
+  isolation: isolate;
+}
+
+.pinnedStage {
+  position: relative;
+  width: 100%;
+  height: 100vh;
+  height: 100dvh;
+  min-height: 43rem;
+  overflow: hidden;
+  background: var(--pilot-bg);
+}
+
+.sceneBar {
+  position: absolute;
+  top: calc(var(--header-height) + 1rem);
+  right: clamp(1.25rem, 4vw, 4.5rem);
+  left: clamp(1.25rem, 4vw, 4.5rem);
+  z-index: 12;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-bottom: 0.75rem;
+  border-bottom: 1px solid var(--pilot-line);
+  color: var(--pilot-faint);
+  font-size: 0.66rem;
+  font-weight: 720;
+  letter-spacing: 0.17em;
+  text-transform: uppercase;
+}
+
+.sceneBar > span { color: rgba(245, 245, 242, 0.74); }
+
+.eyebrow {
+  color: var(--pilot-accent);
+  font-size: 0.68rem;
+  font-weight: 760;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+}
+
+.srOnly {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+/* Scene 00 */
+
+.heroScene { min-height: 100vh; min-height: 100dvh; }
+
+.heroFrame {
+  position: relative;
+  height: 100vh;
+  height: 100dvh;
+  min-height: 43rem;
+  overflow: hidden;
+  isolation: isolate;
+}
+
+.heroImage {
+  object-fit: cover;
+  object-position: center;
+  filter: contrast(1.06) brightness(0.86);
+  transform: scale(1.012);
+}
+
+.heroShade {
+  position: absolute;
+  inset: 0;
+}
+
+.heroShade {
+  z-index: 1;
+  background:
+    linear-gradient(90deg, rgba(3, 3, 3, 0.88) 0%, rgba(3, 3, 3, 0.52) 42%, rgba(3, 3, 3, 0.08) 78%),
+    linear-gradient(0deg, rgba(5, 5, 5, 0.74) 0%, rgba(5, 5, 5, 0.08) 42%, rgba(5, 5, 5, 0.12) 100%);
+}
+
+.heroCopy {
+  position: absolute;
+  top: 50%;
+  left: clamp(1.25rem, 6vw, 7rem);
+  z-index: 3;
+  max-width: 50rem;
+  transform: translateY(-48%);
+}
+
+.heroCopy h1 {
+  margin-top: 0.85rem;
+  font-size: clamp(5rem, 11vw, 11rem);
+  font-weight: 620;
+  letter-spacing: -0.075em;
+  line-height: 0.82;
+}
+
+.heroThesis {
+  margin-top: 1.8rem;
+  font-size: clamp(1.7rem, 3.4vw, 3.7rem);
+  font-weight: 520;
+  letter-spacing: -0.05em;
+  line-height: 0.98;
+  text-wrap: balance;
+}
+
+.heroSummary {
+  max-width: 40rem;
+  margin-top: 1.4rem;
+  color: var(--pilot-muted);
+  font-size: clamp(0.98rem, 1.35vw, 1.16rem);
+  line-height: 1.65;
+}
+
+/* Scene 01 */
+
+.flightScene .pinnedStage { background: #050505; }
+.flightWorld { position: absolute; inset: 0; z-index: -2; width: 114%; }
+.horizonImage { position: absolute; inset: 0; background: linear-gradient(0deg, rgba(5, 5, 5, 0.94), transparent 52%), linear-gradient(180deg, rgba(5, 5, 5, 0.72), transparent 34%), url("/images/horizon.jpeg") center / cover; filter: grayscale(1) contrast(1.18) brightness(0.4); opacity: 0.8; }
+.flightGround { position: absolute; right: 0; bottom: 8%; left: 0; height: 1px; background: linear-gradient(90deg, transparent, rgba(245, 245, 242, 0.36), transparent); }
+.flightTrajectory { position: absolute; inset: 8% 0 0; width: 100%; height: 88%; overflow: visible; }
+.flightTrajectoryGuide,
+.flightTrajectoryActive { fill: none; vector-effect: non-scaling-stroke; }
+.flightTrajectoryGuide { stroke: rgba(245, 245, 242, 0.2); stroke-width: 1.5; stroke-dasharray: 4 8; }
+.flightTrajectoryActive { stroke: var(--pilot-accent); stroke-width: 2.5; filter: drop-shadow(0 0 6px rgba(240, 75, 47, 0.35)); }
+.flightEndpoint circle { fill: var(--pilot-accent); }
+.flightEndpoint path { fill: rgba(245, 245, 242, 0.84); stroke: rgba(245, 245, 242, 0.92); stroke-width: 1.5; vector-effect: non-scaling-stroke; }
+.flightOrbiter { position: absolute; top: 0; left: 0; z-index: 6; width: clamp(4.5rem, 8vw, 7.5rem); color: var(--pilot-ink); }
+.flightOrbiterGlyph { display: block; width: 100%; }
+.flightOrbiter svg,
+.handoffOrbiter svg { display: block; width: 100%; fill: rgba(245, 245, 242, 0.94); stroke: #050505; stroke-width: 2; }
+.flightOrbiter svg path + path,
+.handoffOrbiter svg path + path { fill: none; stroke: var(--pilot-accent); stroke-width: 2; }
+.handoffOrbiter { position: absolute; top: 50%; left: 50%; z-index: 7; width: clamp(6rem, 11vw, 10rem); transform: translate(-50%, -50%); }
+
+.phaseNarrative { position: absolute; inset: 0; z-index: 7; list-style: none; pointer-events: none; }
+.phaseNarrative li { position: absolute; top: 24%; left: clamp(1.25rem, 6vw, 7rem); display: grid; max-width: 30rem; gap: 0.55rem; }
+.phaseNarrative li > span { color: var(--pilot-accent); font-family: ui-monospace, SFMono-Regular, Menlo, monospace; font-size: 0.8rem; }
+.phaseNarrative strong { font-size: clamp(3.5rem, 8vw, 8rem); font-weight: 520; letter-spacing: -0.065em; line-height: 0.88; text-transform: uppercase; }
+.phaseNarrative p { max-width: 24rem; color: var(--pilot-muted); font-size: clamp(0.92rem, 1.3vw, 1.08rem); line-height: 1.55; }
+
+/* Static interlude */
+
+.purposeScene { border-top: 1px solid var(--pilot-line); background: #090909; }
+.purposeFrame { display: grid; width: min(100%, 92rem); grid-template-columns: minmax(20rem, 0.9fr) minmax(22rem, 1.1fr); column-gap: clamp(3rem, 8vw, 9rem); margin-inline: auto; padding: clamp(7rem, 12vw, 11rem) clamp(1.25rem, 6vw, 7rem); }
+.purposeFrame h2 { max-width: 15ch; margin-top: 1rem; font-size: clamp(2.5rem, 5.4vw, 5.6rem); font-weight: 520; letter-spacing: -0.055em; line-height: 0.95; }
+.purposeCopy { align-self: center; max-width: 46rem; margin: 0; transform: translateY(-3rem); }
+.purposeCopy p { color: var(--pilot-muted); font-size: clamp(1rem, 1.35vw, 1.16rem); line-height: 1.72; }
+.purposeCopy p + p { margin-top: 1.2rem; }
+.responsibilityList { grid-column: 1 / -1; margin-top: clamp(3.5rem, 7vw, 6rem); border-top: 1px solid rgba(245, 245, 242, 0.34); }
+.responsibilityList > div { display: grid; grid-template-columns: 4rem minmax(10rem, 0.6fr) minmax(20rem, 1fr); gap: 1.5rem; align-items: baseline; padding: 1.5rem 0; border-bottom: 1px solid var(--pilot-line); }
+.responsibilityList > div > span { color: var(--pilot-accent); font-family: ui-monospace, SFMono-Regular, Menlo, monospace; font-size: 0.62rem; }
+.responsibilityList dt { font-size: clamp(1.05rem, 1.7vw, 1.4rem); font-weight: 610; }
+.responsibilityList dd { color: var(--pilot-muted); font-size: 0.86rem; line-height: 1.65; }
+
+/* Scene 03 */
+
+.architectureScene .pinnedStage { background: radial-gradient(circle at center, #121010 0, #070707 38%, #050505 68%); }
+.architectureTitle { position: absolute; top: 22%; left: clamp(1.25rem, 6vw, 7rem); z-index: 5; max-width: 36rem; }
+.architectureTitle h2 { margin-top: 0.8rem; font-size: clamp(2.4rem, 5.5vw, 5.8rem); font-weight: 520; letter-spacing: -0.06em; line-height: 0.93; }
+.authorityRail {
+  position: absolute;
+  top: calc(var(--header-height) + 5.25rem);
+  right: clamp(1.25rem, 4vw, 4.5rem);
+  left: clamp(1.25rem, 4vw, 4.5rem);
+  z-index: 8;
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+.authorityRail > i { position: absolute; right: 0; bottom: 0; left: 0; height: 1px; background: rgba(240, 75, 47, 0.58); transform-origin: left; }
+.authorityRail > div { display: grid; gap: 0.3rem; padding: 0 1.2rem 0.9rem 0; }
+.authorityRail > div + div { padding-left: 1.2rem; border-left: 1px solid var(--pilot-line); }
+.authorityRail strong { font-size: 0.68rem; letter-spacing: 0.12em; text-transform: uppercase; }
+.authorityRail span { color: var(--pilot-faint); font-size: 0.62rem; }
+
+.controlLoop { position: absolute; inset: calc(var(--header-height) + 7.5rem) clamp(1.25rem, 4vw, 4.5rem) 2.2rem; }
+.controlLoop > svg { position: absolute; top: 50%; left: 54%; width: min(61rem, 72vw); height: min(38rem, 68vh); overflow: visible; transform: translate(-50%, -50%); }
+.controlLoopGuide,
+.controlLoopActive { fill: none; vector-effect: non-scaling-stroke; }
+.controlLoopGuide { stroke: rgba(245, 245, 242, 0.12); stroke-width: 1; }
+.controlLoopActive { stroke: var(--pilot-accent); stroke-width: 1.8; }
+.loopPulse { fill: var(--pilot-ink); stroke: rgba(240, 75, 47, 0.34); stroke-width: 12px; vector-effect: non-scaling-stroke; filter: drop-shadow(0 0 4px rgba(240, 75, 47, 0.5)); }
+.loopController { position: absolute; top: 50%; left: 54%; z-index: 5; width: clamp(5.5rem, 8.5vw, 8rem); transform: translate(-50%, -50%); }
+.loopController svg { display: block; width: 100%; overflow: visible; }
+.controllerChip { fill: rgba(5, 5, 5, 0.9); stroke: rgba(245, 245, 242, 0.82); stroke-width: 2px; }
+.controllerPins,
+.controllerCircuit { fill: none; stroke: rgba(245, 245, 242, 0.72); stroke-linecap: round; stroke-width: 2px; }
+.controllerCore { fill: rgba(240, 75, 47, 0.08); stroke: var(--pilot-accent); stroke-width: 1.5px; }
+.loopCoreLabel { position: absolute; top: calc(50% + 5.5rem); left: 54%; color: var(--pilot-accent); font-size: 0.62rem; font-weight: 760; letter-spacing: 0.16em; text-transform: uppercase; transform: translateX(-50%); }
+
+.loopNodes { position: absolute; top: 50%; left: 54%; z-index: 7; width: min(61rem, 72vw); height: min(38rem, 68vh); list-style: none; transform: translate(-50%, -50%); }
+.loopNodes li { position: absolute; display: grid; gap: 0.22rem; min-width: 8rem; padding-top: 0.55rem; border-top: 1px solid var(--pilot-line); background: rgba(5, 5, 5, 0.86); }
+.loopNodes li:nth-child(1) { top: 1%; left: 46%; }
+.loopNodes li:nth-child(2) { top: 31%; right: 0; text-align: right; }
+.loopNodes li:nth-child(3) { right: 12%; bottom: 1%; text-align: right; }
+.loopNodes li:nth-child(4) { bottom: 1%; left: 12%; }
+.loopNodes li:nth-child(5) { top: 31%; left: 0; }
+.loopNodes span { color: var(--pilot-accent); font-family: ui-monospace, SFMono-Regular, Menlo, monospace; font-size: 0.55rem; }
+.loopNodes strong { font-size: 0.7rem; letter-spacing: 0.09em; text-transform: uppercase; }
+
+.loopFocus { position: absolute; top: 45%; left: 0; z-index: 9; width: min(31rem, 34vw); list-style: none; }
+.loopFocus li { position: absolute; inset: 0 auto auto 0; display: grid; gap: 0.5rem; }
+.loopFocus span { color: var(--pilot-accent); font-size: 0.62rem; font-weight: 740; letter-spacing: 0.14em; text-transform: uppercase; }
+.loopFocus strong { font-size: clamp(3rem, 6.5vw, 6.5rem); font-weight: 520; letter-spacing: -0.065em; line-height: 0.88; text-transform: uppercase; }
+.loopFocus p { max-width: 24rem; color: var(--pilot-muted); font-size: 0.88rem; line-height: 1.55; }
+
+/* Scene 04 */
+
+.safetyScene .pinnedStage { background: radial-gradient(circle at 58% 46%, #130908 0, #080606 38%, #050505 72%); }
+.safetyStage { position: absolute; inset: calc(var(--header-height) + 3.4rem) clamp(1.25rem, 4vw, 4.5rem) 2.2rem; }
+.flightStateLabel { position: absolute; top: 13%; right: 0; display: grid; gap: 0.3rem; padding-left: 0.8rem; border-left: 1px solid var(--pilot-accent); }
+.flightStateLabel span { color: var(--pilot-faint); font-size: 0.56rem; letter-spacing: 0.13em; text-transform: uppercase; }
+.flightStateLabel strong { font-size: 0.72rem; font-weight: 650; letter-spacing: 0.06em; text-transform: uppercase; }
+
+.stateComparison { position: absolute; inset: 20% 0 8%; }
+.stateComparison svg { width: 100%; height: 100%; overflow: visible; }
+.stateAxes path,
+.expectedTrace,
+.observedTrace,
+.deviationMarker path { fill: none; vector-effect: non-scaling-stroke; }
+.stateAxes path { stroke: rgba(245, 245, 242, 0.12); stroke-width: 1; }
+.expectedTrace { stroke: rgba(245, 245, 242, 0.42); stroke-width: 1.5; stroke-dasharray: 6 8; }
+.observedTrace { stroke: var(--pilot-accent); stroke-width: 2.6; filter: drop-shadow(0 0 5px rgba(240, 75, 47, 0.24)); }
+.commandBoundary { fill: rgba(245, 245, 242, 0.035); stroke: rgba(245, 245, 242, 0.2); stroke-width: 1; stroke-dasharray: 5 7; vector-effect: non-scaling-stroke; }
+.deviationMarker circle { fill: var(--pilot-accent); }
+.deviationMarker path { stroke: var(--pilot-accent); stroke-width: 1; }
+.deviationMarker text,
+.traceLabels text,
+.axisLabels text { fill: var(--pilot-faint); font-family: ui-monospace, SFMono-Regular, Menlo, monospace; font-size: 11px; font-weight: 700; letter-spacing: 1.1px; }
+.axisLabels text { fill: rgba(245, 245, 242, 0.68); font-size: 10px; letter-spacing: 1.5px; }
+.deviationMarker text { fill: var(--pilot-accent); }
+.responseStages { position: absolute; top: 18%; left: 0; z-index: 8; list-style: none; }
+.responseStages li { position: absolute; top: 0; left: 0; display: grid; min-width: 42rem; gap: 0.3rem; }
+.responseStages span { color: var(--pilot-accent); font-family: ui-monospace, SFMono-Regular, Menlo, monospace; font-size: 0.7rem; }
+.responseStages strong { font-size: clamp(3.4rem, 8vw, 8rem); font-weight: 520; letter-spacing: -0.07em; line-height: 0.86; text-transform: uppercase; }
+.responseStages p { max-width: 31rem; color: var(--pilot-muted); font-size: 0.86rem; line-height: 1.55; }
+
+.safetyPayoff { position: absolute; bottom: 1%; left: 0; z-index: 9; max-width: 66rem; transform: translateY(16px); }
+.safetyPayoff h3 { font-size: clamp(2.3rem, 4.8vw, 5rem); font-weight: 520; letter-spacing: -0.055em; line-height: 0.94; }
+.safetyPayoff p { max-width: 43rem; margin-top: 0.9rem; color: var(--pilot-muted); font-size: 0.86rem; line-height: 1.6; }
+
+/* Scene 05 */
+
+.verificationScene { min-height: 190vh; min-height: 190dvh; background: linear-gradient(#050505, #090909 35%, #070707 80%, #050505); }
+.verificationStage { position: sticky; top: 0; display: grid; min-height: 100vh; min-height: 100dvh; align-content: center; padding: calc(var(--header-height) + 4rem) clamp(1.25rem, 4vw, 4.5rem) 4rem; }
+.verificationHeader { max-width: 68rem; }
+.verificationHeader h2 { margin-top: 0.8rem; font-size: clamp(3.2rem, 8vw, 8rem); font-weight: 520; letter-spacing: -0.07em; line-height: 0.88; }
+.verificationHeader > p:last-child { max-width: 42rem; margin-top: 1.25rem; color: var(--pilot-muted); font-size: clamp(0.95rem, 1.35vw, 1.12rem); line-height: 1.6; }
+.verificationRail { position: relative; margin-top: clamp(3rem, 7vh, 5.5rem); }
+.verificationRail > i { position: absolute; top: 0; right: 0; left: 0; height: 1px; background: var(--pilot-accent); transform-origin: left; }
+.verificationRail ol { display: grid; grid-template-columns: repeat(6, minmax(0, 1fr)); list-style: none; }
+.verificationRail li { position: relative; min-width: 0; padding: 1.25rem clamp(0.65rem, 1.5vw, 1.4rem) 0 0; }
+.verificationRail li::before { position: absolute; top: -0.25rem; left: 0; width: 0.5rem; height: 0.5rem; content: ""; border-radius: 50%; background: var(--pilot-accent); }
+.verificationRail li + li { padding-left: clamp(0.65rem, 1.5vw, 1.4rem); border-left: 1px solid var(--pilot-line); }
+.verificationRail li > span { color: var(--pilot-accent); font-family: ui-monospace, SFMono-Regular, Menlo, monospace; font-size: 0.68rem; }
+.verificationRail strong { display: block; min-height: 2.7rem; margin-top: 1.2rem; font-size: clamp(0.82rem, 1.2vw, 1.05rem); font-weight: 640; line-height: 1.3; }
+.verificationRail p { margin-top: 0.6rem; color: var(--pilot-muted); font-size: 0.74rem; line-height: 1.5; }
+/* Scene 05 */
+
+.resolutionScene { border-top: 1px solid var(--pilot-line); background: radial-gradient(circle at 78% 42%, #15100f 0, #080707 32%, #050505 66%); }
+.resolutionFrame { width: min(100%, 92rem); min-height: 92vh; min-height: 92dvh; margin-inline: auto; padding: clamp(8rem, 14vh, 12rem) clamp(1.25rem, 6vw, 7rem) clamp(6rem, 10vh, 9rem); }
+.resolutionFrame h2 { max-width: 14ch; margin-top: 1rem; font-size: clamp(3rem, 7vw, 7.2rem); font-weight: 520; letter-spacing: -0.065em; line-height: 0.9; }
+.resolutionSummary { max-width: 47rem; margin-top: 2rem; color: var(--pilot-muted); font-size: clamp(0.95rem, 1.3vw, 1.12rem); line-height: 1.7; }
+.resolutionDivision { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); max-width: 56rem; margin-top: clamp(3rem, 7vh, 5rem); border-top: 1px solid rgba(245, 245, 242, 0.34); border-bottom: 1px solid var(--pilot-line); }
+.resolutionDivision > div { padding: 1.35rem 1.5rem 1.35rem 0; }
+.resolutionDivision > div + div { padding-left: 1.5rem; border-left: 1px solid var(--pilot-line); }
+.resolutionDivision dt { color: var(--pilot-accent); font-size: 0.62rem; font-weight: 740; letter-spacing: 0.14em; text-transform: uppercase; }
+.resolutionDivision dd { margin-top: 0.65rem; font-size: clamp(1rem, 1.6vw, 1.35rem); font-weight: 540; }
+.resolutionActions { display: flex; gap: 0.8rem; margin-top: 1.6rem; }
+.resolutionActions a { display: inline-flex; min-width: 13rem; align-items: center; justify-content: space-between; gap: 2rem; padding: 0.85rem 1rem; border: 1px solid rgba(245, 245, 242, 0.42); font-size: 0.65rem; font-weight: 740; letter-spacing: 0.11em; text-transform: uppercase; transition: color 180ms ease, background-color 180ms ease, border-color 180ms ease; }
+.resolutionActions a:first-child { border-color: var(--pilot-ink); background: var(--pilot-ink); color: var(--pilot-bg); }
+.resolutionActions a:hover,
+.resolutionActions a:focus-visible { border-color: var(--pilot-accent); background: var(--pilot-accent); color: #050505; outline: none; }
+.resolutionActions a:focus-visible { box-shadow: 0 0 0 3px #050505, 0 0 0 5px var(--pilot-accent); }
+
+@media (min-width: 769px) {
+  .safetyScene [data-state-comparison],
+  .responseStages li { opacity: 0; }
+
+  .responseStages li:first-child { opacity: 1; }
+
+  .verificationRail [data-verification-line],
+  .authorityRail [data-authority-line] { transform: scaleX(0); }
+
+  .verificationRail [data-verification-stage] { opacity: 0.16; }
+
+  .authorityRail [data-authority],
+  .controlLoop [data-loop-focus],
+  .controlLoop [data-loop-pulse] { opacity: 0; }
+
+  .controlLoop [data-control-loop-path],
+  .flightScene [data-flight-path] { opacity: 0; }
+
+  .controlLoop [data-loop-node] { opacity: 0.14; }
+
+  .phaseNarrative li { opacity: 0; transform: translateY(22px); }
+  .phaseNarrative li:first-child { opacity: 1; transform: none; }
+  .handoffOrbiter { opacity: 0; }
+}
+
+@media (max-width: 768px) {
+  .pinnedStage,
+  .heroFrame { height: auto; min-height: auto; overflow: hidden; }
+  .sceneBar { position: relative; top: auto; right: auto; left: auto; margin: 0 1.25rem; padding-top: calc(var(--header-height) + 1.25rem); }
+  .sceneBar small { display: none; }
+
+  .heroScene { height: auto; }
+  .heroFrame { position: relative; min-height: 100vh; min-height: 100dvh; }
+  .heroCopy { position: relative; top: auto; left: auto; max-width: none; padding: calc(var(--header-height) + 6rem) 1.25rem 14rem; transform: none; }
+  .heroCopy h1 { font-size: clamp(4.8rem, 24vw, 8rem); }
+  .heroThesis { font-size: clamp(2rem, 9vw, 3.4rem); }
+
+  .flightScene .pinnedStage { min-height: auto; padding-bottom: 5rem; }
+  .flightWorld { height: 28rem; width: 100%; }
+  .flightTrajectory { top: 8rem; height: 23rem; }
+  .flightOrbiter { display: none; }
+  .handoffOrbiter { top: 22rem; width: 5rem; }
+  .phaseNarrative { position: relative; inset: auto; display: grid; margin: 25rem 1.25rem 0; border-top: 1px solid var(--pilot-line); }
+  .phaseNarrative li { position: relative; top: auto; left: auto; max-width: none; grid-template-columns: 2.2rem minmax(6.5rem, 0.7fr) 1.3fr; align-items: baseline; gap: 0.7rem; padding: 1.1rem 0; border-bottom: 1px solid var(--pilot-line); }
+  .phaseNarrative strong { font-size: 1rem; letter-spacing: 0.02em; line-height: 1.2; }
+  .phaseNarrative p { font-size: 0.8rem; }
+
+  .purposeFrame { display: block; padding: 7rem 1.25rem; }
+  .purposeFrame h2 { font-size: clamp(2.5rem, 11vw, 4rem); }
+  .purposeCopy { margin-top: 2.5rem; transform: none; }
+  .responsibilityList > div { grid-template-columns: 2rem minmax(6.5rem, 0.6fr) 1fr; gap: 0.65rem; padding: 1.1rem 0; }
+  .responsibilityList dt { font-size: 0.88rem; }
+  .responsibilityList dd { font-size: 0.74rem; }
+
+  .architectureScene .pinnedStage { min-height: auto; padding-bottom: 4rem; }
+  .architectureTitle { position: relative; top: auto; left: auto; margin: 4rem 1.25rem 2.5rem; }
+  .architectureTitle h2 { font-size: clamp(2.4rem, 11vw, 4rem); }
+  .authorityRail { position: relative; top: auto; right: auto; left: auto; grid-template-columns: 1fr; margin: 0 1.25rem 3rem; }
+  .authorityRail > div,
+  .authorityRail > div + div { padding: 0.85rem 0; border-bottom: 1px solid var(--pilot-line); border-left: 0; }
+  .authorityRail > i { display: none; }
+  .controlLoop { position: relative; inset: auto; margin: 0 1.25rem; }
+  .controlLoop > svg,
+  .loopPulse,
+  .loopNodes { display: none; }
+  .loopController { position: relative; top: auto; left: auto; width: 5.5rem; margin: 0 auto 0.5rem; transform: none; }
+  .loopCoreLabel { position: relative; top: auto; left: auto; display: block; padding-bottom: 1.5rem; text-align: center; transform: none; }
+  .loopFocus { position: relative; top: auto; left: auto; width: 100%; border-top: 1px solid var(--pilot-line); }
+  .loopFocus li { position: relative; inset: auto; grid-template-columns: minmax(5.5rem, 0.45fr) minmax(6.5rem, 0.55fr) 1fr; align-items: baseline; gap: 0.75rem; padding: 1rem 0; border-bottom: 1px solid var(--pilot-line); }
+  .loopFocus strong { font-size: 0.94rem; letter-spacing: 0.02em; line-height: 1.2; }
+  .loopFocus p { font-size: 0.74rem; }
+
+  .safetyScene .pinnedStage { min-height: auto; padding-bottom: 5rem; }
+  .safetyStage { position: relative; inset: auto; margin: 0 1.25rem; padding-top: 3rem; }
+  .flightStateLabel { position: relative; top: auto; right: auto; margin-bottom: 1.5rem; }
+  .stateComparison { position: relative; inset: auto; height: 18rem; }
+  .responseStages { position: relative; top: auto; left: auto; display: grid; margin-top: 1.5rem; border-top: 1px solid var(--pilot-line); }
+  .responseStages li { position: relative; min-width: 0; grid-template-columns: 1.5rem minmax(6.5rem, 0.55fr) 1fr; align-items: baseline; gap: 0.55rem; padding: 0.9rem 0; border-bottom: 1px solid var(--pilot-line); }
+  .responseStages span { font-size: 0.55rem; }
+  .responseStages strong { font-size: 0.68rem; letter-spacing: 0.04em; line-height: 1.2; }
+  .responseStages p { font-size: 0.7rem; }
+  .safetyPayoff { position: relative; bottom: auto; left: auto; margin-top: 4rem; transform: none; }
+  .safetyPayoff h3 { font-size: clamp(2.3rem, 10vw, 3.8rem); }
+
+  .verificationScene { min-height: auto; }
+  .verificationStage { position: relative; min-height: auto; padding: calc(var(--header-height) + 4rem) 1.25rem 6rem; }
+  .verificationHeader h2 { font-size: clamp(3.2rem, 15vw, 5rem); }
+  .verificationRail > i { top: 0; right: auto; bottom: 0; width: 1px; height: auto; transform: none !important; }
+  .verificationRail ol { grid-template-columns: 1fr; }
+  .verificationRail li,
+  .verificationRail li + li { min-height: 8rem; padding: 1.2rem 0 1.2rem 1.4rem; border-left: 0; }
+  .verificationRail li::before { top: 1.35rem; left: -0.24rem; }
+  .verificationRail strong { min-height: auto; margin-top: 0.4rem; }
+
+  .resolutionFrame { min-height: auto; padding: 7rem 1.25rem 6rem; }
+  .resolutionFrame h2 { font-size: clamp(2.7rem, 12vw, 4.5rem); }
+  .resolutionDivision { grid-template-columns: 1fr; }
+  .resolutionDivision > div,
+  .resolutionDivision > div + div { padding: 1.1rem 0; border-left: 0; }
+  .resolutionDivision > div + div { border-top: 1px solid var(--pilot-line); }
+  .resolutionActions { flex-direction: column; }
+  .resolutionActions a { width: 100%; }
+}
