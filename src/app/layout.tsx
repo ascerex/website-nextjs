@@ -44,6 +44,7 @@ export default function RootLayout({
         <link rel="icon" type="image/svg+xml" href="/favicon/favicon-white.svg" />
         <link rel="icon" type="image/png" sizes="96x96" href="/favicon/favicon-96x96W.png" />
         <link rel="apple-touch-icon" sizes="180x180" href="/favicon/apple-touch-icon.png" />
+        <link rel="manifest" href="/favicon/site.webmanifest" />
         <meta name="theme-color" content="#0a0a0a" />
       </head>
       <body>

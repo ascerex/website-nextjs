@@ -23,6 +23,7 @@
 # misc
 .DS_Store
 *.pem
+/vehicle-propulsion-gallery-fixed.zip
 
 # debug
 npm-debug.log*

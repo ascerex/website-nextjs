@@ -69,8 +69,8 @@ extra render cycle and violates the current React lint rule.
 | Route | Static reference | Next.js status | Required review or behavior |
 | --- | --- | --- | --- |
 | `/` | `index.html` | In progress | Review four hero claims, responsive media, fallbacks, heading structure, and reduced motion. |
-| `/mission` | `mission.html` | Missing; static design implemented | First content migration; review roadmap and policy claims, fix the SVG at compressed widths, and migrate the carousel with keyboard behavior. |
-| `/vehicle` | `vehicle.html` | Missing; static design partially implemented | Second content migration and highest claim risk; preserve the current concept while reviewing incomplete areas, replace or clearly label demonstrative gallery data, and migrate carousel and accordions accessibly. |
+| `/mission` | `mission.html` | Implemented; browser review pending | Responsive system and policy diagrams are migrated with reviewed future-facing copy; complete browser and accessibility verification before cutover. |
+| `/vehicle` | `vehicle.html` | Implemented; browser review pending | The approved vehicle presentation is now the primary route; carousel parity and final browser/accessibility review remain tracked in the carousel backlog. |
 | `/skyway` | `skyway.html` | Missing; concept/design not ready | Defer until its public concept and design direction are approved; keep the network future-facing and dependent on vehicle capability. |
 | `/pilot` | `pilot.html` | Missing; concept/design not ready | Defer until its public concept and design direction are approved; avoid implying implemented or validated autonomous flight. |
 | `/investors` | `investors.html` | Missing | Migrate only approved organization and engagement information. |
@@ -143,13 +143,11 @@ Acceptance:
 
 ### Phase 4 — Migrate the vehicle route
 
-Implement `/vehicle` second. Its static page has a usable partial design and
-interaction concept, but incomplete areas are not parity requirements until
-reviewed. Preserve the requirements-led development story while reviewing every
-claim. Until approved public screening records exist, gallery names, values,
-and statuses must be removed or visibly identified as demonstrative UI
-examples—not engineering findings. Rebuild carousel and testing groups with
-semantic controls and explicit state.
+The `/vehicle` route has been promoted from the approved preview presentation.
+Its requirements-led development story and evidence-grounded propulsion gallery
+remain subject to final browser review. Until approved public screening records
+exist, gallery states must remain visibly scoped as screening summaries rather
+than vehicle selections or family-wide findings.
 
 Acceptance:
 
@@ -261,5 +259,5 @@ Acceptance:
 The first bounded slice is Phase 1 only: fix and document header behavior,
 remove the existing lint warning, add focused behavior coverage if the current
 test stack supports it without premature infrastructure, run lint, and report
-any remaining verification gap. After that shared-shell gate, content migration
-begins with `/mission`, then the currently defined portions of `/vehicle`.
+any remaining verification gap. Content migration is complete for `/mission`
+and `/vehicle`; the next slice is the remaining supporting informational routes.
