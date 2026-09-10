@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Image from "next/image";
 import Link from "next/link";
 import { Footer, Header, SkywayNetworkExplorer } from "@/components";
 import styles from "./skyway.module.css";
@@ -78,29 +79,15 @@ export default function SkywayPage() {
       <Header />
       <main className={styles.page}>
         <section className={styles.hero} aria-labelledby="skyway-title">
-          <div className={styles.heroGrid} aria-hidden="true" />
-          <svg
-            className={styles.heroNetwork}
-            viewBox="0 0 1200 760"
-            preserveAspectRatio="xMidYMid slice"
-            aria-hidden="true"
-          >
-            <g className={styles.heroRoutes}>
-              <path d="M-40 590C160 420 244 455 390 315S690 108 1235 180" />
-              <path d="M-20 690C235 520 350 590 535 420S900 205 1250 310" />
-              <path d="M90 770C280 615 465 670 650 500S915 350 1230 430" />
-              <path d="M390 315C510 350 555 385 650 500" />
-              <path d="M535 420C650 325 735 275 845 242" />
-            </g>
-            <g className={styles.heroNodes}>
-              <circle cx="175" cy="462" r="5" />
-              <circle cx="390" cy="315" r="7" />
-              <circle cx="535" cy="420" r="6" />
-              <circle cx="650" cy="500" r="6" />
-              <circle cx="845" cy="242" r="7" />
-              <circle cx="1040" cy="208" r="5" />
-            </g>
-          </svg>
+          <Image
+            className={styles.heroImage}
+            src="/images/skywayHero.png"
+            alt="Illustrative aerial network connecting cities across multiple altitude layers"
+            fill
+            priority
+            sizes="100vw"
+          />
+          <div className={styles.heroShade} aria-hidden="true" />
 
           <div className={styles.heroContent}>
             <p className={styles.kicker}>Aerial operating infrastructure</p>

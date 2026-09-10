@@ -40,48 +40,26 @@
     linear-gradient(135deg, #070a0c 0%, #030405 72%);
 }
 
-.heroGrid {
+.heroImage {
   position: absolute;
   inset: 0;
-  z-index: -2;
-  opacity: 0.28;
-  background-image:
-    linear-gradient(rgba(183, 211, 224, 0.12) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(183, 211, 224, 0.12) 1px, transparent 1px);
-  background-size: 5rem 5rem;
-  mask-image: linear-gradient(90deg, transparent 2%, #000 43%, #000 100%);
+  z-index: 0;
+  object-fit: cover;
+  object-position: center;
 }
 
-.heroNetwork {
+.heroShade {
   position: absolute;
-  inset: 0 0 0 auto;
-  z-index: -1;
-  width: min(76vw, 82rem);
-  height: 100%;
-  opacity: 0.72;
-}
-
-.heroRoutes path {
-  fill: none;
-  stroke: rgba(112, 184, 216, 0.48);
-  stroke-width: 1.25;
-  vector-effect: non-scaling-stroke;
-}
-
-.heroRoutes path:nth-child(2),
-.heroRoutes path:nth-child(5) {
-  stroke: rgba(240, 75, 47, 0.65);
-}
-
-.heroNodes circle {
-  fill: var(--sky-ink);
-  stroke: rgba(112, 184, 216, 0.55);
-  stroke-width: 12;
-  stroke-opacity: 0.17;
-  vector-effect: non-scaling-stroke;
+  inset: 0;
+  z-index: 1;
+  background:
+    linear-gradient(90deg, rgba(2, 4, 6, 0.92) 0%, rgba(2, 4, 6, 0.72) 37%, rgba(2, 4, 6, 0.16) 72%),
+    linear-gradient(0deg, rgba(2, 4, 6, 0.72) 0%, transparent 38%);
 }
 
 .heroContent {
+  position: relative;
+  z-index: 2;
   align-self: center;
   width: min(100%, 92rem);
   margin-inline: auto;
@@ -141,6 +119,7 @@
 
 .heroStatus {
   position: absolute;
+  z-index: 2;
   right: clamp(1.25rem, 5vw, 5rem);
   bottom: 2.75rem;
   display: flex;
@@ -1128,12 +1107,6 @@
 }
 
 @media (max-width: 900px) {
-  .heroNetwork {
-    width: 115vw;
-    opacity: 0.4;
-    transform: translateX(27%);
-  }
-
   .propositionFrame > header,
   .mappingHeader,
   .mappingWorkbench,
