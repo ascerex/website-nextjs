@@ -142,13 +142,6 @@ export default function InvestorsPage() {
           </div>
 
           <div className={styles.heroVisual} aria-hidden="true">
-            <Image
-              src="/images/investorHero.png"
-              alt=""
-              fill
-              priority
-              sizes="(max-width: 768px) 100vw, 48vw"
-            />
             <div className={styles.heroSystemIndex}>
               <span>01 / Vehicle</span>
               <span>02 / Network</span>

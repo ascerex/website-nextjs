@@ -28,10 +28,7 @@
 
 .hero {
   position: relative;
-  display: grid;
-  grid-template-columns: minmax(0, 1.08fr) minmax(27rem, 0.92fr);
   min-height: 100svh;
-  padding-left: max(clamp(1.25rem, 5vw, 5rem), calc((100vw - 92rem) / 2));
   overflow: hidden;
   isolation: isolate;
   background: #060606;
@@ -41,16 +38,22 @@
 .heroCopy {
   position: relative;
   z-index: 2;
-  align-self: center;
-  max-width: 52rem;
-  padding: calc(var(--header-height) + 5rem) clamp(2rem, 5vw, 6.5rem) 7rem 0;
+  display: flex;
+  width: min(52vw, 52rem);
+  min-height: 100svh;
+  flex-direction: column;
+  justify-content: center;
+  margin-left: 0;
+  padding: calc(var(--header-height) + 4.5rem)
+    clamp(3rem, 6vw, 7rem)
+    7rem max(clamp(1.25rem, 5vw, 5rem), calc((100vw - 92rem) / 2));
 }
 
 .heroCopy::after {
   position: absolute;
-  right: clamp(2rem, 5vw, 6.5rem);
+  right: clamp(3rem, 6vw, 7rem);
   bottom: 3rem;
-  left: 0;
+  left: max(clamp(1.25rem, 5vw, 5rem), calc((100vw - 92rem) / 2));
   height: 1px;
   content: "";
   background: linear-gradient(90deg, var(--investor-accent) 0 13%, var(--investor-line) 13% 100%);
@@ -127,18 +130,20 @@
 }
 
 .heroVisual {
-  position: relative;
-  min-height: 100%;
+  position: absolute;
+  inset: 0;
+  z-index: 0;
   overflow: hidden;
   isolation: isolate;
-  border-left: 1px solid var(--investor-line);
 }
 
-.heroVisual > img {
+.heroVisual::after {
+  position: absolute;
+  inset: 0;
   z-index: -3;
-  object-fit: cover;
-  object-position: 57% center;
-  filter: saturate(0.85) contrast(1.06) brightness(0.82);
+  content: "";
+  background: url("/images/investorHeroLarge.png") center / cover no-repeat;
+  transform: scaleX(-1);
 }
 
 .heroVisual::before {
@@ -147,17 +152,19 @@
   z-index: -2;
   content: "";
   background:
-    linear-gradient(90deg, rgba(5, 5, 5, 0.52), rgba(5, 5, 5, 0.03) 55%),
-    linear-gradient(0deg, rgba(5, 5, 5, 0.72), transparent 52%);
+    linear-gradient(90deg, rgba(5, 5, 5, 0.97), rgba(5, 5, 5, 0.9) 27%, rgba(5, 5, 5, 0.24) 57%, rgba(5, 5, 5, 0.03) 88%),
+    linear-gradient(0deg, rgba(5, 5, 5, 0.7), transparent 48%);
 }
 
 .heroSystemIndex {
   position: absolute;
-  top: calc(var(--header-height) + 3rem);
-  right: clamp(1.5rem, 4vw, 4rem);
-  display: grid;
-  gap: 0.55rem;
-  justify-items: end;
+  top: auto;
+  right: max(clamp(1.25rem, 5vw, 5rem), calc((100vw - 92rem) / 2));
+  bottom: 6rem;
+  left: auto;
+  display: flex;
+  width: min(31rem, 38vw);
+  gap: 0.5rem;
   color: rgba(245, 245, 242, 0.66);
   font-family: ui-monospace, monospace;
   font-size: 0.58rem;
@@ -165,11 +172,18 @@
   text-transform: uppercase;
 }
 
+.heroSystemIndex span + span::before {
+  margin-right: 0.5rem;
+  color: rgba(245, 245, 242, 0.34);
+  content: "|";
+}
+
 .heroVisual > p {
   position: absolute;
-  right: clamp(1.5rem, 4vw, 4rem);
+  right: max(clamp(1.25rem, 5vw, 5rem), calc((100vw - 92rem) / 2));
   bottom: 3rem;
-  left: clamp(1.5rem, 4vw, 4rem);
+  left: auto;
+  width: min(31rem, 38vw);
   padding-top: 1rem;
   color: rgba(245, 245, 242, 0.66);
   font-size: 0.62rem;
@@ -311,13 +325,13 @@
 
 .autonomy .sectionFrame {
   display: grid;
-  grid-template-columns: minmax(19rem, 0.72fr) minmax(28rem, 1fr);
-  gap: clamp(4rem, 10vw, 11rem);
+  grid-template-columns: minmax(25rem, 1.05fr) minmax(28rem, 0.95fr);
+  gap: clamp(3rem, 6vw, 6rem);
   align-items: center;
 }
 
 .autonomyCopy h2 {
-  max-width: 12ch;
+  max-width: none;
 }
 
 .autonomyCopy > p:not(.kicker) {
@@ -595,13 +609,13 @@
 
 .capital .sectionFrame {
   display: grid;
-  grid-template-columns: minmax(0, 0.9fr) minmax(23rem, 0.7fr);
-  gap: clamp(4rem, 10vw, 11rem);
-  align-items: end;
+  grid-template-columns: minmax(29rem, 1.1fr) minmax(23rem, 0.65fr);
+  gap: clamp(3rem, 7vw, 7rem);
+  align-items: start;
 }
 
 .capitalLead h2 {
-  max-width: 12ch;
+  max-width: none;
 }
 
 .capitalLead > p:last-child {
@@ -650,8 +664,8 @@
 
 .founder .sectionFrame {
   display: grid;
-  grid-template-columns: minmax(18rem, 0.62fr) minmax(0, 1fr);
-  gap: clamp(4rem, 10vw, 11rem);
+  grid-template-columns: minmax(18rem, 0.5fr) minmax(28rem, 1.2fr);
+  gap: clamp(3rem, 8vw, 8rem);
   align-items: center;
 }
 
@@ -714,7 +728,7 @@
 }
 
 .founderCopy h2 {
-  max-width: 12ch;
+  max-width: none;
 }
 
 .founderCopy > p:not(.kicker) {
@@ -799,10 +813,6 @@
 }
 
 @media (max-width: 70rem) {
-  .hero {
-    grid-template-columns: minmax(0, 1fr) minmax(22rem, 0.72fr);
-  }
-
   .sectionIntro,
   .executionHeader,
   .capital .sectionFrame,
@@ -857,15 +867,15 @@
 
 @media (max-width: 52rem) {
   .hero {
-    grid-template-columns: 1fr;
     min-height: max(100svh, 52rem);
-    padding-left: 0;
   }
 
   .heroCopy {
     z-index: 2;
     align-self: center;
     width: 100%;
+    min-height: max(100svh, 52rem);
+    margin-left: 0;
     padding: calc(var(--header-height) + 4.5rem) 1.25rem 11rem;
   }
 
@@ -879,11 +889,7 @@
   }
 
   .heroVisual {
-    position: absolute;
-    inset: 0;
-    z-index: 0;
     min-height: 0;
-    border-left: 0;
   }
 
   .heroVisual::before {
@@ -892,21 +898,28 @@
       linear-gradient(0deg, rgba(5, 5, 5, 0.9), rgba(5, 5, 5, 0.18) 56%, rgba(5, 5, 5, 0.7));
   }
 
+  .heroVisual::after {
+    background-image: url("/images/investorHero.png");
+    transform: none;
+  }
+
   .heroSystemIndex {
     top: auto;
     right: 1.25rem;
     bottom: 4.4rem;
     left: 1.25rem;
     display: flex;
-    flex-wrap: wrap;
-    gap: 0.5rem 1rem;
-    justify-content: flex-end;
+    width: auto;
+    flex-wrap: nowrap;
+    gap: 0.5rem;
+    justify-content: flex-start;
   }
 
   .heroVisual > p {
     right: 1.25rem;
     bottom: 1.25rem;
     left: 1.25rem;
+    width: auto;
   }
 
   .signalGrid {
