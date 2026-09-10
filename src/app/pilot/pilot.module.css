@@ -1,0 +1,16 @@
+.experience {
+  --pilot-bg: #050505;
+  --pilot-ink: #f5f5f2;
+  --pilot-muted: rgba(245, 245, 242, 0.68);
+  --pilot-faint: rgba(245, 245, 242, 0.38);
+  --pilot-line: rgba(245, 245, 242, 0.16);
+  --pilot-accent: #f04b2f;
+  position: relative;
+  overflow: clip;
+  background: var(--pilot-bg);
+  color: var(--pilot-ink);
+}
+
+@supports not (overflow: clip) {
+  .experience { overflow: hidden; }
+}
