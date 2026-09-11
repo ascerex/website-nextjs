@@ -714,7 +714,7 @@
 }
 
 .baselineNote {
-  max-width: 65rem;
+  max-width: 72rem;
   margin-top: 2rem;
   padding-left: 1rem;
   color: var(--preview-muted);

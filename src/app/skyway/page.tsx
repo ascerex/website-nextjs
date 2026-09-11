@@ -90,7 +90,7 @@ export default function SkywayPage() {
           <div className={styles.heroShade} aria-hidden="true" />
 
           <div className={styles.heroContent}>
-            <p className={styles.kicker}>Aerial operating infrastructure</p>
+            <p className={styles.kicker}>COORDINATED AIRSPACE NETWORK</p>
             <h1 id="skyway-title">The Skyway</h1>
             <p className={styles.heroThesis}>
               Flight needs structure between departure and destination.
@@ -109,8 +109,7 @@ export default function SkywayPage() {
             <span className={styles.statusPulse} aria-hidden="true" />
             <div>
               <span>Current program</span>
-              <strong>Phase 1 // Synthetic infrastructure research</strong>
-              <small>No real routes or operational airspace</small>
+              <strong>Synthetic infrastructure research & Route Mapping</strong>
             </div>
           </div>
         </section>

@@ -121,7 +121,7 @@ export default function VehiclePreviewPage() {
           <div className={styles.heroGrid} aria-hidden="true" />
 
           <div className={styles.heroContent}>
-            <p className={styles.kicker}>Orbiter // Atmospheric vehicle program</p>
+            <p className={styles.kicker}>VEHICLE PROGRAM</p>
             <h1 id="preview-title">The Orbiter</h1>
             <p className={styles.heroThesis}>A vehicle shaped by the mission.</p>
             <p className={styles.heroSummary}>
