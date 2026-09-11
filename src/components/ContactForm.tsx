@@ -5,6 +5,7 @@ import { getInquiryRoute, inquiryRoutes, type InquiryType } from "@/data/inquiry
 import styles from "./ContactForm.module.css";
 
 type SubmissionState = "idle" | "submitting" | "success" | "error";
+const NETLIFY_FORM_ENDPOINT = "/contact-form.html";
 
 export function ContactForm() {
   const [submissionState, setSubmissionState] = useState<SubmissionState>("idle");
@@ -23,23 +24,51 @@ export function ContactForm() {
       }
     });
 
+    // Netlify routes an AJAX submission by this body field, not by the
+    // client-rendered form's name attribute alone.
+    encodedData.set("form-name", selectedRoute.formName);
+
     setSubmissionState("submitting");
 
     try {
-      const response = await fetch("/", {
+      if (process.env.NODE_ENV !== "production") {
+        console.debug("[contact-form] submitting", {
+          inquiryType,
+          formName: selectedRoute.formName,
+          endpoint: NETLIFY_FORM_ENDPOINT,
+        });
+      }
+
+      const response = await fetch(NETLIFY_FORM_ENDPOINT, {
         method: "POST",
         headers: { "Content-Type": "application/x-www-form-urlencoded" },
         body: encodedData.toString(),
       });
 
       if (!response.ok) {
-        throw new Error("Contact form submission failed");
+        const responseText = await response.text();
+
+        if (process.env.NODE_ENV !== "production") {
+          console.error("[contact-form] rejected", {
+            status: response.status,
+            response: responseText,
+          });
+        }
+
+        throw new Error(`Contact form submission failed (${response.status})`);
+      }
+
+      if (process.env.NODE_ENV !== "production") {
+        console.debug("[contact-form] accepted", { status: response.status });
       }
 
       form.reset();
       setInquiryType("");
       setSubmissionState("success");
-    } catch {
+    } catch (error) {
+      if (process.env.NODE_ENV !== "production") {
+        console.error("[contact-form] submission error", error);
+      }
       setSubmissionState("error");
     }
   }
@@ -49,12 +78,12 @@ export function ContactForm() {
       className={styles.form}
       name={selectedRoute.formName}
       method="POST"
+      action={NETLIFY_FORM_ENDPOINT}
       data-netlify="true"
       data-netlify-honeypot="bot-field"
       onSubmit={handleSubmit}
     >
       <input type="hidden" name="form-name" value={selectedRoute.formName} />
-      <input type="hidden" name="routing-address" value={selectedRoute.email} />
       <p className={styles.honeypot} aria-hidden="true">
         <label htmlFor="bot-field">Do not fill out this field</label>
         <input id="bot-field" name="bot-field" tabIndex={-1} autoComplete="off" />

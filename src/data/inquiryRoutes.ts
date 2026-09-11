@@ -24,7 +24,7 @@ export const inquiryRoutes = [
     email: "partners@ascerex.com",
   },
   {
-    value: "media",
+    value: "newsroom",
     formName: "ascerex-newsroom",
     number: "04",
     title: "Newsroom",
