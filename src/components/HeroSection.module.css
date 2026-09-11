@@ -1,0 +1,116 @@
+.section {
+  position: relative;
+  display: flex;
+  min-height: 100vh;
+  min-height: 100svh;
+  align-items: center;
+  padding: 7.5rem 3rem 5rem;
+  overflow: hidden;
+}
+
+.section[data-align="left"] {
+  justify-content: flex-start;
+}
+
+.section[data-align="right"] {
+  justify-content: flex-end;
+}
+
+.content {
+  position: relative;
+  z-index: 2;
+  width: min(100%, 40.625rem);
+}
+
+.title {
+  font-size: clamp(3.25rem, 7vw, 5.75rem);
+  text-shadow:
+    0 0.125rem 0.75rem rgba(0, 0, 0, 0.78),
+    0 0 2rem rgba(0, 0, 0, 0.45);
+}
+
+.statement {
+  font-size: clamp(1.2rem, 2.2vw, 1.5rem);
+  text-shadow:
+    0 0.0625rem 0.5rem rgba(0, 0, 0, 0.88),
+    0 0 1.25rem rgba(0, 0, 0, 0.62);
+}
+
+.section[data-readability="none"] .title,
+.section[data-readability="none"] .statement {
+  text-shadow: none;
+}
+
+.section[data-readability="strong"] .title {
+  text-shadow:
+    0 0.125rem 0.9rem rgba(0, 0, 0, 0.96),
+    0 0 2.75rem rgba(0, 0, 0, 0.75);
+}
+
+.section[data-readability="strong"] .statement {
+  text-shadow:
+    0 0.0625rem 0.625rem rgba(0, 0, 0, 0.98),
+    0 0 1.75rem rgba(0, 0, 0, 0.8);
+}
+
+.action {
+  font-size: 1.0625rem;
+}
+
+.section[data-align="left"] .content {
+  text-align: left;
+}
+
+.section[data-align="right"] .content {
+  text-align: right;
+}
+
+.overlay[data-align="left"] {
+  background:
+    linear-gradient(to left, transparent 40%, rgba(10, 10, 10, 0.85) 70%, #0a0a0a 100%),
+    linear-gradient(to bottom, transparent 80%, #0a0a0a 100%),
+    linear-gradient(to top, transparent 90%, #0a0a0a 100%);
+}
+
+.overlay[data-align="right"] {
+  background:
+    linear-gradient(to right, transparent 40%, rgba(10, 10, 10, 0.85) 70%, #0a0a0a 100%),
+    linear-gradient(to bottom, transparent 80%, #0a0a0a 100%),
+    linear-gradient(to top, transparent 90%, #0a0a0a 100%);
+}
+
+@media (max-width: 48rem) {
+  .section,
+  .section[data-align="left"],
+  .section[data-align="right"] {
+    justify-content: center;
+    padding: calc(var(--header-height) + 3rem) 1.25rem 4rem;
+  }
+
+  .section[data-align="left"] .content,
+  .section[data-align="right"] .content {
+    width: min(100%, 35rem);
+    margin-inline: auto;
+    text-align: center;
+  }
+
+  .title {
+    font-size: clamp(3rem, 12vw, 4.25rem);
+  }
+
+  .statement {
+    font-size: clamp(1.125rem, 4.8vw, 1.3rem);
+    line-height: 1.65;
+  }
+
+  .action {
+    font-size: 0.9375rem;
+  }
+
+  .overlay[data-align="left"],
+  .overlay[data-align="right"] {
+    background:
+      linear-gradient(to bottom, transparent 72%, #0a0a0a 100%),
+      linear-gradient(to top, transparent 90%, rgba(10, 10, 10, 0.42) 100%);
+  }
+}
