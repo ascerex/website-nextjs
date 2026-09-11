@@ -30,6 +30,10 @@
 }
 
 .hero {
+  --hero-frame-inset: max(
+    clamp(1.25rem, 5vw, 5rem),
+    calc((100vw - 92rem) / 2 + clamp(1.25rem, 5vw, 5rem))
+  );
   position: relative;
   display: grid;
   min-height: 100svh;
@@ -120,7 +124,7 @@
 .heroStatus {
   position: absolute;
   z-index: 2;
-  right: clamp(1.25rem, 5vw, 5rem);
+  right: var(--hero-frame-inset);
   bottom: 2.75rem;
   display: flex;
   gap: 0.85rem;
