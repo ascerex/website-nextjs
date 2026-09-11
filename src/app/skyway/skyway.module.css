@@ -1,0 +1,1310 @@
+.page {
+  --sky-bg: #050708;
+  --sky-panel: #090d10;
+  --sky-surface: #0d1216;
+  --sky-raised: #11181d;
+  --sky-ink: #f4f7f8;
+  --sky-muted: rgba(244, 247, 248, 0.76);
+  --sky-faint: rgba(244, 247, 248, 0.48);
+  --sky-line: rgba(187, 213, 224, 0.15);
+  --sky-line-strong: rgba(187, 213, 224, 0.3);
+  --sky-accent: #f04b2f;
+  --sky-blue: #70b8d8;
+  min-height: 100vh;
+  color: var(--sky-ink);
+  background: var(--sky-bg);
+}
+
+.sectionFrame {
+  width: min(100%, 92rem);
+  margin-inline: auto;
+}
+
+.kicker {
+  color: var(--sky-faint);
+  font-size: 0.68rem;
+  font-weight: 750;
+  letter-spacing: 0.22em;
+  line-height: 1.4;
+  text-transform: uppercase;
+}
+
+.hero {
+  position: relative;
+  display: grid;
+  min-height: 100svh;
+  overflow: hidden;
+  isolation: isolate;
+  background:
+    radial-gradient(circle at 74% 42%, rgba(42, 107, 137, 0.17), transparent 31%),
+    linear-gradient(135deg, #070a0c 0%, #030405 72%);
+}
+
+.heroImage {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  object-fit: cover;
+  object-position: center;
+}
+
+.heroShade {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  background:
+    linear-gradient(90deg, rgba(2, 4, 6, 0.92) 0%, rgba(2, 4, 6, 0.72) 37%, rgba(2, 4, 6, 0.16) 72%),
+    linear-gradient(0deg, rgba(2, 4, 6, 0.72) 0%, transparent 38%);
+}
+
+.heroContent {
+  position: relative;
+  z-index: 2;
+  align-self: center;
+  width: min(100%, 92rem);
+  margin-inline: auto;
+  padding: calc(var(--header-height) + 5rem) clamp(1.25rem, 5vw, 5rem) 10rem;
+}
+
+.heroContent h1 {
+  max-width: 10ch;
+  margin-top: 1.5rem;
+  font-size: clamp(4.5rem, 10vw, 9rem);
+  font-weight: 650;
+  letter-spacing: -0.065em;
+  line-height: 0.86;
+}
+
+.heroThesis {
+  max-width: 20ch;
+  margin-top: 1.5rem;
+  font-size: clamp(1.6rem, 3vw, 3rem);
+  font-weight: 520;
+  letter-spacing: -0.04em;
+  line-height: 1.04;
+  text-wrap: balance;
+}
+
+.heroSummary {
+  max-width: 39rem;
+  margin-top: 1.5rem;
+  color: var(--sky-muted);
+  font-size: clamp(1rem, 1.35vw, 1.18rem);
+  line-height: 1.72;
+}
+
+.primaryLink {
+  display: inline-flex;
+  min-width: 14rem;
+  gap: 2.5rem;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: 2.25rem;
+  padding: 0.95rem 1rem;
+  font-size: 0.68rem;
+  font-weight: 750;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  border: 1px solid rgba(244, 247, 248, 0.48);
+  transition: color 180ms ease, background-color 180ms ease, border-color 180ms ease;
+}
+
+.primaryLink:hover,
+.primaryLink:focus-visible {
+  color: var(--sky-bg);
+  background: var(--sky-ink);
+  border-color: var(--sky-ink);
+  outline: none;
+}
+
+.heroStatus {
+  position: absolute;
+  z-index: 2;
+  right: clamp(1.25rem, 5vw, 5rem);
+  bottom: 2.75rem;
+  display: flex;
+  gap: 0.85rem;
+  align-items: flex-start;
+  min-width: min(25rem, calc(100% - 2.5rem));
+  padding-top: 1rem;
+  border-top: 1px solid var(--sky-line-strong);
+}
+
+.statusPulse {
+  width: 0.48rem;
+  height: 0.48rem;
+  margin-top: 0.18rem;
+  flex: 0 0 auto;
+  background: var(--sky-accent);
+  border-radius: 50%;
+  box-shadow: 0 0 0 0 rgba(240, 75, 47, 0.5);
+  animation: status-pulse 2.6s ease-out infinite;
+}
+
+.heroStatus span:not(.statusPulse),
+.heroStatus small {
+  display: block;
+  color: var(--sky-faint);
+  font-size: 0.58rem;
+  font-weight: 700;
+  letter-spacing: 0.13em;
+  text-transform: uppercase;
+}
+
+.heroStatus strong {
+  display: block;
+  margin-top: 0.4rem;
+  font-size: 0.75rem;
+  font-weight: 650;
+  letter-spacing: 0.045em;
+  text-transform: uppercase;
+}
+
+.heroStatus small {
+  margin-top: 0.45rem;
+  color: rgba(244, 247, 248, 0.38);
+}
+
+@keyframes status-pulse {
+  70% {
+    box-shadow: 0 0 0 0 rgba(240, 75, 47, 0.38);
+  }
+
+  100% {
+    box-shadow: 0 0 0 0.6rem rgba(240, 75, 47, 0);
+  }
+}
+
+.proposition,
+.mapping,
+.networkModel,
+.infrastructure,
+.reference,
+.navigation {
+  padding: clamp(5rem, 9vw, 9rem) clamp(1.25rem, 5vw, 5rem);
+  border-top: 1px solid var(--sky-line);
+}
+
+.proposition {
+  background: #080b0d;
+}
+
+.propositionFrame {
+  width: min(100%, 92rem);
+  margin-inline: auto;
+}
+
+.propositionFrame > header {
+  display: grid;
+  grid-template-columns: minmax(18rem, 0.8fr) minmax(22rem, 1.2fr);
+  column-gap: clamp(3rem, 8vw, 9rem);
+  align-items: end;
+}
+
+.propositionFrame > header .kicker {
+  grid-column: 1 / -1;
+}
+
+.propositionFrame h2 {
+  max-width: 11ch;
+  margin-top: 1.15rem;
+  font-size: clamp(2.3rem, 4.8vw, 5rem);
+  font-weight: 620;
+  letter-spacing: -0.05em;
+  line-height: 0.98;
+  text-wrap: balance;
+}
+
+.propositionFrame > header > p:last-child {
+  color: var(--sky-muted);
+  font-size: clamp(1.05rem, 1.5vw, 1.3rem);
+  line-height: 1.75;
+}
+
+.propositionStatement {
+  max-width: 70rem;
+  margin-top: clamp(4rem, 8vw, 7rem);
+  padding-left: clamp(1.25rem, 3vw, 2.5rem);
+  border-left: 2px solid var(--sky-accent);
+}
+
+.propositionStatement p {
+  color: var(--sky-ink);
+  font-size: clamp(1.35rem, 2.5vw, 2.25rem);
+  font-weight: 480;
+  letter-spacing: -0.025em;
+  line-height: 1.4;
+  text-wrap: balance;
+}
+
+.propositionOutcomes {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  margin-top: clamp(3rem, 6vw, 5rem);
+  border-top: 1px solid var(--sky-line-strong);
+}
+
+.propositionOutcomes > div {
+  padding: 1.75rem 1.75rem 1.75rem 0;
+  border-right: 1px solid var(--sky-line);
+  border-bottom: 1px solid var(--sky-line);
+}
+
+.propositionOutcomes > div:not(:first-child) {
+  padding-left: 1.75rem;
+}
+
+.propositionOutcomes > div:last-child {
+  padding-right: 0;
+  border-right: 0;
+}
+
+.propositionOutcomes dt {
+  font-size: 1rem;
+  font-weight: 650;
+}
+
+.propositionOutcomes dd {
+  margin-top: 0.8rem;
+  color: var(--sky-muted);
+  font-size: 0.86rem;
+  line-height: 1.7;
+}
+
+.mapping {
+  background:
+    linear-gradient(90deg, rgba(112, 184, 216, 0.035) 1px, transparent 1px),
+    linear-gradient(rgba(112, 184, 216, 0.035) 1px, transparent 1px),
+    var(--sky-surface);
+  background-size: 5rem 5rem;
+}
+
+.mappingHeader {
+  display: grid;
+  grid-template-columns: minmax(20rem, 0.9fr) minmax(23rem, 1.1fr);
+  column-gap: clamp(3rem, 8vw, 9rem);
+  align-items: end;
+}
+
+.mappingHeader .kicker {
+  grid-column: 1 / -1;
+}
+
+.mappingHeader h2 {
+  max-width: 14ch;
+  margin-top: 1.15rem;
+  font-size: clamp(2.3rem, 4.8vw, 5rem);
+  font-weight: 620;
+  letter-spacing: -0.05em;
+  line-height: 0.98;
+  text-wrap: balance;
+}
+
+.mappingHeader > p:last-child {
+  color: var(--sky-muted);
+  font-size: clamp(1rem, 1.3vw, 1.16rem);
+  line-height: 1.75;
+}
+
+.mappingWorkbench {
+  display: grid;
+  grid-template-columns: minmax(28rem, 1.15fr) minmax(22rem, 0.85fr);
+  gap: clamp(3rem, 7vw, 7rem);
+  align-items: center;
+  margin-top: clamp(4rem, 8vw, 7rem);
+}
+
+.mappingDiagram {
+  display: block;
+  width: 100%;
+  background: rgba(5, 7, 8, 0.72);
+  border: 1px solid var(--sky-line);
+}
+
+.existingNetwork path {
+  fill: none;
+  stroke: rgba(244, 247, 248, 0.16);
+  stroke-width: 1;
+  stroke-dasharray: 4 7;
+  vector-effect: non-scaling-stroke;
+}
+
+.mappingExclusions path,
+.mappingExclusions circle {
+  fill: rgba(240, 75, 47, 0.05);
+  stroke: rgba(240, 75, 47, 0.38);
+  stroke-width: 1;
+  stroke-dasharray: 5 5;
+  vector-effect: non-scaling-stroke;
+}
+
+.candidateNetwork path {
+  fill: none;
+  stroke: rgba(112, 184, 216, 0.75);
+  stroke-width: 2.5;
+  stroke-linecap: round;
+  vector-effect: non-scaling-stroke;
+}
+
+.candidateNetwork path:nth-child(2) {
+  stroke: rgba(239, 184, 93, 0.65);
+}
+
+.candidateNetwork path:nth-child(3) {
+  stroke: rgba(170, 139, 216, 0.58);
+}
+
+.mappingPoints circle {
+  fill: var(--sky-bg);
+  stroke: var(--sky-ink);
+  stroke-width: 2;
+}
+
+.mappingPoints text,
+.mappingLayerLabels text {
+  fill: var(--sky-faint);
+  font-size: 9px;
+  font-weight: 700;
+  letter-spacing: 1.2px;
+}
+
+.mappingStages {
+  list-style: none;
+  border-top: 1px solid var(--sky-line-strong);
+}
+
+.mappingStages li {
+  display: grid;
+  grid-template-columns: 2.5rem 1fr;
+  gap: 1rem;
+  padding: 1.4rem 0;
+  border-bottom: 1px solid var(--sky-line);
+}
+
+.mappingStages li > span {
+  color: var(--sky-accent);
+  font-size: 0.58rem;
+  font-weight: 750;
+  letter-spacing: 0.12em;
+}
+
+.mappingStages h3 {
+  font-size: 1rem;
+  font-weight: 650;
+}
+
+.mappingStages p {
+  margin-top: 0.55rem;
+  color: var(--sky-muted);
+  font-size: 0.82rem;
+  line-height: 1.65;
+}
+
+.simulationBoundary {
+  display: grid;
+  grid-template-columns: 0.55fr 1fr 0.55fr 1fr;
+  gap: 1.5rem;
+  margin-top: 3rem;
+  padding-top: 1.5rem;
+  border-top: 1px solid var(--sky-line-strong);
+}
+
+.simulationBoundary strong {
+  color: var(--sky-ink);
+  font-size: 0.68rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+.simulationBoundary p {
+  color: var(--sky-faint);
+  font-size: 0.72rem;
+  line-height: 1.65;
+}
+
+.networkHeader h2,
+.programHeader h2,
+.referenceCopy h2,
+.systemCopy h2 {
+  margin-top: 1.15rem;
+  font-size: clamp(2.3rem, 4.8vw, 5rem);
+  font-weight: 620;
+  letter-spacing: -0.05em;
+  line-height: 0.98;
+  text-wrap: balance;
+}
+
+.networkHeader > p:last-child,
+.programHeader > p:last-child,
+.referenceCopy > p:not(.kicker) {
+  color: var(--sky-muted);
+  font-size: clamp(1rem, 1.3vw, 1.16rem);
+  line-height: 1.75;
+}
+
+.phaseNumber {
+  color: var(--sky-accent);
+  font-size: 0.62rem;
+  font-weight: 750;
+  letter-spacing: 0.14em;
+}
+
+.networkModel {
+  scroll-margin-top: var(--header-height);
+  background:
+    radial-gradient(circle at 50% 48%, rgba(33, 87, 111, 0.13), transparent 48%),
+    var(--sky-bg);
+}
+
+.networkHeader {
+  max-width: 61rem;
+}
+
+.networkHeader h2 {
+  max-width: 16ch;
+}
+
+.networkHeader > p:last-child {
+  max-width: 48rem;
+  margin-top: 1.5rem;
+}
+
+.explorer {
+  display: grid;
+  grid-template-columns: 14rem minmax(0, 1fr) minmax(16rem, 0.36fr);
+  margin-top: clamp(3.5rem, 7vw, 6rem);
+  background: rgba(8, 12, 14, 0.88);
+  border: 1px solid var(--sky-line-strong);
+}
+
+.explorerToolbar {
+  display: flex;
+  flex-direction: column;
+  border-right: 1px solid var(--sky-line);
+}
+
+.explorerToolbar button {
+  display: grid;
+  grid-template-columns: 2rem 1fr;
+  gap: 0.75rem;
+  align-items: center;
+  min-height: 5rem;
+  padding: 1rem;
+  color: var(--sky-faint);
+  font: inherit;
+  font-size: 0.66rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-align: left;
+  text-transform: uppercase;
+  background: transparent;
+  border: 0;
+  border-bottom: 1px solid var(--sky-line);
+  cursor: pointer;
+  transition: color 180ms ease, background-color 180ms ease;
+}
+
+.explorerToolbar button span {
+  color: var(--sky-accent);
+  font-size: 0.55rem;
+}
+
+.explorerToolbar button:hover,
+.explorerToolbar button:focus-visible,
+.explorerToolbar button[aria-pressed="true"] {
+  color: var(--sky-ink);
+  background: rgba(112, 184, 216, 0.08);
+}
+
+.explorerToolbar button:focus-visible {
+  outline: 2px solid var(--sky-accent);
+  outline-offset: -3px;
+}
+
+.explorerStage {
+  position: relative;
+  min-width: 0;
+  padding: 1.25rem;
+}
+
+.explorerMeta,
+.journeyLegend {
+  display: flex;
+  justify-content: space-between;
+  color: var(--sky-faint);
+  font-size: 0.52rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+}
+
+.explorerStage svg {
+  display: block;
+  width: 100%;
+  min-height: 24rem;
+}
+
+.journeyTerrain path {
+  fill: none;
+  stroke: rgba(187, 213, 224, 0.13);
+  stroke-width: 1;
+  vector-effect: non-scaling-stroke;
+}
+
+.journeyPoints text,
+.journeyRestriction text,
+.journeyCapabilityLimit text,
+.journeyCallouts text {
+  fill: var(--sky-faint);
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 1.5px;
+}
+
+.journeyNetwork path {
+  fill: none;
+  stroke: rgba(244, 247, 248, 0.24);
+  stroke-width: 2;
+  stroke-linecap: round;
+  stroke-dasharray: 5 7;
+  transition: opacity 240ms ease, stroke 240ms ease, stroke-width 240ms ease;
+  vector-effect: non-scaling-stroke;
+}
+
+.journeyPoints circle {
+  fill: var(--sky-bg);
+  stroke: var(--sky-ink);
+  stroke-width: 2;
+  vector-effect: non-scaling-stroke;
+}
+
+.journeyVehicle path {
+  fill: var(--sky-ink);
+  stroke: none;
+}
+
+.journeyVehicle circle {
+  fill: none;
+  stroke: rgba(112, 184, 216, 0.5);
+  stroke-width: 1;
+  stroke-dasharray: 3 4;
+}
+
+.journeyRestriction,
+.journeyCapabilityLimit {
+  opacity: 0;
+  transition: opacity 240ms ease;
+}
+
+.journeyRestriction rect {
+  fill: url("#journey-restriction");
+  stroke: rgba(240, 75, 47, 0.8);
+  stroke-width: 1;
+}
+
+.journeyRestriction line,
+.journeyRestriction pattern line {
+  stroke: rgba(240, 75, 47, 0.35);
+}
+
+.journeyRestriction text { fill: #f47a64; }
+
+.journeyCapabilityLimit path {
+  fill: none;
+  stroke: #efb85d;
+  stroke-width: 2;
+  vector-effect: non-scaling-stroke;
+}
+
+.journeyCapabilityLimit text { fill: #efb85d; }
+
+.explorer[data-view="changed"] .journeyRestriction,
+.explorer[data-view="vehicleAware"] .journeyRestriction,
+.explorer[data-view="vehicleAware"] .journeyCapabilityLimit {
+  opacity: 1;
+}
+
+.explorer[data-view="available"] .routeOriginal {
+  stroke: #83c9e7;
+  stroke-width: 4;
+  stroke-dasharray: none;
+}
+
+.explorer[data-view="changed"] .routeOriginal,
+.explorer[data-view="vehicleAware"] .routeOriginal {
+  stroke: #f47a64;
+  opacity: 0.4;
+}
+
+.explorer[data-view="changed"] .routeAlternativeHigh,
+.explorer[data-view="changed"] .routeAlternativeLow {
+  stroke: #efb85d;
+  stroke-width: 3;
+}
+
+.explorer[data-view="vehicleAware"] .routeAlternativeHigh {
+  stroke: #efb85d;
+  opacity: 0.25;
+}
+
+.explorer[data-view="vehicleAware"] .routeAlternativeLow {
+  stroke: #a8e07c;
+  stroke-width: 4;
+  stroke-dasharray: none;
+}
+
+.journeyCallouts text {
+  opacity: 0;
+  transition: opacity 240ms ease;
+}
+
+.explorer[data-view="available"] .originalLabel,
+.explorer[data-view="changed"] .originalLabel,
+.explorer[data-view="changed"] .highLabel,
+.explorer[data-view="changed"] .lowLabel,
+.explorer[data-view="vehicleAware"] .highLabel,
+.explorer[data-view="vehicleAware"] .lowLabel {
+  opacity: 1;
+}
+
+.journeyLegend {
+  justify-content: flex-start;
+  gap: 1.1rem;
+  flex-wrap: wrap;
+}
+
+.journeyLegend span {
+  display: inline-flex;
+  gap: 0.4rem;
+  align-items: center;
+}
+
+.journeyLegend i {
+  display: block;
+  width: 1rem;
+  height: 2px;
+}
+
+.legendAvailable { background: #a8e07c; }
+.legendUnavailable { background: #f47a64; }
+.legendIncompatible { background: #efb85d; }
+
+.explorerDescription {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+  padding: 1.75rem;
+  background: rgba(17, 24, 29, 0.72);
+  border-left: 1px solid var(--sky-line);
+}
+
+.explorerDescription > span,
+.explorerDescription small {
+  color: var(--sky-faint);
+  font-size: 0.56rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+.explorerDescription h3 {
+  margin-top: auto;
+  font-size: clamp(1.5rem, 2.6vw, 2.5rem);
+  font-weight: 600;
+  letter-spacing: -0.04em;
+  line-height: 1.05;
+}
+
+.explorerDescription p {
+  margin-top: 1rem;
+  color: var(--sky-muted);
+  font-size: 0.88rem;
+  line-height: 1.7;
+}
+
+.explorerDescription small {
+  margin-top: 2rem;
+  padding-top: 1rem;
+  border-top: 1px solid var(--sky-line);
+}
+
+.infrastructure {
+  background: var(--sky-surface);
+}
+
+.programHeader {
+  display: grid;
+  grid-template-columns: minmax(19rem, 0.9fr) minmax(24rem, 1.1fr);
+  column-gap: clamp(3rem, 8vw, 9rem);
+  align-items: end;
+}
+
+.programHeader .kicker {
+  grid-column: 1 / -1;
+}
+
+.programHeader h2 {
+  max-width: 13ch;
+}
+
+.phaseList {
+  margin-top: clamp(4rem, 8vw, 7rem);
+  list-style: none;
+  border-top: 1px solid var(--sky-line-strong);
+}
+
+.phaseList li {
+  display: grid;
+  grid-template-columns: 5rem minmax(0, 1fr);
+  gap: 1.5rem;
+  padding: 2rem 0;
+  border-bottom: 1px solid var(--sky-line);
+}
+
+.phaseList li > div {
+  display: grid;
+  grid-template-columns: minmax(13rem, 0.7fr) minmax(15rem, 1fr) minmax(18rem, 1.25fr);
+  gap: 2rem;
+  align-items: baseline;
+}
+
+.phaseState {
+  color: var(--sky-faint);
+  font-size: 0.62rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+.phaseList h3 {
+  font-size: clamp(1.3rem, 2vw, 1.75rem);
+  font-weight: 620;
+  letter-spacing: -0.025em;
+}
+
+.phaseList p {
+  color: var(--sky-muted);
+  font-size: 0.88rem;
+  line-height: 1.7;
+}
+
+.reference {
+  background:
+    linear-gradient(90deg, rgba(112, 184, 216, 0.04) 1px, transparent 1px),
+    linear-gradient(rgba(112, 184, 216, 0.04) 1px, transparent 1px),
+    var(--sky-bg);
+  background-size: 4rem 4rem;
+}
+
+.referenceFrame {
+  display: grid;
+  grid-template-columns: minmax(20rem, 0.78fr) minmax(32rem, 1.22fr);
+  gap: clamp(3rem, 8vw, 8rem);
+  width: min(100%, 92rem);
+  margin-inline: auto;
+  align-items: center;
+}
+
+.referenceCopy h2 {
+  max-width: 12ch;
+}
+
+.referenceCopy > p:not(.kicker) {
+  margin-top: 1.5rem;
+}
+
+.verdict {
+  display: grid;
+  margin-top: 2rem;
+  padding: 1.2rem 0 1.2rem 1rem;
+  border-top: 1px solid var(--sky-line);
+  border-bottom: 1px solid var(--sky-line);
+  border-left: 2px solid var(--sky-accent);
+}
+
+.verdict span,
+.verdict small {
+  color: var(--sky-faint);
+  font-size: 0.58rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+.verdict strong {
+  margin-top: 0.45rem;
+  font-size: 0.9rem;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+}
+
+.verdict small { margin-top: 0.35rem; }
+
+.referenceArtifact {
+  padding: 1.25rem;
+  background: rgba(9, 13, 16, 0.92);
+  border: 1px solid var(--sky-line-strong);
+  box-shadow: 0 2rem 6rem rgba(0, 0, 0, 0.34);
+}
+
+.artifactHeader {
+  display: flex;
+  justify-content: space-between;
+  padding-bottom: 1rem;
+  color: var(--sky-faint);
+  font-size: 0.55rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  border-bottom: 1px solid var(--sky-line);
+}
+
+.referenceArtifact dl {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  border-bottom: 1px solid var(--sky-line);
+}
+
+.referenceArtifact dl div {
+  display: flex;
+  flex-direction: column-reverse;
+  gap: 0.25rem;
+  padding: 1rem;
+  border-right: 1px solid var(--sky-line);
+}
+
+.referenceArtifact dl div:first-child { padding-left: 0; }
+.referenceArtifact dl div:last-child { border-right: 0; }
+
+.referenceArtifact dt {
+  color: var(--sky-faint);
+  font-size: 0.5rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+.referenceArtifact dd {
+  font-size: clamp(1.4rem, 2.4vw, 2rem);
+  font-weight: 550;
+}
+
+.referenceArtifact svg {
+  display: block;
+  width: 100%;
+  margin-top: 1rem;
+}
+
+.artifactLayers path {
+  fill: none;
+  stroke: var(--sky-line);
+  stroke-dasharray: 4 7;
+}
+
+.artifactPaths path {
+  fill: none;
+  stroke: #83c9e7;
+  stroke-width: 3;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  vector-effect: non-scaling-stroke;
+}
+
+.artifactPaths .alternatePath { stroke: #efb85d; }
+.artifactPaths .reservePath { stroke: #aa8bd8; }
+
+.artifactNodes circle {
+  fill: var(--sky-bg);
+  stroke: var(--sky-ink);
+  stroke-width: 2;
+}
+
+.artifactLabels text {
+  fill: rgba(244, 247, 248, 0.33);
+  font-size: 9px;
+  font-weight: 700;
+  letter-spacing: 1px;
+}
+
+.referenceArtifact > p {
+  padding-top: 1rem;
+  color: var(--sky-faint);
+  font-size: 0.65rem;
+  line-height: 1.6;
+  border-top: 1px solid var(--sky-line);
+}
+
+.navigation {
+  background: var(--sky-surface);
+}
+
+.navigationFlow {
+  margin-top: clamp(4rem, 8vw, 7rem);
+  border-top: 1px solid var(--sky-line-strong);
+}
+
+.navigationInputs {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.navigationInputs > div {
+  display: grid;
+  grid-template-columns: 2.25rem minmax(7rem, 0.45fr) minmax(0, 1fr);
+  gap: 1rem;
+  align-items: baseline;
+  padding: 1.35rem 1.5rem 1.35rem 0;
+  border-right: 1px solid var(--sky-line);
+  border-bottom: 1px solid var(--sky-line);
+}
+
+.navigationInputs > div:nth-child(even) {
+  padding-right: 0;
+  padding-left: 1.5rem;
+  border-right: 0;
+}
+
+.navigationInputs span {
+  color: var(--sky-accent);
+  font-size: 0.58rem;
+  font-weight: 750;
+  letter-spacing: 0.12em;
+}
+
+.navigationInputs dt {
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.navigationInputs dd {
+  color: var(--sky-faint);
+  font-size: 0.76rem;
+  line-height: 1.55;
+}
+
+.navigationDecision {
+  display: grid;
+  grid-template-columns: minmax(20rem, 1.1fr) minmax(19rem, 0.9fr);
+  gap: clamp(3rem, 7vw, 7rem);
+  align-items: center;
+  padding-top: clamp(3rem, 6vw, 5rem);
+}
+
+.navigationDecision > div {
+  display: grid;
+  grid-template-columns: 1fr auto 1fr auto 1fr;
+  gap: 0.8rem;
+  align-items: center;
+}
+
+.navigationDecision > div span {
+  padding-block: 0.8rem;
+  font-size: clamp(0.62rem, 1vw, 0.75rem);
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-align: center;
+  text-transform: uppercase;
+  border-top: 1px solid var(--sky-line-strong);
+  border-bottom: 1px solid var(--sky-line-strong);
+}
+
+.navigationDecision > div i {
+  color: var(--sky-accent);
+  font-style: normal;
+}
+
+.navigationDecision > p {
+  color: var(--sky-muted);
+  font-size: 0.9rem;
+  line-height: 1.75;
+}
+
+.coexistenceNote {
+  display: grid;
+  grid-template-columns: minmax(18rem, 0.78fr) minmax(23rem, 1.22fr);
+  gap: clamp(2.5rem, 7vw, 7rem);
+  margin-top: clamp(4rem, 7vw, 6rem);
+  padding-top: clamp(2rem, 4vw, 3rem);
+  border-top: 1px solid var(--sky-line-strong);
+}
+
+.coexistenceNote h3 {
+  max-width: 15ch;
+  margin-top: 1rem;
+  font-size: clamp(1.6rem, 3vw, 2.8rem);
+  font-weight: 610;
+  letter-spacing: -0.04em;
+  line-height: 1.04;
+  text-wrap: balance;
+}
+
+.coexistenceNote > div:last-child > p {
+  color: var(--sky-muted);
+  font-size: 0.94rem;
+  line-height: 1.75;
+}
+
+.coexistenceNote > div:last-child > span {
+  display: block;
+  margin-top: 1.5rem;
+  padding-top: 1rem;
+  color: var(--sky-faint);
+  font-size: 0.58rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  border-top: 1px solid var(--sky-line);
+}
+
+.systemLink {
+  position: relative;
+  display: grid;
+  min-height: 82svh;
+  overflow: hidden;
+  padding: clamp(7rem, 13vw, 12rem) clamp(1.25rem, 5vw, 5rem);
+  place-items: center;
+  text-align: center;
+  background:
+    radial-gradient(circle at 50% 50%, rgba(38, 94, 120, 0.15), transparent 36%),
+    #030405;
+  border-top: 1px solid var(--sky-line);
+}
+
+.systemCopy {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.systemCopy h2 {
+  max-width: 16ch;
+}
+
+.systemCopy > p:not(.kicker) {
+  max-width: 46rem;
+  margin-top: 1.75rem;
+  color: var(--sky-muted);
+  font-size: clamp(1rem, 1.3vw, 1.15rem);
+  line-height: 1.75;
+}
+
+@media (max-width: 1100px) {
+  .explorer {
+    grid-template-columns: 11rem minmax(0, 1fr);
+  }
+
+  .explorerDescription {
+    grid-column: 1 / -1;
+    min-height: 13rem;
+    border-top: 1px solid var(--sky-line);
+    border-left: 0;
+  }
+
+  .explorerDescription h3 { margin-top: 2.5rem; }
+}
+
+@media (max-width: 900px) {
+  .propositionFrame > header,
+  .mappingHeader,
+  .mappingWorkbench,
+  .coexistenceNote,
+  .programHeader,
+  .referenceFrame {
+    grid-template-columns: 1fr;
+  }
+
+  .propositionFrame > header > p:last-child,
+  .mappingHeader > p:last-child,
+  .programHeader > p:last-child {
+    max-width: 45rem;
+  }
+
+  .mappingDiagram {
+    width: min(100%, 46rem);
+  }
+
+  .mappingStages {
+    max-width: 46rem;
+  }
+
+  .simulationBoundary {
+    grid-template-columns: minmax(10rem, 0.4fr) 1fr;
+  }
+
+  .phaseList li > div {
+    grid-template-columns: minmax(11rem, 0.7fr) minmax(12rem, 1fr);
+  }
+
+  .phaseList p {
+    grid-column: 1 / -1;
+    max-width: 42rem;
+  }
+
+  .referenceArtifact {
+    width: min(100%, 46rem);
+  }
+
+  .navigationInputs,
+  .navigationDecision {
+    grid-template-columns: 1fr;
+  }
+
+  .navigationInputs > div:nth-child(even) {
+    padding-left: 0;
+    border-right: 1px solid var(--sky-line);
+  }
+
+  .navigationDecision > div {
+    max-width: 46rem;
+  }
+
+  .navigationDecision > p {
+    max-width: 42rem;
+  }
+}
+
+@media (max-width: 700px) {
+  .hero {
+    min-height: 52rem;
+  }
+
+  .heroContent {
+    align-self: start;
+    padding-top: calc(var(--header-height) + 6rem);
+    padding-bottom: 12rem;
+  }
+
+  .heroContent h1 {
+    font-size: clamp(4rem, 21vw, 6.5rem);
+  }
+
+  .heroStatus {
+    right: 1.25rem;
+    bottom: 2rem;
+    left: 1.25rem;
+    min-width: 0;
+  }
+
+  .explorer {
+    display: block;
+  }
+
+  .explorerToolbar {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    border-right: 0;
+    border-bottom: 1px solid var(--sky-line);
+  }
+
+  .explorerToolbar button {
+    grid-template-columns: 1fr;
+    gap: 0.35rem;
+    min-height: 5.8rem;
+    padding: 0.75rem;
+    border-right: 1px solid var(--sky-line);
+    border-bottom: 0;
+  }
+
+  .explorerToolbar button:last-child { border-right: 0; }
+
+  .explorerStage { padding: 0.75rem; }
+
+  .explorerStage svg {
+    min-height: 0;
+    aspect-ratio: 9 / 6;
+  }
+
+  .journeyLegend { gap: 0.65rem; }
+
+  .phaseList li {
+    grid-template-columns: 2.5rem minmax(0, 1fr);
+  }
+
+  .phaseList li > div {
+    grid-template-columns: 1fr;
+    gap: 0.55rem;
+  }
+
+  .phaseList p { grid-column: auto; }
+
+  .referenceArtifact dl {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .referenceArtifact dl div:nth-child(2) { border-right: 0; }
+  .referenceArtifact dl div:nth-child(3) { padding-left: 0; }
+
+  .propositionOutcomes {
+    grid-template-columns: 1fr;
+  }
+
+  .propositionOutcomes > div,
+  .propositionOutcomes > div:not(:first-child),
+  .propositionOutcomes > div:last-child {
+    padding: 1.5rem 0;
+    border-right: 0;
+  }
+
+  .simulationBoundary {
+    grid-template-columns: 1fr;
+    gap: 0.6rem;
+  }
+
+  .simulationBoundary p + strong {
+    margin-top: 1rem;
+  }
+
+  .navigationInputs > div,
+  .navigationInputs > div:nth-child(even) {
+    grid-template-columns: 2rem 1fr;
+    padding: 1.25rem 0;
+    border-right: 0;
+  }
+
+  .navigationInputs dd {
+    grid-column: 2;
+  }
+
+  .navigationDecision > div {
+    grid-template-columns: 1fr;
+  }
+
+  .navigationDecision > div i {
+    transform: rotate(90deg);
+  }
+
+}
+
+@media (max-width: 440px) {
+  .explorerMeta span:last-child { display: none; }
+
+  .explorerToolbar button {
+    font-size: 0.55rem;
+    overflow-wrap: anywhere;
+  }
+
+  .journeyLegend {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .artifactLabels text { font-size: 7px; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .primaryLink,
+  .explorerToolbar button,
+  .journeyNetwork path,
+  .journeyRestriction,
+  .journeyCapabilityLimit,
+  .journeyCallouts text {
+    transition: none;
+  }
+
+  .statusPulse {
+    animation: none;
+  }
+}

@@ -111,7 +111,7 @@ export default function VehiclePreviewPage() {
         <section className={styles.hero} aria-labelledby="preview-title">
           <Image
             className={styles.heroImage}
-            src="/images/vehicle.PNG"
+            src="/images/orbiterHero.png"
             alt="Concept visualization of the Orbiter vehicle"
             fill
             priority
