@@ -108,7 +108,7 @@ export default function SkywayPage() {
           <div className={styles.heroStatus}>
             <span className={styles.statusPulse} aria-hidden="true" />
             <div>
-              <span>Current program</span>
+              <span>CURRENT DEVELOPMENT FOCUS</span>
               <strong>Synthetic infrastructure research & Route Mapping</strong>
             </div>
           </div>
