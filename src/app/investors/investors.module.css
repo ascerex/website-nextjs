@@ -938,7 +938,7 @@
 
   .heroCopy::after {
     right: 1.25rem;
-    bottom: 3rem;
+    bottom: 0.75rem;
     left: 1.25rem;
   }
 
@@ -971,7 +971,7 @@
 
   .heroSystemMeta {
     right: 1.25rem;
-    bottom: 6rem;
+    bottom: 2rem;
     left: 1.25rem;
     width: auto;
     gap: 0.75rem;
@@ -1018,6 +1018,22 @@
 
   .contact a {
     width: min(100%, 18rem);
+  }
+}
+
+@media (max-width: 52rem) and (hover: hover) and (pointer: fine) {
+  .heroCopy::after {
+    bottom: 7rem;
+  }
+
+  .heroSystemMeta {
+    bottom: 10rem;
+  }
+}
+
+@media (max-width: 52rem) and (hover: none) {
+  .heroCopy::after {
+    display: none;
   }
 }
 
