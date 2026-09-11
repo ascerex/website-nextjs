@@ -57,7 +57,7 @@ export function Footer() {
               tt="uppercase"
               style={{ letterSpacing: "0.05em" }}
             >
-              &copy; 2025 ASCEREX
+              &copy; 2026 ASCEREX
             </Text>
           </Box>
         </Group>
