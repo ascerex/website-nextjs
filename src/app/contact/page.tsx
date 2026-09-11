@@ -28,8 +28,7 @@ export default function ContactPage() {
             </div>
 
             <div className={styles.directContact}>
-              <span>Direct email</span>
-              <a href="mailto:contact@ascerex.com">contact@ascerex.com</a>
+              <span>Direct inquiry routing</span>
               <p>Messages are reviewed directly and routed by inquiry type.</p>
             </div>
           </div>
@@ -53,7 +52,6 @@ export default function ContactPage() {
                   <div>
                     <strong>{route.title}</strong>
                     <small>{route.detail}</small>
-                    <a href={`mailto:${route.email}`}>{route.email}</a>
                   </div>
                 </li>
               ))}
