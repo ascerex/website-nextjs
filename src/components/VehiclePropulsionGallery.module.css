@@ -282,8 +282,97 @@
   border-color: rgba(255, 255, 255, 0.3);
 }
 
+.imageLayer {
+  position: absolute;
+  inset: 1px;
+  z-index: 0;
+  overflow: hidden;
+  background: #071015;
+  opacity: 0.72;
+  pointer-events: none;
+}
+
+.imageLayer::after {
+  position: absolute;
+  inset: 0;
+  content: "";
+  background:
+    linear-gradient(180deg, rgba(4, 10, 14, 0.3) 0%, rgba(4, 10, 14, 0.12) 38%, rgba(4, 10, 14, 0.88) 100%),
+    linear-gradient(90deg, rgba(0, 174, 255, 0.08), transparent 45%);
+}
+
+.imageSource,
+.imageEdges {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.imageSource {
+  display: none;
+  filter: grayscale(1) contrast(1.35) brightness(0.62);
+}
+
+.imageEdges {
+  opacity: 0.86;
+  mix-blend-mode: screen;
+}
+
+.illustratedReference .imageEdges {
+  filter: invert(68%) sepia(90%) saturate(1640%) hue-rotate(159deg) brightness(110%) contrast(106%);
+}
+
+.diagramReference .imageSource {
+  display: none;
+}
+
+.diagramReference .imageEdges {
+  opacity: 0.94;
+}
+
+.card:hover .imageSource,
+.card:focus-visible .imageSource,
+.card[data-active] .imageSource {
+  opacity: 0.3;
+}
+
+.illustratedReference .imageSource {
+  display: block;
+  opacity: 0.23;
+}
+
+.plasmaReference .imageSource {
+  display: none;
+}
+
+.plasmaReference .imageEdges {
+  opacity: 0.94;
+}
+
+.m400Reference .imageSource {
+  display: none;
+}
+
+.m400Reference .imageEdges {
+  filter: none;
+  opacity: 0.94;
+}
+
+.card:hover .imageEdges,
+.card:focus-visible .imageEdges,
+.card[data-active] .imageEdges {
+  opacity: 1;
+}
+
+.recordKind,
 .cardInner {
   position: absolute;
+  z-index: 1;
+}
+
+.cardInner {
   inset: 0;
   display: flex;
   flex-direction: column;
@@ -311,6 +400,7 @@
 
 .cardReveal {
   position: absolute;
+  z-index: 1;
   right: 1.5rem;
   bottom: 1.5rem;
   left: 1.5rem;

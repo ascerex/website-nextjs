@@ -7,6 +7,7 @@ import {
   useRef,
   useState,
 } from "react";
+import Image from "next/image";
 import styles from "./VehiclePropulsionGallery.module.css";
 
 type ScreeningState =
@@ -20,6 +21,7 @@ type ScreeningCard = {
   kind: "family" | "study";
   title: string;
   architecture: string;
+  image: string;
   state: ScreeningState;
   stateLabel: string;
   overview: string;
@@ -35,6 +37,19 @@ const SCROLL_END_MS = 150;
 const EDGE_SELECTION_DELAY_MS = 450;
 const PROGRAMMATIC_SCROLL_GUARD_MS = 700;
 const SCRAMBLE_CHARACTERS = "!<>-_\\/[]{}—=+*^?#________";
+const DIAGRAM_CARD_IDS = new Set([
+  "ducted-electric-family",
+  "cyclorotor-family",
+  "turbine-rotor-family",
+  "fan-propulsor-family",
+  "fluidic-propulsion-family",
+  "plasma-propulsion-family",
+  "turbine-jet-family",
+  "magnetic-thruster-family",
+  "devt-recovery",
+  "devt-baseline",
+  "m400-static-reference",
+]);
 
 const screeningCards: ScreeningCard[] = [
   {
@@ -42,6 +57,7 @@ const screeningCards: ScreeningCard[] = [
     kind: "family",
     title: "Ducted Electric Fan",
     architecture: "Vectored ducted fan",
+    image: "/images/galleryImages/ducted-electric.webp",
     state: "in-screening",
     stateLabel: "In Screening",
     overview: "Electric motors drive fans enclosed by ducts. The ducts may be tilted or the airflow redirected to provide vertical and forward thrust without exposed propellers.",
@@ -53,6 +69,7 @@ const screeningCards: ScreeningCard[] = [
     kind: "family",
     title: "Cyclorotor",
     architecture: "Vectored cyclorotor",
+    image: "/images/galleryImages/cyclorotor.webp",
     state: "prospective",
     stateLabel: "Prospective",
     overview: "A cyclorotor uses blades rotating around a horizontal cylinder. Changing blade pitch around that rotation can redirect thrust without tilting the whole aircraft.",
@@ -64,6 +81,7 @@ const screeningCards: ScreeningCard[] = [
     kind: "family",
     title: "Electric Rotor Adaptation",
     architecture: "Enclosed rotor study",
+    image: "/images/galleryImages/electric-rotor.webp",
     state: "prospective",
     stateLabel: "Prospective",
     overview: "This family covers electrically driven propellers and rotors. For Orbiter, a candidate would need a credible enclosure or another installation that satisfies the no-exposed-propulsor requirement.",
@@ -75,6 +93,7 @@ const screeningCards: ScreeningCard[] = [
     kind: "family",
     title: "Turbine Rotor Adaptation",
     architecture: "Enclosed rotor study",
+    image: "/images/galleryImages/turbine-rotor.webp",
     state: "prospective",
     stateLabel: "Prospective",
     overview: "A turbine supplies shaft power to a propeller or rotor instead of producing useful thrust only through a jet exhaust.",
@@ -86,6 +105,7 @@ const screeningCards: ScreeningCard[] = [
     kind: "family",
     title: "Ducted Flapping Wing",
     architecture: "Oscillating-wing duct",
+    image: "/images/galleryImages/ducted-flapping-wing.webp",
     state: "prospective",
     stateLabel: "Prospective",
     overview: "This concept produces airflow with oscillating wing surfaces inside a duct rather than a conventional rotating fan.",
@@ -97,6 +117,7 @@ const screeningCards: ScreeningCard[] = [
     kind: "family",
     title: "Fluidic Propulsion",
     architecture: "Fluid-amplified thrust",
+    image: "/images/galleryImages/fluidic-propulsion.webp",
     state: "prospective",
     stateLabel: "Prospective",
     overview: "Fluidic systems use directed jets and surrounding airflow to create or amplify thrust, often without a conventional propeller visible at the outlet.",
@@ -108,6 +129,7 @@ const screeningCards: ScreeningCard[] = [
     kind: "family",
     title: "Fan Propulsor",
     architecture: "Packaged fan concept",
+    image: "/images/galleryImages/fan-propulsor.webp",
     state: "prospective",
     stateLabel: "Prospective",
     overview: "This catalogue family groups fan-based systems whose source descriptions do not yet support a more specific propulsion classification or vehicle model.",
@@ -119,6 +141,7 @@ const screeningCards: ScreeningCard[] = [
     kind: "family",
     title: "Plasma / EHD Research",
     architecture: "Plasma propulsion claim",
+    image: "/images/galleryImages/plasma-ehd.webp",
     state: "prospective",
     stateLabel: "Prospective",
     overview: "These source-reported concepts claim to accelerate ionized air with electric or electromagnetic fields instead of using a conventional rotor at the thrust outlet.",
@@ -130,6 +153,7 @@ const screeningCards: ScreeningCard[] = [
     kind: "family",
     title: "Turbine Jet",
     architecture: "Vectored turbine jet",
+    image: "/images/galleryImages/turbine-jet.webp",
     state: "prospective",
     stateLabel: "Prospective",
     overview: "A turbine jet produces thrust from accelerated exhaust. A VTOL installation would also need a credible way to redirect or distribute that thrust across the flight envelope.",
@@ -141,6 +165,7 @@ const screeningCards: ScreeningCard[] = [
     kind: "family",
     title: "Magnetic Thruster Claim",
     architecture: "Linear-thrust claim",
+    image: "/images/galleryImages/magnetic-thruster.webp",
     state: "prospective",
     stateLabel: "Prospective",
     overview: "The catalogue includes one source-described concept claiming linear thrust from a magnetic mechanism rather than a conventional aerodynamic propulsor.",
@@ -152,6 +177,7 @@ const screeningCards: ScreeningCard[] = [
     kind: "study",
     title: "DEVT Recovery Branch",
     architecture: "DEVT recovery study",
+    image: "/images/galleryImages/devt-recovery.webp",
     state: "deferred",
     stateLabel: "Deferred",
     overview: "This follow-up study tested whether more fan flow area and lower installed propulsion mass could rescue the source-sized 2021 distributed electric vectored-thrust baseline.",
@@ -163,6 +189,7 @@ const screeningCards: ScreeningCard[] = [
     kind: "study",
     title: "2021 DEVT Baseline",
     architecture: "DEVT baseline study",
+    image: "/images/galleryImages/devt-baseline.webp",
     state: "does-not-advance",
     stateLabel: "Does Not Advance",
     overview: "This was a bounded attempt to adapt a 2021 source-described distributed electric vectored-thrust system: many small ducted fans, electric power, and battery energy.",
@@ -174,6 +201,7 @@ const screeningCards: ScreeningCard[] = [
     kind: "study",
     title: "M400 Static Reference",
     architecture: "Shaft-driven fan study",
+    image: "/images/galleryImages/m400-static.webp",
     state: "does-not-advance",
     stateLabel: "Does Not Advance",
     overview: "This diagnostic represented the source-described M400 arrangement as four shaft-driven ducted-fan nacelles to test its literal fit and static force margin against Orbiter constraints.",
@@ -823,6 +851,35 @@ export function VehiclePropulsionGallery() {
                     className={styles.cardCorners}
                     aria-hidden="true"
                   />
+                  <span
+                    className={`${styles.imageLayer} ${
+                      card.id === "ducted-flapping-wing-family"
+                        ? styles.illustratedReference
+                        : ""
+                    } ${DIAGRAM_CARD_IDS.has(card.id) ? styles.diagramReference : ""} ${
+                      card.id === "plasma-propulsion-family" ? styles.plasmaReference : ""
+                    } ${card.id === "m400-static-reference" ? styles.m400Reference : ""}`}
+                    aria-hidden="true"
+                  >
+                    {!DIAGRAM_CARD_IDS.has(card.id) && (
+                      <Image
+                        className={styles.imageSource}
+                        src={card.image}
+                        alt=""
+                        fill
+                        sizes="(max-width: 480px) 85vw, (max-width: 768px) 75vw, (max-width: 1024px) 45vw, 30vw"
+                        unoptimized
+                      />
+                    )}
+                    <Image
+                      className={styles.imageEdges}
+                      src={card.image.replace(".webp", "-edges.webp")}
+                      alt=""
+                      fill
+                      sizes="(max-width: 480px) 85vw, (max-width: 768px) 75vw, (max-width: 1024px) 45vw, 30vw"
+                      unoptimized
+                    />
+                  </span>
                   <span className={styles.recordKind}>
                     {card.kind === "family" ? "Propulsion family" : "Computational study"}
                   </span>
