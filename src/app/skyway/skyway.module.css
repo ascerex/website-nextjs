@@ -325,6 +325,46 @@
   border: 1px solid var(--sky-line);
 }
 
+.mappingLegend {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.65rem 1.1rem;
+  margin-top: 1rem;
+  color: var(--sky-faint);
+  font-size: 0.64rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.mappingLegend span {
+  display: inline-flex;
+  gap: 0.45rem;
+  align-items: center;
+}
+
+.mappingLegend i {
+  display: block;
+  width: 1.4rem;
+  height: 2px;
+  background: rgba(112, 184, 216, 0.75);
+}
+
+.mappingLegend .mappingLegendAlternate {
+  background: rgba(239, 184, 93, 0.65);
+}
+
+.mappingLegend .mappingLegendConnector {
+  background: rgba(170, 139, 216, 0.72);
+}
+
+.mappingLegendNote {
+  margin-top: 0.55rem;
+  color: var(--sky-faint);
+  font-size: 0.72rem;
+  line-height: 1.5;
+}
+
 .existingNetwork path {
   fill: none;
   stroke: rgba(244, 247, 248, 0.16);
@@ -347,6 +387,7 @@
   stroke: rgba(112, 184, 216, 0.75);
   stroke-width: 2.5;
   stroke-linecap: round;
+  stroke-linejoin: round;
   vector-effect: non-scaling-stroke;
 }
 
@@ -367,9 +408,9 @@
 .mappingPoints text,
 .mappingLayerLabels text {
   fill: var(--sky-faint);
-  font-size: 9px;
+  font-size: 13px;
   font-weight: 700;
-  letter-spacing: 1.2px;
+  letter-spacing: 1.35px;
 }
 
 .mappingStages {
@@ -559,9 +600,9 @@
 .journeyCapabilityLimit text,
 .journeyCallouts text {
   fill: var(--sky-faint);
-  font-size: 10px;
+  font-size: 14px;
   font-weight: 700;
-  letter-spacing: 1.5px;
+  letter-spacing: 1.4px;
 }
 
 .journeyNetwork path {
@@ -680,6 +721,13 @@
   display: inline-flex;
   gap: 0.4rem;
   align-items: center;
+}
+
+@media (min-width: 701px) {
+  .explorerMeta,
+  .journeyLegend {
+    font-size: 0.68rem;
+  }
 }
 
 .journeyLegend i {
@@ -924,12 +972,46 @@
 
 .artifactLabels text {
   fill: rgba(244, 247, 248, 0.33);
-  font-size: 9px;
+  font-size: 14px;
   font-weight: 700;
-  letter-spacing: 1px;
+  letter-spacing: 1.2px;
+}
+
+.artifactLegend {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.6rem 1rem;
+  margin-top: 0.75rem;
+  color: var(--sky-faint);
+  font-size: 0.68rem;
+  font-weight: 700;
+  letter-spacing: 0.07em;
+  text-transform: uppercase;
+}
+
+.artifactLegend span {
+  display: inline-flex;
+  gap: 0.4rem;
+  align-items: center;
+}
+
+.artifactLegend i {
+  display: block;
+  width: 1.25rem;
+  height: 2px;
+  background: #83c9e7;
+}
+
+.artifactLegend .artifactLegendAlternate {
+  background: #efb85d;
+}
+
+.artifactLegend .artifactLegendReserve {
+  background: #aa8bd8;
 }
 
 .referenceArtifact > p {
+  margin-top: 0.85rem;
   padding-top: 1rem;
   color: var(--sky-faint);
   font-size: 0.65rem;
@@ -1208,6 +1290,20 @@
 }
 
 @media (max-width: 700px) {
+  .mappingPoints text,
+  .mappingLayerLabels text {
+    font-size: 16px;
+    letter-spacing: 1px;
+  }
+
+  .journeyPoints text,
+  .journeyRestriction text,
+  .journeyCapabilityLimit text,
+  .journeyCallouts text {
+    font-size: 18px;
+    letter-spacing: 1px;
+  }
+
   .hero {
     min-height: 52rem;
   }
@@ -1332,7 +1428,10 @@
     grid-template-columns: repeat(2, 1fr);
   }
 
-  .artifactLabels text { font-size: 7px; }
+  .artifactLabels text {
+    font-size: 16px;
+    letter-spacing: 1px;
+  }
 }
 
 @media (prefers-reduced-motion: reduce) {

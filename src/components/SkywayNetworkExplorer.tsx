@@ -103,7 +103,7 @@ export function SkywayNetworkExplorer() {
 
           <g className={styles.journeyRestriction}>
             <rect x="395" y="165" width="112" height="86" rx="4" />
-            <text x="451" y="148" textAnchor="middle">ROUTE UNAVAILABLE</text>
+            <text x="451" y="158" textAnchor="middle">ROUTE UNAVAILABLE</text>
           </g>
 
           <g className={styles.journeyCapabilityLimit}>
