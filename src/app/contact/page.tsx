@@ -23,19 +23,21 @@ export default function ContactPage() {
       <main className={styles.page}>
         <section className={styles.hero} aria-labelledby="contact-title">
           <div className={styles.heroGrid} aria-hidden="true" />
-          <div className={styles.heroContent}>
-            <p className={styles.kicker}>Contact Ascerex</p>
-            <h1 id="contact-title">Start the right conversation.</h1>
-            <p className={styles.heroCopy}>
-              Reach Ascerex directly with questions about the company, its
-              technical programs, investment, or strategic opportunities.
-            </p>
-          </div>
+          <div className={styles.heroFrame}>
+            <div className={styles.heroContent}>
+              <p className={styles.kicker}>Contact Ascerex</p>
+              <h1 id="contact-title">Start the right conversation.</h1>
+              <p className={styles.heroCopy}>
+                Reach Ascerex directly with questions about the company, its
+                technical programs, investment, or strategic opportunities.
+              </p>
+            </div>
 
-          <div className={styles.directContact}>
-            <span>Direct email</span>
-            <a href="mailto:contact@ascerex.com">contact@ascerex.com</a>
-            <p>Messages are reviewed directly and routed by inquiry type.</p>
+            <div className={styles.directContact}>
+              <span>Direct email</span>
+              <a href="mailto:contact@ascerex.com">contact@ascerex.com</a>
+              <p>Messages are reviewed directly and routed by inquiry type.</p>
+            </div>
           </div>
         </section>
 

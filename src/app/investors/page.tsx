@@ -142,12 +142,14 @@ export default function InvestorsPage() {
           </div>
 
           <div className={styles.heroVisual} aria-hidden="true">
-            <div className={styles.heroSystemIndex}>
-              <span>01 / Vehicle</span>
-              <span>02 / Network</span>
-              <span>03 / Autonomy</span>
+            <div className={styles.heroSystemMeta}>
+              <div className={styles.heroSystemIndex}>
+                <span>01 / Vehicle</span>
+                <span>02 / Network</span>
+                <span>03 / Autonomy</span>
+              </div>
+              <p>One system // Three coupled development programs</p>
             </div>
-            <p>One system // Three coupled development programs</p>
           </div>
         </section>
 

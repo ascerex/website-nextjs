@@ -129,7 +129,7 @@ export function SkywayNetworkExplorer() {
         <span>{active.label}</span>
         <h3>{active.title}</h3>
         <p>{active.body}</p>
-        <small>Illustrative behavior // Not an operational route</small>
+        <small>Illustrative Concept</small>
       </div>
     </div>
   );
