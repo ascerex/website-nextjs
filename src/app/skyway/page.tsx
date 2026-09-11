@@ -1,6 +1,5 @@
 import type { Metadata } from "next";
 import Image from "next/image";
-import Link from "next/link";
 import { Footer, Header, SkywayNetworkExplorer } from "@/components";
 import styles from "./skyway.module.css";
 
@@ -428,9 +427,9 @@ export default function SkywayPage() {
                 Within the Skyway&apos;s operating boundaries, the Pilot continuously
                 controls and supervises the aircraft from departure through landing.
               </p>
-              <Link href="/pilot#pilot-top" className={styles.primaryLink} scroll>
+              <a href="/pilot" className={styles.primaryLink}>
                 Explore flight autonomy <span aria-hidden="true">↗</span>
-              </Link>
+              </a>
             </div>
           </div>
         </section>
