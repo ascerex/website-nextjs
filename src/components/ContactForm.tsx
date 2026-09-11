@@ -1,12 +1,15 @@
 "use client";
 
 import { FormEvent, useState } from "react";
+import { getInquiryRoute, inquiryRoutes, type InquiryType } from "@/data/inquiryRoutes";
 import styles from "./ContactForm.module.css";
 
 type SubmissionState = "idle" | "submitting" | "success" | "error";
 
 export function ContactForm() {
   const [submissionState, setSubmissionState] = useState<SubmissionState>("idle");
+  const [inquiryType, setInquiryType] = useState<InquiryType | "">("");
+  const selectedRoute = getInquiryRoute(inquiryType);
 
   async function handleSubmit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
@@ -34,6 +37,7 @@ export function ContactForm() {
       }
 
       form.reset();
+      setInquiryType("");
       setSubmissionState("success");
     } catch {
       setSubmissionState("error");
@@ -43,13 +47,14 @@ export function ContactForm() {
   return (
     <form
       className={styles.form}
-      name="ascerex-contact"
+      name={selectedRoute.formName}
       method="POST"
       data-netlify="true"
       data-netlify-honeypot="bot-field"
       onSubmit={handleSubmit}
     >
-      <input type="hidden" name="form-name" value="ascerex-contact" />
+      <input type="hidden" name="form-name" value={selectedRoute.formName} />
+      <input type="hidden" name="routing-address" value={selectedRoute.email} />
       <p className={styles.honeypot} aria-hidden="true">
         <label htmlFor="bot-field">Do not fill out this field</label>
         <input id="bot-field" name="bot-field" tabIndex={-1} autoComplete="off" />
@@ -100,18 +105,19 @@ export function ContactForm() {
           <select
             id="contact-type"
             name="inquiry-type"
-            defaultValue=""
+            value={inquiryType}
+            onChange={(event) => setInquiryType(event.currentTarget.value as InquiryType)}
             required
             aria-required="true"
           >
             <option value="" disabled>
               Select an inquiry
             </option>
-            <option value="general">General inquiry</option>
-            <option value="investor">Investor inquiry</option>
-            <option value="partnership">Strategic partnership</option>
-            <option value="media">Media or press</option>
-            <option value="technical">Technical inquiry</option>
+            {inquiryRoutes.map((route) => (
+              <option key={route.value} value={route.value}>
+                {route.title} inquiry
+              </option>
+            ))}
           </select>
         </div>
       </div>
@@ -157,7 +163,7 @@ export function ContactForm() {
         {submissionState === "error" && (
           <p className={styles.error} role="alert">
             The form could not be sent. Email us directly at{" "}
-            <a href="mailto:contact@ascerex.com">contact@ascerex.com</a>.
+            <a href={`mailto:${selectedRoute.email}`}>{selectedRoute.email}</a>.
           </p>
         )}
       </div>

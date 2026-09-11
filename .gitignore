@@ -25,6 +25,12 @@
 *.pem
 /vehicle-propulsion-gallery-fixed.zip
 
+# Local engineering guidance and recoverable archives. These support local
+# development but do not belong in the public website repository.
+AGENTS.md
+.ai-style-rules.md
+/.local/
+
 # debug
 npm-debug.log*
 yarn-debug.log*

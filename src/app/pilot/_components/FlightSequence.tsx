@@ -2,9 +2,9 @@
 
 import { useEffect, useRef } from "react";
 import { gsap } from "gsap";
-import { MotionPathPlugin } from "gsap/MotionPathPlugin";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { OrbiterGlyph } from "./OrbiterGlyph";
+import { createSvgPathProgress } from "./svgPathProgress";
 import styles from "./scenes.module.css";
 
 const phases = [
@@ -24,64 +24,64 @@ export function FlightSequence() {
     const stage = stageRef.current;
     if (!root || !stage) return;
 
-    gsap.registerPlugin(ScrollTrigger, MotionPathPlugin);
-    const media = gsap.matchMedia();
+    gsap.registerPlugin(ScrollTrigger);
+    let activePath: SVGPathElement | null = null;
+    let orbiter: SVGGElement | null = null;
 
-    media.add("(min-width: 769px)", () => {
-      const context = gsap.context(() => {
-        root.dataset.motion = "true";
-        const path = root.querySelector<SVGPathElement>("[data-flight-path]");
-        const orbiter = root.querySelector<HTMLElement>("[data-flight-orbiter]");
-        const orbiterGlyph = root.querySelector<HTMLElement>("[data-flight-orbiter-glyph]");
-        if (!path || !orbiter || !orbiterGlyph) return;
-        const pathLength = path.getTotalLength();
-        const tangentAngleAt = (progress: number) => {
-          const center = pathLength * progress;
-          const before = path.getPointAtLength(Math.max(0, center - 1));
-          const after = path.getPointAtLength(Math.min(pathLength, center + 1));
-          return Math.atan2(after.y - before.y, after.x - before.x) * (180 / Math.PI);
-        };
-        const departureCompensation = -tangentAngleAt(0.001);
-        const arrivalCompensation = -tangentAngleAt(0.999);
+    const context = gsap.context(() => {
+      root.dataset.motion = "true";
+      const guidePath = root.querySelector<SVGPathElement>("[data-flight-path-guide]");
+      activePath = root.querySelector<SVGPathElement>("[data-flight-path]");
+      orbiter = root.querySelector<SVGGElement>("[data-flight-orbiter]");
+      if (!guidePath || !activePath || !orbiter) return;
 
-        gsap.set("[data-phase]", { opacity: 0, y: 22 });
-        gsap.set("[data-phase='0']", { opacity: 1, y: 0 });
-        gsap.set(path, { opacity: 1, strokeDasharray: pathLength, strokeDashoffset: pathLength });
-        gsap.set(orbiter, {
-          motionPath: {
-            path,
-            align: path,
-            alignOrigin: [0.5, 0.5],
-            autoRotate: true,
-            start: 0,
-            end: 0,
-          },
-        });
-        gsap.set(orbiterGlyph, { rotation: departureCompensation, transformOrigin: "50% 50%" });
-        gsap.set("[data-handoff-orbiter]", { opacity: 0, scale: 0.75 });
+      const pathProgress = createSvgPathProgress(guidePath, activePath);
+      const flightProgress = { value: 0 };
+      const smoothstep = (value: number) => value * value * (3 - 2 * value);
+      const renderFlight = () => {
+        const progress = flightProgress.value;
+        const point = pathProgress.pointAt(progress);
+        const tangent = pathProgress.tangentAngleAt(progress);
+        let rotation = tangent;
 
-        const timeline = gsap.timeline({
-          defaults: { ease: "none" },
-          scrollTrigger: {
-            trigger: root,
-            start: "top top",
-            end: "+=300%",
-            pin: stage,
-            pinSpacing: true,
-            scrub: 0.72,
-            anticipatePin: 1,
-            invalidateOnRefresh: true,
-          },
-        });
+        if (progress < 0.09) {
+          rotation = 0;
+        } else if (progress < 0.24) {
+          rotation = tangent * smoothstep((progress - 0.09) / 0.15);
+        } else if (progress > 0.82) {
+          rotation = tangent * (1 - smoothstep((progress - 0.82) / 0.18));
+        }
 
-        timeline
-          .to(path, { strokeDashoffset: 0, duration: 1 }, 0)
-          .to(orbiter, {
-            motionPath: { path, align: path, alignOrigin: [0.5, 0.5], autoRotate: true },
-            duration: 1,
-          }, 0)
-          .to(orbiterGlyph, { rotation: 0, duration: 0.15, ease: "sine.inOut" }, 0.09)
-          .to(orbiterGlyph, { rotation: arrivalCompensation, duration: 0.16, ease: "sine.inOut" }, 0.82)
+        pathProgress.render(progress);
+        orbiter?.setAttribute(
+          "transform",
+          `translate(${point.x} ${point.y}) rotate(${rotation})`,
+        );
+      };
+
+      gsap.set("[data-phase]", { opacity: 0, y: 22 });
+      gsap.set("[data-phase='0']", { opacity: 1, y: 0 });
+      gsap.set(activePath, { opacity: 1 });
+      gsap.set(orbiter, { opacity: 1 });
+      gsap.set("[data-handoff-orbiter]", { opacity: 0, scale: 0.75 });
+      renderFlight();
+
+      const timeline = gsap.timeline({
+        defaults: { ease: "none" },
+        scrollTrigger: {
+          trigger: root,
+          start: "top top",
+          end: "+=300%",
+          pin: stage,
+          pinSpacing: true,
+          scrub: 0.72,
+          anticipatePin: 1,
+          invalidateOnRefresh: true,
+        },
+      });
+
+      timeline
+          .to(flightProgress, { value: 1, duration: 1, onUpdate: renderFlight }, 0)
           .to("[data-flight-world]", { xPercent: -7, duration: 0.64 }, 0.34)
           .to("[data-phase='0']", { opacity: 0, y: -16, duration: 0.04 }, 0.15)
           .to("[data-phase='1']", { opacity: 1, y: 0, duration: 0.05 }, 0.17)
@@ -96,15 +96,14 @@ export function FlightSequence() {
           .to("[data-flight-path], [data-flight-orbiter]", { opacity: 0, duration: 0.05 }, 1.13)
           .to("[data-handoff-orbiter]", { opacity: 1, scale: 1, duration: 0.05 }, 1.17)
           .to("[data-phase='4']", { opacity: 0.22, duration: 0.05 }, 1.175);
-      }, root);
+    }, root);
 
-      return () => {
-        delete root.dataset.motion;
-        context.revert();
-      };
-    });
-
-    return () => media.revert();
+    return () => {
+      delete root.dataset.motion;
+      context.revert();
+      activePath?.setAttribute("d", "");
+      orbiter?.removeAttribute("transform");
+    };
   }, []);
 
   return (
@@ -122,8 +121,8 @@ export function FlightSequence() {
         </div>
 
         <svg className={styles.flightTrajectory} viewBox="0 0 1200 700" aria-hidden="true">
-          <path className={styles.flightTrajectoryGuide} d="M126 592 C126 470 154 356 276 270 C382 194 477 186 612 186 C764 186 858 214 936 314 C1008 406 1038 500 1080 592" />
-          <path data-flight-path className={styles.flightTrajectoryActive} d="M126 592 C126 470 154 356 276 270 C382 194 477 186 612 186 C764 186 858 214 936 314 C1008 406 1038 500 1080 592" />
+          <path data-flight-path-guide className={styles.flightTrajectoryGuide} d="M126 592 C126 470 154 356 276 270 C382 194 477 186 612 186 C764 186 858 214 936 314 C1008 406 1038 500 1080 592" />
+          <path data-flight-path className={styles.flightTrajectoryActive} d="" />
           <g className={styles.flightEndpoint} data-flight-endpoint transform="translate(126 662)">
             <circle cy="-70" r="5" />
             <path
@@ -138,11 +137,14 @@ export function FlightSequence() {
               style={{ fill: "#e9e9e5", stroke: "#f5f5f2" }}
             />
           </g>
+          <g className={styles.flightOrbiter} data-flight-orbiter aria-hidden="true">
+            <g transform="translate(-48 -29) scale(0.8)">
+              <path d="M9 37 42 25 55 9h10l13 16 33 12-4 9-33-4-9 20H55L46 42l-33 4Z" />
+              <path d="M49 29h22M55 36h10" />
+            </g>
+          </g>
         </svg>
 
-        <div className={styles.flightOrbiter} data-flight-orbiter aria-hidden="true">
-          <span className={styles.flightOrbiterGlyph} data-flight-orbiter-glyph><OrbiterGlyph /></span>
-        </div>
         <div className={styles.handoffOrbiter} data-handoff-orbiter aria-hidden="true"><OrbiterGlyph /></div>
 
         <ol className={styles.phaseNarrative}>
