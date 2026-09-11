@@ -5,7 +5,7 @@
 
 .inner {
   display: grid;
-  width: min(100%, 80rem);
+  width: 100%;
   grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr);
   gap: clamp(1rem, 3vw, 3rem);
   align-items: start;

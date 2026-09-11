@@ -93,26 +93,12 @@ export function HeroSection({
         <Title
           order={1}
           className={styles.title}
-          tt="uppercase"
-          fw={700}
-          lh={1.1}
-          mb="xl"
-          style={{
-            letterSpacing: "-0.02em",
-          }}
         >
           {title}
         </Title>
 
         <Text
           className={styles.statement}
-          size="lg"
-          c="rgba(255, 255, 255, 0.85)"
-          lh={1.8}
-          mb={40}
-          style={{
-            fontFamily: "Calibri, 'Gill Sans', sans-serif",
-          }}
         >
           {statement}
         </Text>
@@ -124,13 +110,8 @@ export function HeroSection({
           variant="filled"
           color="white"
           c="dark"
-          size="lg"
           radius={0}
-          tt="uppercase"
-          fw={600}
-          px={40}
           style={{
-            letterSpacing: "0.1em",
             border: "2px solid white",
             transition: "all 0.3s cubic-bezier(0.4, 0, 0.2, 1)",
           }}

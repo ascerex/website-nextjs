@@ -23,14 +23,25 @@
 }
 
 .title {
-  font-size: clamp(3.25rem, 7vw, 5.75rem);
+  margin: 0 0 24px;
+  font-size: clamp(2.5rem, 6vw, 4.5rem);
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  line-height: 1.1;
+  text-transform: uppercase;
   text-shadow:
     0 0.125rem 0.75rem rgba(0, 0, 0, 0.78),
     0 0 2rem rgba(0, 0, 0, 0.45);
 }
 
 .statement {
-  font-size: clamp(1.2rem, 2.2vw, 1.5rem);
+  max-width: 100%;
+  margin: 0 0 40px;
+  color: rgba(255, 255, 255, 0.85);
+  font-family: Calibri, "Gill Sans", sans-serif;
+  font-size: clamp(1rem, 2vw, 1.2rem);
+  font-weight: 400;
+  line-height: 1.8;
   text-shadow:
     0 0.0625rem 0.5rem rgba(0, 0, 0, 0.88),
     0 0 1.25rem rgba(0, 0, 0, 0.62);
@@ -54,7 +65,13 @@
 }
 
 .action {
-  font-size: 1.0625rem;
+  height: auto;
+  padding: 16px 40px;
+  font-size: 0.875rem;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  line-height: normal;
+  text-transform: uppercase;
 }
 
 .section[data-align="left"] .content {
@@ -84,7 +101,7 @@
   .section[data-align="left"],
   .section[data-align="right"] {
     justify-content: center;
-    padding: calc(var(--header-height) + 3rem) 1.25rem 4rem;
+    padding: 100px 24px 60px;
   }
 
   .section[data-align="left"] .content,
@@ -94,23 +111,23 @@
     text-align: center;
   }
 
-  .title {
-    font-size: clamp(3rem, 12vw, 4.25rem);
-  }
-
-  .statement {
-    font-size: clamp(1.125rem, 4.8vw, 1.3rem);
-    line-height: 1.65;
-  }
-
-  .action {
-    font-size: 0.9375rem;
-  }
-
   .overlay[data-align="left"],
   .overlay[data-align="right"] {
     background:
       linear-gradient(to bottom, transparent 72%, #0a0a0a 100%),
       linear-gradient(to top, transparent 90%, rgba(10, 10, 10, 0.42) 100%);
+  }
+}
+
+@media (max-width: 30rem) {
+  .section,
+  .section[data-align="left"],
+  .section[data-align="right"] {
+    padding: 80px 16px 48px;
+  }
+
+  .action {
+    padding: 14px 32px;
+    font-size: 0.8rem;
   }
 }
