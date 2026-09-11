@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { ContactForm } from "@/components/ContactForm";
 import { Footer, Header } from "@/components";
+import { inquiryRoutes } from "@/data/inquiryRoutes";
 import styles from "./contact.module.css";
 
 export const metadata: Metadata = {
@@ -8,13 +9,6 @@ export const metadata: Metadata = {
   description:
     "Contact Ascerex about investment, strategic partnerships, media, and general inquiries.",
 };
-
-const inquiryRoutes = [
-  ["01", "General", "Company and program questions"],
-  ["02", "Investor", "Capital strategy and company direction"],
-  ["03", "Partnership", "Strategic and technical relationships"],
-  ["04", "Media", "Press and public-information requests"],
-];
 
 export default function ContactPage() {
   return (
@@ -53,12 +47,13 @@ export default function ContactPage() {
             </div>
 
             <ol className={styles.routeList}>
-              {inquiryRoutes.map(([number, title, detail]) => (
-                <li key={number}>
-                  <span>{number}</span>
+              {inquiryRoutes.map((route) => (
+                <li key={route.value}>
+                  <span>{route.number}</span>
                   <div>
-                    <strong>{title}</strong>
-                    <small>{detail}</small>
+                    <strong>{route.title}</strong>
+                    <small>{route.detail}</small>
+                    <a href={`mailto:${route.email}`}>{route.email}</a>
                   </div>
                 </li>
               ))}

@@ -133,7 +133,7 @@ export default function InvestorsPage() {
                 Explore the company <span aria-hidden="true">↓</span>
               </a>
               <a
-                href="mailto:contact@ascerex.com?subject=Investor%20inquiry"
+                href="mailto:investors@ascerex.com?subject=Investor%20inquiry"
                 className={styles.secondaryAction}
               >
                 Investor inquiry <span aria-hidden="true">↗</span>
@@ -397,7 +397,7 @@ export default function InvestorsPage() {
                 conducting a public securities offering through this page.
               </small>
             </div>
-            <a href="mailto:contact@ascerex.com?subject=Investor%20inquiry">
+            <a href="mailto:investors@ascerex.com?subject=Investor%20inquiry">
               Contact Ascerex <span aria-hidden="true">↗</span>
             </a>
           </div>
