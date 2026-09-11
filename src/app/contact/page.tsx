@@ -32,10 +32,6 @@ export default function ContactPage() {
             </p>
           </div>
 
-          <div className={styles.directContact}>
-            <span>Direct email</span>
-            <a href="mailto:contact@ascerex.com">contact@ascerex.com</a>
-            <p>Messages are reviewed directly and routed by inquiry type.</p>
           </div>
         </section>
 
@@ -55,8 +51,6 @@ export default function ContactPage() {
                 <li key={number}>
                   <span>{number}</span>
                   <div>
-                    <strong>{title}</strong>
-                    <small>{detail}</small>
                   </div>
                 </li>
               ))}
