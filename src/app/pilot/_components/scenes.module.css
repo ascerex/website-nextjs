@@ -145,7 +145,7 @@
 .phaseNarrative { position: absolute; inset: 0; z-index: 7; list-style: none; pointer-events: none; }
 .phaseNarrative li { position: absolute; top: 24%; left: clamp(1.25rem, 6vw, 7rem); display: grid; max-width: 30rem; gap: 0.55rem; }
 .phaseNarrative li > span { color: var(--pilot-accent); font-family: ui-monospace, SFMono-Regular, Menlo, monospace; font-size: 0.8rem; }
-.phaseNarrative strong { font-size: clamp(3.5rem, 8vw, 8rem); font-weight: 520; letter-spacing: -0.065em; line-height: 0.88; text-transform: uppercase; }
+.phaseNarrative strong { font-size: min(clamp(3.5rem, 8vw, 8rem), 13svh); font-weight: 520; letter-spacing: -0.065em; line-height: 0.88; text-transform: uppercase; }
 .phaseNarrative p { max-width: 24rem; color: var(--pilot-muted); font-size: clamp(0.92rem, 1.3vw, 1.08rem); line-height: 1.55; }
 
 /* Static interlude */
@@ -182,8 +182,8 @@
 .authorityRail strong { font-size: 0.68rem; letter-spacing: 0.12em; text-transform: uppercase; }
 .authorityRail span { color: var(--pilot-faint); font-size: 0.62rem; }
 
-.controlLoop { position: absolute; inset: calc(var(--header-height) + 7.5rem) clamp(1.25rem, 4vw, 4.5rem) 2.2rem; }
-.controlLoop > svg { position: absolute; top: 50%; left: 54%; width: min(61rem, 72vw, 125vh); height: auto; aspect-ratio: 1200 / 650; overflow: visible; transform: translate(-50%, -50%); }
+.controlLoop { position: absolute; inset: calc(var(--header-height) + 7.5rem) clamp(1.25rem, 4vw, 4.5rem) 2.2rem; container-type: size; }
+.controlLoop > svg { position: absolute; top: 50%; left: 54%; width: min(61rem, 72vw, 105vh); width: min(61rem, 72vw, 133cqh); height: auto; aspect-ratio: 1200 / 650; overflow: visible; transform: translate(-50%, -50%); }
 .controlLoopGuide,
 .controlLoopActive { fill: none; vector-effect: non-scaling-stroke; }
 .controlLoopGuide { stroke: rgba(245, 245, 242, 0.12); stroke-width: 1; }
@@ -197,7 +197,7 @@
 .controllerCore { fill: rgba(240, 75, 47, 0.08); stroke: var(--pilot-accent); stroke-width: 1.5px; }
 .loopCoreLabel { position: absolute; top: calc(50% + 5.5rem); left: 54%; color: var(--pilot-accent); font-size: 0.62rem; font-weight: 760; letter-spacing: 0.16em; text-transform: uppercase; transform: translateX(-50%); }
 
-.loopNodes { position: absolute; top: 50%; left: 54%; z-index: 7; width: min(61rem, 72vw, 125vh); height: auto; aspect-ratio: 1200 / 650; list-style: none; transform: translate(-50%, -50%); }
+.loopNodes { position: absolute; top: 50%; left: 54%; z-index: 7; width: min(61rem, 72vw, 105vh); width: min(61rem, 72vw, 133cqh); height: auto; aspect-ratio: 1200 / 650; list-style: none; transform: translate(-50%, -50%); }
 .loopNodes li { position: absolute; display: grid; gap: 0.22rem; min-width: 8rem; padding-top: 0.55rem; border-top: 1px solid var(--pilot-line); background: rgba(5, 5, 5, 0.86); }
 .loopNodes li:nth-child(1) { top: -5%; left: 46%; }
 .loopNodes li:nth-child(2) { top: 31%; right: 0; text-align: right; }
@@ -210,7 +210,7 @@
 .loopFocus { position: absolute; top: 45%; left: 0; z-index: 9; width: min(31rem, 34vw); list-style: none; }
 .loopFocus li { position: absolute; inset: 0 auto auto 0; display: grid; gap: 0.5rem; }
 .loopFocus span { color: var(--pilot-accent); font-size: 0.62rem; font-weight: 740; letter-spacing: 0.14em; text-transform: uppercase; }
-.loopFocus strong { font-size: clamp(3rem, 6.5vw, 6.5rem); font-weight: 520; letter-spacing: -0.065em; line-height: 0.88; text-transform: uppercase; }
+.loopFocus strong { font-size: min(clamp(3rem, 6.5vw, 6.5rem), 11svh); font-weight: 520; letter-spacing: -0.065em; line-height: 0.88; text-transform: uppercase; }
 .loopFocus p { max-width: 24rem; color: var(--pilot-muted); font-size: 0.88rem; line-height: 1.55; }
 
 /* Scene 04 */
@@ -243,7 +243,7 @@
 .responseStages { position: absolute; top: 18%; left: 0; z-index: 8; list-style: none; }
 .responseStages li { position: absolute; top: 0; left: 0; display: grid; min-width: 42rem; gap: 0.3rem; }
 .responseStages span { color: var(--pilot-accent); font-family: ui-monospace, SFMono-Regular, Menlo, monospace; font-size: 0.7rem; }
-.responseStages strong { font-size: clamp(3.4rem, 8vw, 8rem); font-weight: 520; letter-spacing: -0.07em; line-height: 0.86; text-transform: uppercase; }
+.responseStages strong { font-size: min(clamp(3.4rem, 8vw, 8rem), 12svh); font-weight: 520; letter-spacing: -0.07em; line-height: 0.86; text-transform: uppercase; }
 .responseStages p { max-width: 31rem; color: var(--pilot-muted); font-size: 0.86rem; line-height: 1.55; }
 
 .safetyPayoff { position: absolute; bottom: 1%; left: 0; z-index: 9; max-width: 66rem; transform: translateY(16px); }
@@ -325,7 +325,7 @@
   .handoffOrbiter { top: 52%; width: 5rem; }
   .phaseNarrative { position: absolute; inset: 0; display: block; margin: 0; border-top: 0; }
   .phaseNarrative li { position: absolute; top: 23%; left: 1.25rem; display: grid; max-width: calc(100% - 2.5rem); grid-template-columns: none; gap: 0.45rem; padding: 0; border-bottom: 0; }
-  .phaseNarrative strong { font-size: clamp(2.5rem, 14vw, 4.25rem); letter-spacing: -0.06em; line-height: 0.9; }
+  .phaseNarrative strong { font-size: min(clamp(2.5rem, 14vw, 4.25rem), 10svh); letter-spacing: -0.06em; line-height: 0.9; }
   .phaseNarrative p { max-width: 19rem; font-size: 0.88rem; line-height: 1.55; }
 
   .purposeFrame { display: block; padding: 7rem 1.25rem; }
@@ -347,7 +347,7 @@
   .authorityRail > i { display: block; }
   .controlLoop { position: absolute; inset: calc(var(--header-height) + 7rem) 0.75rem 1rem; margin: 0; }
   .controlLoop > svg,
-  .loopNodes { display: block; top: 56%; left: 50%; width: min(94vw, 125vh); height: auto; }
+  .loopNodes { display: block; top: 56%; left: 50%; width: min(94vw, 105vh); width: min(94vw, 133cqh); height: auto; }
   .loopPulse { display: block; }
   .loopController { position: absolute; top: 53.5%; left: 50%; width: 4.6rem; margin: 0; transform: translate(-50%, -50%); }
   .loopCoreLabel { position: absolute; top: calc(53.5% + 2.65rem); left: 50%; display: block; padding: 0; font-size: 0.62rem; text-align: center; transform: translateX(-50%); }
@@ -357,7 +357,7 @@
   .loopNodes strong { font-size: 0.64rem; }
   .loopFocus { position: absolute; top: 1.65rem; left: 0.5rem; width: calc(100% - 1rem); border-top: 0; }
   .loopFocus li { position: absolute; inset: 0 auto auto 0; display: grid; grid-template-columns: none; gap: 0.35rem; padding: 0; border-bottom: 0; }
-  .loopFocus strong { font-size: clamp(2.2rem, 12vw, 3.8rem); letter-spacing: -0.055em; line-height: 0.9; }
+  .loopFocus strong { font-size: min(clamp(2.2rem, 12vw, 3.8rem), 9svh); letter-spacing: -0.055em; line-height: 0.9; }
   .loopFocus p { max-width: 19rem; font-size: 0.84rem; line-height: 1.5; }
 
   .safetyScene .pinnedStage { padding-bottom: 0; }
@@ -371,11 +371,12 @@
     margin: 0;
     white-space: nowrap;
   }
-  .stateComparison { position: absolute; inset: 32% 0 31%; height: auto; }
-  .responseStages { position: absolute; top: 15%; left: 0; display: block; margin: 0; border-top: 0; }
+  .stateComparison { position: absolute; inset: 36% 0 31%; height: auto; }
+  .responseStages { position: absolute; top: 10%; left: 0; display: block; margin: 0; border-top: 0; }
   .responseStages li { position: absolute; top: 0; left: 0; display: grid; min-width: min(90vw, 28rem); grid-template-columns: none; gap: 0.3rem; padding: 0; border-bottom: 0; }
   .responseStages span { font-size: 0.58rem; }
-  .responseStages strong { font-size: clamp(2.25rem, 12vw, 4rem); letter-spacing: -0.06em; line-height: 0.9; }
+  .responseStages strong { font-size: min(clamp(2.25rem, 12vw, 4rem), 9svh); letter-spacing: -0.06em; line-height: 0.9; }
+  .responseStages li:nth-child(2) strong { max-width: 9.5ch; font-size: min(clamp(1.95rem, 9.5vw, 3.35rem), 8.5svh); text-wrap: balance; }
   .responseStages p { max-width: 19rem; font-size: 0.82rem; line-height: 1.5; }
   .safetyPayoff { position: absolute; bottom: -0.75rem; left: 0; margin: 0; transform: translateY(16px); }
   .safetyPayoff h3 { font-size: clamp(1.9rem, 7.5vw, 3rem); }
