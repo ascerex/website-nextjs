@@ -1,0 +1,93 @@
+.footer {
+  padding: 2.5rem clamp(1.25rem, 4vw, 3rem);
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.inner {
+  display: grid;
+  width: min(100%, 80rem);
+  grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr);
+  gap: clamp(1rem, 3vw, 3rem);
+  align-items: start;
+  margin-inline: auto;
+}
+
+.contact {
+  display: grid;
+  min-width: 0;
+  gap: 0.5rem;
+  justify-self: start;
+}
+
+.contact span,
+.privacy,
+.copyright {
+  color: rgba(255, 255, 255, 0.55);
+  font-size: 0.875rem;
+  letter-spacing: 0.05em;
+  line-height: 1.4;
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+
+.contact a {
+  color: #fff;
+  font-size: 0.875rem;
+  letter-spacing: 0.02em;
+  line-height: 1.4;
+  white-space: nowrap;
+}
+
+.privacy {
+  justify-self: center;
+}
+
+.copyright {
+  justify-self: end;
+  text-align: right;
+}
+
+.contact a,
+.privacy {
+  transition: color 180ms ease;
+}
+
+.contact a:hover,
+.contact a:focus-visible,
+.privacy:hover,
+.privacy:focus-visible {
+  color: #fff;
+  outline: none;
+}
+
+.contact a:focus-visible,
+.privacy:focus-visible {
+  box-shadow: 0 2px 0 #f04b2f;
+}
+
+@media (max-width: 36rem) {
+  .footer {
+    padding: 1.75rem 1rem;
+  }
+
+  .inner {
+    grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr);
+    gap: clamp(0.3rem, 2vw, 0.75rem);
+  }
+
+  .contact {
+    gap: 0.3rem;
+  }
+
+  .contact span,
+  .privacy,
+  .copyright {
+    font-size: clamp(0.5rem, 2.35vw, 0.66rem);
+    letter-spacing: 0.025em;
+  }
+
+  .contact a {
+    font-size: clamp(0.56rem, 2.65vw, 0.7rem);
+    letter-spacing: 0;
+  }
+}
