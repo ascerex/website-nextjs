@@ -234,22 +234,21 @@ export default function MissionPage() {
         </section>
 
         <section className={styles.closing} aria-labelledby="closing-title">
-          <div className={styles.closingMark} aria-hidden="true">
-            Ω
-          </div>
           <div className={styles.closingContent}>
-            <p className={styles.eyebrow}>Next: The Orbiter</p>
-            <h2 id="closing-title">The mission begins with the vehicle.</h2>
-            <p>
-              Orbiter is the physical foundation of the Ascerex system: a
-              compact aerial vehicle being developed around the requirements
-              that personal flight places on payload, packaging, propulsion,
-              energy, control, and safe operation.
-            </p>
-            <Link href="/vehicle" className={styles.vehicleLink}>
-              Explore the vehicle
-              <span aria-hidden="true">↗</span>
-            </Link>
+            <div className={styles.closingHeading}>
+              <p className={styles.eyebrow}>Next: The Orbiter</p>
+              <h2 id="closing-title">The mission begins with the vehicle.</h2>
+            </div>
+            <div className={styles.closingNext}>
+              <p>
+                The Orbiter is the vehicle at the center of Ascerex—built around
+                the demands of personal flight.
+              </p>
+              <Link href="/vehicle" className={styles.vehicleLink}>
+                Explore the vehicle
+                <span aria-hidden="true">↗</span>
+              </Link>
+            </div>
           </div>
         </section>
       </main>

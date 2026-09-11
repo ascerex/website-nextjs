@@ -432,24 +432,23 @@ export default function VehiclePreviewPage() {
                 </Link>
               </article>
             </div>
-          </div>
-        </section>
 
-        <section className={styles.closing} aria-labelledby="closing-title">
-          <div className={styles.closingMark} aria-hidden="true">Ω</div>
-          <div className={styles.closingContent}>
-            <p className={styles.kicker}>Next: The Skyway</p>
-            <h2 id="closing-title">The vehicle is one part of the system</h2>
-            <p>
-              The Skyway is the digital operating network intended to connect
-              vehicles, routes, infrastructure, access rules, and coordinated
-              flight operations. See how the Orbiter fits into that larger
-              transportation system.
-            </p>
-            <Link href="/skyway" className={styles.missionLink}>
-              Explore the Skyway
-              <span aria-hidden="true">↗</span>
-            </Link>
+            <aside className={styles.closing} aria-labelledby="closing-title">
+              <div className={styles.closingContent}>
+                <p className={styles.kicker}>Next: The Skyway</p>
+                <h2 id="closing-title">One vehicle can fly. A network makes flight scalable.</h2>
+                <div className={styles.closingNext}>
+                  <p>
+                    The Skyway extends flight beyond the aircraft itself, creating
+                    the shared operating structure for coordinated movement.
+                  </p>
+                  <Link href="/skyway" className={styles.missionLink}>
+                    Explore the Skyway
+                    <span aria-hidden="true">↗</span>
+                  </Link>
+                </div>
+              </div>
+            </aside>
           </div>
         </section>
       </main>

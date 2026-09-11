@@ -1059,36 +1059,73 @@
 
 .systemLink {
   position: relative;
-  display: grid;
-  min-height: 82svh;
   overflow: hidden;
-  padding: clamp(7rem, 13vw, 12rem) clamp(1.25rem, 5vw, 5rem);
-  place-items: center;
-  text-align: center;
-  background:
-    radial-gradient(circle at 50% 50%, rgba(38, 94, 120, 0.15), transparent 36%),
-    #030405;
-  border-top: 1px solid var(--sky-line);
+  padding: 0 clamp(1.25rem, 5vw, 5rem) clamp(3rem, 6vw, 5rem);
+  background: var(--sky-surface);
 }
 
 .systemCopy {
   position: relative;
-  z-index: 1;
-  display: flex;
-  flex-direction: column;
+  display: grid;
+  width: min(100%, 92rem);
+  grid-template-columns: minmax(20rem, 1.15fr) minmax(18rem, 0.85fr);
+  gap: clamp(3rem, 8vw, 9rem);
+  align-items: end;
+  margin-inline: auto;
+  padding-top: 2.75rem;
+}
+
+.systemRoute {
+  position: absolute;
+  top: 0;
+  right: 0;
+  left: 0;
+  display: grid;
+  grid-template-columns: auto 1fr auto;
   align-items: center;
 }
 
-.systemCopy h2 {
-  max-width: 16ch;
+.systemRoute span {
+  width: 0.55rem;
+  height: 0.55rem;
+  background: var(--sky-accent);
+  border: 2px solid var(--sky-surface);
+  border-radius: 50%;
+  box-shadow: 0 0 0 1px var(--sky-accent);
 }
 
-.systemCopy > p:not(.kicker) {
+.systemRoute span:last-child {
+  background: var(--sky-ink);
+  box-shadow: 0 0 0 1px rgba(244, 247, 248, 0.48);
+}
+
+.systemRoute i {
+  height: 1px;
+  background: linear-gradient(90deg, var(--sky-accent), var(--sky-blue));
+}
+
+.systemCopy h2 {
+  max-width: 17ch;
+  margin-top: 0.65rem;
+  font-size: clamp(1.75rem, 3vw, 3rem);
+}
+
+.systemNext > p {
   max-width: 46rem;
-  margin-top: 1.75rem;
   color: var(--sky-muted);
-  font-size: clamp(1rem, 1.3vw, 1.15rem);
-  line-height: 1.75;
+  font-size: clamp(0.92rem, 1.15vw, 1.05rem);
+  line-height: 1.55;
+}
+
+.systemCopy .primaryLink {
+  margin-top: 1.2rem;
+}
+
+@media (max-width: 760px) {
+  .systemCopy {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
 }
 
 @media (max-width: 1100px) {

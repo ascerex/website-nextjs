@@ -395,17 +395,24 @@ export default function SkywayPage() {
 
         <section className={styles.systemLink} aria-labelledby="system-link-title">
           <div className={styles.systemCopy}>
-            <p className={styles.kicker}>Next: Flight autonomy</p>
-            <h2 id="system-link-title">The network defines where. The pilot must still know how.</h2>
-            <p>
-              Skyway navigation can provide an eligible route and its operating
-              constraints. Future flight autonomy must translate that guidance
-              into safe vehicle behavior for a specific aircraft and evidenced
-              operating envelope.
-            </p>
-            <Link href="/pilot" className={styles.primaryLink}>
-              Explore flight autonomy <span aria-hidden="true">↗</span>
-            </Link>
+            <div className={styles.systemRoute} aria-hidden="true">
+              <span />
+              <i />
+              <span />
+            </div>
+            <div className={styles.systemHeading}>
+              <p className={styles.kicker}>Next: Flight autonomy</p>
+              <h2 id="system-link-title">The Skyway defines the routes. Autonomy handles the flight.</h2>
+            </div>
+            <div className={styles.systemNext}>
+              <p>
+                Within the Skyway&apos;s operating boundaries, the Pilot continuously
+                controls and supervises the aircraft from departure through landing.
+              </p>
+              <Link href="/pilot" className={styles.primaryLink}>
+                Explore flight autonomy <span aria-hidden="true">↗</span>
+              </Link>
+            </div>
           </div>
         </section>
       </main>
