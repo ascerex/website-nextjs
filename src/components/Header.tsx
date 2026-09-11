@@ -113,7 +113,7 @@ export function Header() {
             <Anchor component={Link} href="/" underline="never">
               <Group gap="sm">
                 <Image
-                  src="/favicon/logo.svg"
+                  src="/favicon/logo-1094x.png"
                   alt="Ascerex Logo"
                   h={40}
                   w="auto"
