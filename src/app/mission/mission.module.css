@@ -174,105 +174,62 @@
   display: block;
   width: 100%;
   height: 100%;
-  overflow: visible;
   color: rgba(244, 245, 246, 0.5);
 }
 
-.architectureConnectors path:not(.feedbackLine) {
+.architectureFlow path {
   fill: none;
   stroke: var(--mission-line-strong);
   stroke-width: 1.5;
   vector-effect: non-scaling-stroke;
 }
 
-.architectureConnectors marker path {
-  fill: currentcolor;
-  stroke: none;
+.flowDot {
+  fill: rgb(13, 15, 18);
+  stroke: rgba(244, 245, 246, 0.68);
+  stroke-width: 1.5;
 }
 
-.architectureConnectors .feedbackLine {
-  fill: none;
-  stroke: rgba(244, 245, 246, 0.14);
-  stroke-width: 1;
-  stroke-dasharray: 5 7;
-  vector-effect: non-scaling-stroke;
+.flowDotAccent {
+  fill: rgb(13, 15, 18);
+  stroke: rgba(255, 106, 77, 0.78);
+  stroke-width: 1.5;
 }
 
 .architectureConnectors .crossLine {
   stroke: rgba(255, 106, 77, 0.4);
 }
 
-.architectureNodes {
-  position: absolute;
-  inset: 0;
-  margin: 0;
-  list-style: none;
-}
-
 .architectureNode {
-  position: absolute;
-  display: grid;
-  width: clamp(9.5rem, 21vw, 13.5rem);
-  min-height: 4.6rem;
-  padding: 0.8rem 1rem;
-  place-content: center;
-  text-align: center;
-  background: rgba(13, 15, 18, 0.96);
-  border: 1px solid var(--mission-line-strong);
-  transform: translate(-50%, -50%);
+  text-anchor: middle;
 }
 
-.architectureNode > span {
-  position: absolute;
-  top: 0.45rem;
-  left: 0.55rem;
+.architectureNode rect {
+  fill: rgba(13, 15, 18, 0.96);
+  stroke: var(--mission-line-strong);
+  stroke-width: 1;
+  vector-effect: non-scaling-stroke;
+}
+
+.architectureNumber {
   color: var(--mission-accent);
-  font-size: 0.52rem;
+  fill: currentcolor;
+  font-size: 9px;
   font-weight: 700;
   letter-spacing: 0.12em;
+  text-anchor: start;
 }
 
-.architectureNode strong {
-  font-size: clamp(0.7rem, 1.15vw, 0.86rem);
+.architectureNodeTitle {
+  fill: var(--mission-text);
+  font-size: 16px;
   font-weight: 650;
   letter-spacing: 0.015em;
 }
 
-.architectureNode small {
-  margin-top: 0.3rem;
-  color: var(--mission-faint);
-  font-size: clamp(0.52rem, 0.75vw, 0.64rem);
-  line-height: 1.35;
-}
-
-.architectureRequirements {
-  top: 84.6%;
-  left: 22.5%;
-}
-
-.architectureVehicle {
-  top: 54.8%;
-  left: 22.5%;
-}
-
-.architectureInfrastructure {
-  top: 84.6%;
-  left: 77.5%;
-}
-
-.architectureNavigation {
-  top: 54.8%;
-  left: 77.5%;
-}
-
-.architectureAutonomy {
-  top: 29.8%;
-  left: 50%;
-}
-
-.architecturePolicy {
-  top: 10.6%;
-  left: 50%;
+.architectureNodeSubtitle {
+  fill: var(--mission-faint);
+  font-size: 12px;
 }
 
 .architectureFigure figcaption {
@@ -700,27 +657,6 @@
 
   .architectureCanvas {
     aspect-ratio: 20 / 13;
-  }
-
-  .architectureNode {
-    width: clamp(7rem, 36vw, 10.5rem);
-    min-height: clamp(2.6rem, 10vw, 3.6rem);
-    padding: 0.45rem 0.55rem;
-  }
-
-  .architectureNode > span {
-    top: 0.3rem;
-    left: 0.35rem;
-    font-size: 0.42rem;
-  }
-
-  .architectureNode strong {
-    font-size: clamp(0.52rem, 1.8vw, 0.7rem);
-    line-height: 1.15;
-  }
-
-  .architectureNode small {
-    display: none;
   }
 
   .architectureDetails {
