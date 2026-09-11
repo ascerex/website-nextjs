@@ -20,7 +20,7 @@
 }
 
 .contact span,
-.privacy,
+.legal,
 .copyright {
   color: rgba(255, 255, 255, 0.55);
   font-size: 0.875rem;
@@ -38,8 +38,12 @@
   white-space: nowrap;
 }
 
-.privacy {
+.legal {
+  display: grid;
+  gap: 0.35rem;
+  justify-items: center;
   justify-self: center;
+  text-align: center;
 }
 
 .copyright {
@@ -48,20 +52,20 @@
 }
 
 .contact a,
-.privacy {
+.legal a {
   transition: color 180ms ease;
 }
 
 .contact a:hover,
 .contact a:focus-visible,
-.privacy:hover,
-.privacy:focus-visible {
+.legal a:hover,
+.legal a:focus-visible {
   color: #fff;
   outline: none;
 }
 
 .contact a:focus-visible,
-.privacy:focus-visible {
+.legal a:focus-visible {
   box-shadow: 0 2px 0 #f04b2f;
 }
 
@@ -80,7 +84,7 @@
   }
 
   .contact span,
-  .privacy,
+  .legal,
   .copyright {
     font-size: clamp(0.5rem, 2.35vw, 0.66rem);
     letter-spacing: 0.025em;
