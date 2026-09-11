@@ -341,13 +341,17 @@ export default function InvestorsPage() {
           <div className={styles.sectionFrame}>
             <div className={styles.founderPortrait}>
               <Image
-                src="/favicon/logo.svg"
-                alt="Ascerex mark"
-                width={280}
-                height={280}
+                src="/images/portrait.png"
+                alt="Axel Soto, founder of Ascerex"
+                width={1024}
+                height={1536}
+                sizes="(max-width: 960px) 100vw, 36vw"
               />
-              <div>
-                <span>Founder-led</span>
+              <div className={styles.founderIdentity}>
+                <div>
+                  <strong>Axel Soto</strong>
+                  <span>Founder</span>
+                </div>
                 <small>Ascerex</small>
               </div>
             </div>
@@ -356,20 +360,22 @@ export default function InvestorsPage() {
               <p className={styles.kicker}>Founder-led execution</p>
               <h2 id="founder-title">One technical vision across the system.</h2>
               <p>
-                Ascerex is presently founder-led. Its vehicle studies, evidence
-                infrastructure, computational workflows, Skyway software, and
-                public technical interfaces are being developed as parts of one
-                coherent program.
+                Ascerex is presently founder-led, with its vehicle research,
+                software, Skyway development, and technical systems being
+                developed as parts of one coordinated program.
               </p>
               <p>
-                That continuity keeps requirements, code, studies, and public
-                claims aligned while the technical foundation advances toward
-                focused prototype development and a purpose-built aerospace
-                organization.
+                This keeps the company&apos;s requirements, engineering work, and
+                technical direction aligned as Ascerex advances toward prototype
+                development and a growing aerospace team.
               </p>
               <div className={styles.founderRole}>
                 <span>Current role</span>
-                <strong>Founder // Systems architecture, software & research</strong>
+                <strong>Founder // Systems Architecture, Software &amp; Research</strong>
+              </div>
+              <div className={`${styles.founderRole} ${styles.founderBackground}`}>
+                <span>Background</span>
+                <strong>B.S. Computer Science // North Carolina State University</strong>
               </div>
             </div>
           </div>
