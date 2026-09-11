@@ -45,7 +45,7 @@ const screeningCards: ScreeningCard[] = [
     state: "in-screening",
     stateLabel: "In Screening",
     overview: "Electric motors drive fans enclosed by ducts. The ducts may be tilted or the airflow redirected to provide vertical and forward thrust without exposed propellers.",
-    finding: "Omega already has a first-pass model for this family, but none of the 11 reviewed hardware records is ready for a complete candidate study. Important source data is missing, some concepts need a different model, and some expose their propulsors.",
+    finding: "Ascerex already has a first-pass model for this family, but none of the 11 reviewed hardware records is ready for a complete candidate study. Important source data is missing, some concepts need a different model, and some expose their propulsors.",
     nextStep: "Keep the family in screening while stronger hardware evidence is collected and each candidate is routed to a model that actually represents its installation.",
   },
   {
@@ -56,7 +56,7 @@ const screeningCards: ScreeningCard[] = [
     state: "prospective",
     stateLabel: "Prospective",
     overview: "A cyclorotor uses blades rotating around a horizontal cylinder. Changing blade pitch around that rotation can redirect thrust without tilting the whole aircraft.",
-    finding: "The family appears in the research catalogue, but Omega does not yet have a validated cyclorotor model and the available records do not resolve how an Orbiter-scale installation would be contained and packaged.",
+    finding: "The family appears in the research catalogue, but Ascerex does not yet have a validated cyclorotor model and the available records do not resolve how an Orbiter-scale installation would be contained and packaged.",
     nextStep: "Define the family-specific physics and evidence requirements before any cyclorotor candidate enters vehicle screening.",
   },
   {
@@ -100,7 +100,7 @@ const screeningCards: ScreeningCard[] = [
     state: "prospective",
     stateLabel: "Prospective",
     overview: "Fluidic systems use directed jets and surrounding airflow to create or amplify thrust, often without a conventional propeller visible at the outlet.",
-    finding: "Five catalogue records are routed to this family, but their mechanisms and claimed performance are not interchangeable and no common Omega capability model is ready.",
+    finding: "Five catalogue records are routed to this family, but their mechanisms and claimed performance are not interchangeable and no common Ascerex capability model is ready.",
     nextStep: "Separate the mechanisms, qualify their evidence, and model each applicable family before comparing any installation with Orbiter demand.",
   },
   {
