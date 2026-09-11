@@ -1310,7 +1310,7 @@
 
   .heroContent {
     align-self: start;
-    padding-top: calc(var(--header-height) + 6rem);
+    padding-top: calc(var(--header-height) + 5rem);
     padding-bottom: 12rem;
   }
 
@@ -1431,6 +1431,12 @@
   .artifactLabels text {
     font-size: 16px;
     letter-spacing: 1px;
+  }
+}
+
+@media (max-width: 700px) and (hover: hover) and (pointer: fine) {
+  .heroStatus {
+    bottom: 5rem;
   }
 }
 

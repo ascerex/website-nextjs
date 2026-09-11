@@ -1029,7 +1029,8 @@
   }
 
   .heroContent {
-    align-self: end;
+    align-self: start;
+    padding-top: calc(var(--header-height) + 5rem);
     padding-bottom: 12rem;
   }
 
@@ -1123,6 +1124,12 @@
   .runArtifact dl > div,
   .assuranceGrid {
     grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 680px) and (hover: hover) and (pointer: fine) {
+  .heroStatus {
+    bottom: 5rem;
   }
 }
 
