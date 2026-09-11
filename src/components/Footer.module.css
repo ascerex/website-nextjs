@@ -40,9 +40,16 @@
 
 .legal {
   display: grid;
+  min-width: max-content;
   gap: 0.35rem;
   justify-items: center;
-  justify-self: center;
+  place-self: start center;
+  text-align: center;
+}
+
+.legal a {
+  display: block;
+  width: 100%;
   text-align: center;
 }
 
