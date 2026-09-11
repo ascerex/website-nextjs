@@ -4,7 +4,11 @@ import styles from "./scenes.module.css";
 
 export function PilotHero() {
   return (
-    <section className={`${styles.scene} ${styles.heroScene}`} aria-labelledby="pilot-title">
+    <section
+      id="pilot-top"
+      className={`${styles.scene} ${styles.heroScene}`}
+      aria-labelledby="pilot-title"
+    >
       <div className={styles.heroFrame}>
         <Image
           className={styles.heroImage}

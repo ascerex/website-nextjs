@@ -1,67 +1,22 @@
-"use client";
-
-import { Box, Group, Text, Anchor, Container } from "@mantine/core";
 import Link from "next/link";
+import styles from "./Footer.module.css";
 
 export function Footer() {
   return (
-    <Box
-      component="footer"
-      style={{
-        borderTop: "1px solid rgba(255, 255, 255, 0.1)",
-        padding: "40px 48px",
-      }}
-    >
-      <Container size="xl">
-        <Group justify="space-between" align="flex-start">
-          {/* Contact */}
-          <Box style={{ flex: 1, textAlign: "left" }}>
-            <Text
-              size="sm"
-              c="dimmed"
-              tt="uppercase"
-              style={{ letterSpacing: "0.05em" }}
-              mb={8}
-            >
-              Contact
-            </Text>
-            <Anchor
-              href="mailto:contact@ascerex.com"
-              c="white"
-              size="sm"
-              style={{ letterSpacing: "0.02em" }}
-            >
-              contact@ascerex.com
-            </Anchor>
-          </Box>
+    <footer className={styles.footer}>
+      <div className={styles.inner}>
+        <div className={styles.contact}>
+          <span>Contact</span>
+          <a href="mailto:contact@ascerex.com">contact@ascerex.com</a>
+        </div>
 
-          {/* Privacy */}
-          <Box style={{ flex: 1, textAlign: "center" }}>
-            <Anchor
-              component={Link}
-              href="/privacy-policy"
-              c="dimmed"
-              size="sm"
-              tt="uppercase"
-              style={{ letterSpacing: "0.05em" }}
-            >
-              Privacy Policy
-            </Anchor>
-          </Box>
+        <nav className={styles.legal} aria-label="Legal">
+          <Link href="/privacy-policy">Privacy Policy</Link>
+          <Link href="/terms-of-service">Terms of Use</Link>
+        </nav>
 
-          {/* Copyright */}
-          <Box style={{ flex: 1, textAlign: "right" }}>
-            <Text
-              size="sm"
-              c="dimmed"
-              tt="uppercase"
-              style={{ letterSpacing: "0.05em" }}
-            >
-              &copy; 2025 ASCEREX
-            </Text>
-          </Box>
-        </Group>
-      </Container>
-    </Box>
+        <p className={styles.copyright}>&copy; 2026 Ascerex</p>
+      </div>
+    </footer>
   );
 }

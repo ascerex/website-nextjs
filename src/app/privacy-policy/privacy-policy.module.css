@@ -1,0 +1,185 @@
+.page {
+  --privacy-bg: #070707;
+  --privacy-panel: #0b0b0b;
+  --privacy-text: #f5f5f2;
+  --privacy-muted: rgba(245, 245, 242, 0.68);
+  --privacy-faint: rgba(245, 245, 242, 0.42);
+  --privacy-line: rgba(245, 245, 242, 0.14);
+  --privacy-accent: #f04b2f;
+  min-height: 100vh;
+  color: var(--privacy-text);
+  background: var(--privacy-bg);
+}
+
+.intro {
+  padding: calc(var(--header-height) + clamp(5rem, 10vw, 9rem)) clamp(1.25rem, 6vw, 7rem) clamp(4.5rem, 8vw, 7rem);
+  background:
+    linear-gradient(110deg, rgba(240, 75, 47, 0.055), transparent 34%),
+    var(--privacy-panel);
+  border-bottom: 1px solid var(--privacy-line);
+}
+
+.introInner,
+.document {
+  width: min(100%, 52rem);
+  margin-inline: auto;
+}
+
+.eyebrow,
+.updated,
+.sectionNumber {
+  font-size: 0.68rem;
+  font-weight: 700;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+}
+
+.eyebrow,
+.sectionNumber {
+  color: var(--privacy-accent);
+}
+
+.intro h1 {
+  margin-top: 1rem;
+  font-size: clamp(3rem, 7vw, 6.5rem);
+  font-weight: 600;
+  letter-spacing: -0.055em;
+  line-height: 0.95;
+}
+
+.updated {
+  margin-top: 1.5rem;
+  color: var(--privacy-faint);
+}
+
+.summary {
+  max-width: 43rem;
+  margin-top: clamp(2.5rem, 5vw, 4rem);
+  color: var(--privacy-muted);
+  font-size: clamp(1.05rem, 1.6vw, 1.3rem);
+  line-height: 1.75;
+}
+
+.document {
+  padding: clamp(4rem, 8vw, 7rem) 0 clamp(6rem, 10vw, 9rem);
+}
+
+.policySection,
+.contactSection {
+  display: grid;
+  grid-template-columns: 3.5rem minmax(0, 1fr);
+  gap: 1.5rem;
+  padding: clamp(2.5rem, 5vw, 4rem) 0;
+  border-top: 1px solid var(--privacy-line);
+}
+
+.policySection:first-child {
+  padding-top: 0;
+  border-top: 0;
+}
+
+.sectionNumber {
+  padding-top: 0.42rem;
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+}
+
+.sectionContent {
+  min-width: 0;
+}
+
+.sectionContent h2 {
+  font-size: clamp(1.55rem, 3vw, 2.35rem);
+  font-weight: 600;
+  letter-spacing: -0.035em;
+  line-height: 1.1;
+}
+
+.sectionBody {
+  display: grid;
+  gap: 1.25rem;
+  margin-top: 1.5rem;
+  color: var(--privacy-muted);
+  font-size: clamp(1rem, 1.2vw, 1.08rem);
+  line-height: 1.8;
+}
+
+.sectionBody ul {
+  display: grid;
+  gap: 0.7rem;
+  padding-left: 1.2rem;
+}
+
+.sectionBody li {
+  padding-left: 0.35rem;
+}
+
+.sectionBody li::marker {
+  color: var(--privacy-accent);
+}
+
+.sectionBody a,
+.sectionBody address {
+  color: var(--privacy-text);
+}
+
+.sectionBody a {
+  text-decoration: underline;
+  text-decoration-color: rgba(240, 75, 47, 0.62);
+  text-underline-offset: 0.22em;
+  transition: color 180ms ease, text-decoration-color 180ms ease;
+}
+
+.sectionBody a:hover,
+.sectionBody a:focus-visible {
+  color: #fff;
+  text-decoration-color: var(--privacy-accent);
+}
+
+.sectionBody a:focus-visible {
+  outline: 2px solid var(--privacy-accent);
+  outline-offset: 4px;
+}
+
+.sectionBody address {
+  font-size: clamp(1.15rem, 2vw, 1.4rem);
+  font-style: normal;
+  font-weight: 600;
+}
+
+.contactSection {
+  margin-top: 1rem;
+  padding-bottom: 0;
+}
+
+@media (max-width: 60rem) {
+  .document {
+    width: auto;
+    margin-inline: clamp(1.25rem, 6vw, 4rem);
+  }
+}
+
+@media (max-width: 36rem) {
+  .intro {
+    padding-top: calc(var(--header-height) + 4rem);
+  }
+
+  .intro h1 {
+    font-size: clamp(2.75rem, 15vw, 4.4rem);
+  }
+
+  .policySection,
+  .contactSection {
+    grid-template-columns: 2.25rem minmax(0, 1fr);
+    gap: 0.8rem;
+  }
+
+  .sectionBody {
+    line-height: 1.72;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .sectionBody a {
+    transition: none;
+  }
+}

@@ -2,12 +2,14 @@
 
 import { Box, Title, Text, Button } from "@mantine/core";
 import Link from "next/link";
+import styles from "./HeroSection.module.css";
 
 interface HeroSectionProps {
   title: string;
   statement: string;
   href: string;
   align: "left" | "right";
+  readability?: "none" | "standard" | "strong";
   media:
     | { type: "video"; src: string; poster: string }
     | { type: "image"; src: string; alt: string };
@@ -18,22 +20,15 @@ export function HeroSection({
   statement,
   href,
   align,
+  readability = "standard",
   media,
 }: HeroSectionProps) {
-  const isLeft = align === "left";
-
   return (
     <Box
       component="section"
-      pos="relative"
-      style={{
-        minHeight: "100vh",
-        display: "flex",
-        alignItems: "center",
-        justifyContent: isLeft ? "flex-start" : "flex-end",
-        padding: "120px 48px 80px",
-        overflow: "hidden",
-      }}
+      className={styles.section}
+      data-align={align}
+      data-readability={readability}
     >
       {/* Background Media */}
       <Box
@@ -83,69 +78,40 @@ export function HeroSection({
         left={0}
         w="100%"
         h="100%"
+        className={styles.overlay}
+        data-align={align}
         style={{
           zIndex: 1,
           pointerEvents: "none",
-          background: isLeft
-            ? `linear-gradient(to left, transparent 40%, rgba(10, 10, 10, 0.85) 70%, #0a0a0a 100%),
-               linear-gradient(to bottom, transparent 80%, #0a0a0a 100%),
-               linear-gradient(to top, transparent 90%, #0a0a0a 100%)`
-            : `linear-gradient(to right, transparent 40%, rgba(10, 10, 10, 0.85) 70%, #0a0a0a 100%),
-               linear-gradient(to bottom, transparent 80%, #0a0a0a 100%),
-               linear-gradient(to top, transparent 90%, #0a0a0a 100%)`,
         }}
       />
 
       {/* Content */}
       <Box
-        pos="relative"
-        style={{
-          zIndex: 2,
-          maxWidth: 650,
-          textAlign: align,
-        }}
+        className={styles.content}
       >
         <Title
           order={1}
-          tt="uppercase"
-          fw={700}
-          lh={1.1}
-          mb="xl"
-          style={{
-            fontSize: "clamp(2.5rem, 6vw, 4.5rem)",
-            letterSpacing: "-0.02em",
-          }}
+          className={styles.title}
         >
           {title}
         </Title>
 
         <Text
-          size="lg"
-          c="rgba(255, 255, 255, 0.85)"
-          lh={1.8}
-          mb={40}
-          style={{
-            fontFamily: "Calibri, 'Gill Sans', sans-serif",
-            fontSize: "clamp(1rem, 2vw, 1.2rem)",
-          }}
+          className={styles.statement}
         >
           {statement}
         </Text>
 
         <Button
           component={Link}
+          className={styles.action}
           href={href}
           variant="filled"
           color="white"
           c="dark"
-          size="lg"
           radius={0}
-          tt="uppercase"
-          fw={600}
-          px={40}
           style={{
-            letterSpacing: "0.1em",
-            fontSize: "0.875rem",
             border: "2px solid white",
             transition: "all 0.3s cubic-bezier(0.4, 0, 0.2, 1)",
           }}

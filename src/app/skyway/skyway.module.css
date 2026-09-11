@@ -30,6 +30,10 @@
 }
 
 .hero {
+  --hero-frame-inset: max(
+    clamp(1.25rem, 5vw, 5rem),
+    calc((100vw - 92rem) / 2 + clamp(1.25rem, 5vw, 5rem))
+  );
   position: relative;
   display: grid;
   min-height: 100svh;
@@ -120,7 +124,7 @@
 .heroStatus {
   position: absolute;
   z-index: 2;
-  right: clamp(1.25rem, 5vw, 5rem);
+  right: var(--hero-frame-inset);
   bottom: 2.75rem;
   display: flex;
   gap: 0.85rem;
@@ -321,6 +325,46 @@
   border: 1px solid var(--sky-line);
 }
 
+.mappingLegend {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.65rem 1.1rem;
+  margin-top: 1rem;
+  color: var(--sky-faint);
+  font-size: 0.64rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.mappingLegend span {
+  display: inline-flex;
+  gap: 0.45rem;
+  align-items: center;
+}
+
+.mappingLegend i {
+  display: block;
+  width: 1.4rem;
+  height: 2px;
+  background: rgba(112, 184, 216, 0.75);
+}
+
+.mappingLegend .mappingLegendAlternate {
+  background: rgba(239, 184, 93, 0.65);
+}
+
+.mappingLegend .mappingLegendConnector {
+  background: rgba(170, 139, 216, 0.72);
+}
+
+.mappingLegendNote {
+  margin-top: 0.55rem;
+  color: var(--sky-faint);
+  font-size: 0.72rem;
+  line-height: 1.5;
+}
+
 .existingNetwork path {
   fill: none;
   stroke: rgba(244, 247, 248, 0.16);
@@ -343,6 +387,7 @@
   stroke: rgba(112, 184, 216, 0.75);
   stroke-width: 2.5;
   stroke-linecap: round;
+  stroke-linejoin: round;
   vector-effect: non-scaling-stroke;
 }
 
@@ -363,9 +408,9 @@
 .mappingPoints text,
 .mappingLayerLabels text {
   fill: var(--sky-faint);
-  font-size: 9px;
+  font-size: 13px;
   font-weight: 700;
-  letter-spacing: 1.2px;
+  letter-spacing: 1.35px;
 }
 
 .mappingStages {
@@ -555,9 +600,9 @@
 .journeyCapabilityLimit text,
 .journeyCallouts text {
   fill: var(--sky-faint);
-  font-size: 10px;
+  font-size: 14px;
   font-weight: 700;
-  letter-spacing: 1.5px;
+  letter-spacing: 1.4px;
 }
 
 .journeyNetwork path {
@@ -676,6 +721,13 @@
   display: inline-flex;
   gap: 0.4rem;
   align-items: center;
+}
+
+@media (min-width: 701px) {
+  .explorerMeta,
+  .journeyLegend {
+    font-size: 0.68rem;
+  }
 }
 
 .journeyLegend i {
@@ -920,12 +972,46 @@
 
 .artifactLabels text {
   fill: rgba(244, 247, 248, 0.33);
-  font-size: 9px;
+  font-size: 14px;
   font-weight: 700;
-  letter-spacing: 1px;
+  letter-spacing: 1.2px;
+}
+
+.artifactLegend {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.6rem 1rem;
+  margin-top: 0.75rem;
+  color: var(--sky-faint);
+  font-size: 0.68rem;
+  font-weight: 700;
+  letter-spacing: 0.07em;
+  text-transform: uppercase;
+}
+
+.artifactLegend span {
+  display: inline-flex;
+  gap: 0.4rem;
+  align-items: center;
+}
+
+.artifactLegend i {
+  display: block;
+  width: 1.25rem;
+  height: 2px;
+  background: #83c9e7;
+}
+
+.artifactLegend .artifactLegendAlternate {
+  background: #efb85d;
+}
+
+.artifactLegend .artifactLegendReserve {
+  background: #aa8bd8;
 }
 
 .referenceArtifact > p {
+  margin-top: 0.85rem;
   padding-top: 1rem;
   color: var(--sky-faint);
   font-size: 0.65rem;
@@ -1059,36 +1145,73 @@
 
 .systemLink {
   position: relative;
-  display: grid;
-  min-height: 82svh;
   overflow: hidden;
-  padding: clamp(7rem, 13vw, 12rem) clamp(1.25rem, 5vw, 5rem);
-  place-items: center;
-  text-align: center;
-  background:
-    radial-gradient(circle at 50% 50%, rgba(38, 94, 120, 0.15), transparent 36%),
-    #030405;
-  border-top: 1px solid var(--sky-line);
+  padding: 0 clamp(1.25rem, 5vw, 5rem) clamp(3rem, 6vw, 5rem);
+  background: var(--sky-surface);
 }
 
 .systemCopy {
   position: relative;
-  z-index: 1;
-  display: flex;
-  flex-direction: column;
+  display: grid;
+  width: min(100%, 92rem);
+  grid-template-columns: minmax(20rem, 1.15fr) minmax(18rem, 0.85fr);
+  gap: clamp(3rem, 8vw, 9rem);
+  align-items: end;
+  margin-inline: auto;
+  padding-top: 2.75rem;
+}
+
+.systemRoute {
+  position: absolute;
+  top: 0;
+  right: 0;
+  left: 0;
+  display: grid;
+  grid-template-columns: auto 1fr auto;
   align-items: center;
 }
 
-.systemCopy h2 {
-  max-width: 16ch;
+.systemRoute span {
+  width: 0.55rem;
+  height: 0.55rem;
+  background: var(--sky-accent);
+  border: 2px solid var(--sky-surface);
+  border-radius: 50%;
+  box-shadow: 0 0 0 1px var(--sky-accent);
 }
 
-.systemCopy > p:not(.kicker) {
+.systemRoute span:last-child {
+  background: var(--sky-ink);
+  box-shadow: 0 0 0 1px rgba(244, 247, 248, 0.48);
+}
+
+.systemRoute i {
+  height: 1px;
+  background: linear-gradient(90deg, var(--sky-accent), var(--sky-blue));
+}
+
+.systemCopy h2 {
+  max-width: 17ch;
+  margin-top: 0.65rem;
+  font-size: clamp(1.75rem, 3vw, 3rem);
+}
+
+.systemNext > p {
   max-width: 46rem;
-  margin-top: 1.75rem;
   color: var(--sky-muted);
-  font-size: clamp(1rem, 1.3vw, 1.15rem);
-  line-height: 1.75;
+  font-size: clamp(0.92rem, 1.15vw, 1.05rem);
+  line-height: 1.55;
+}
+
+.systemCopy .primaryLink {
+  margin-top: 1.2rem;
+}
+
+@media (max-width: 760px) {
+  .systemCopy {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
 }
 
 @media (max-width: 1100px) {
@@ -1167,6 +1290,20 @@
 }
 
 @media (max-width: 700px) {
+  .mappingPoints text,
+  .mappingLayerLabels text {
+    font-size: 16px;
+    letter-spacing: 1px;
+  }
+
+  .journeyPoints text,
+  .journeyRestriction text,
+  .journeyCapabilityLimit text,
+  .journeyCallouts text {
+    font-size: 18px;
+    letter-spacing: 1px;
+  }
+
   .hero {
     min-height: 52rem;
   }
@@ -1291,7 +1428,10 @@
     grid-template-columns: repeat(2, 1fr);
   }
 
-  .artifactLabels text { font-size: 7px; }
+  .artifactLabels text {
+    font-size: 16px;
+    letter-spacing: 1px;
+  }
 }
 
 @media (prefers-reduced-motion: reduce) {

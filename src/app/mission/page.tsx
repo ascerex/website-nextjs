@@ -18,7 +18,8 @@ const architectureElements = [
     subtitle: "Mission definition and operating envelope",
     description:
       "Defines the payload, geometry, safety, operating, energy, noise, and environmental boundaries against which every proposed system must be evaluated.",
-    positionClass: "architectureRequirements",
+    x: 180,
+    y: 440,
   },
   {
     id: "vehicle",
@@ -27,7 +28,8 @@ const architectureElements = [
     subtitle: "Modeling, screening and integration",
     description:
       "Couples propulsion, aerodynamics, mass, energy, thermal behavior, controls, and packaging so an architecture is judged as an installed aircraft system.",
-    positionClass: "architectureVehicle",
+    x: 180,
+    y: 285,
   },
   {
     id: "infrastructure",
@@ -36,7 +38,8 @@ const architectureElements = [
     subtitle: "Network structure and constraints",
     description:
       "Develops a structured network concept whose routes, capacity, access, and restrictions remain bounded by real vehicle capability and existing airspace.",
-    positionClass: "architectureInfrastructure",
+    x: 620,
+    y: 440,
   },
   {
     id: "navigation",
@@ -45,7 +48,8 @@ const architectureElements = [
     subtitle: "Constraint-aware routing",
     description:
       "Turns the infrastructure model into route guidance that can account for restrictions, operating limits, alternates, and changing network conditions.",
-    positionClass: "architectureNavigation",
+    x: 620,
+    y: 285,
   },
   {
     id: "autonomy",
@@ -54,7 +58,8 @@ const architectureElements = [
     subtitle: "Control, navigation and deconfliction",
     description:
       "Connects future vehicle control with Skyway navigation and cooperative traffic behavior. Its assurance case depends on the aircraft, network, and operating rules beneath it.",
-    positionClass: "architectureAutonomy",
+    x: 400,
+    y: 155,
   },
   {
     id: "policy",
@@ -63,7 +68,8 @@ const architectureElements = [
     subtitle: "Safety, certification and approval context",
     description:
       "Introduces regulatory, safety, airspace, infrastructure, privacy, and operating-approval considerations at the requirements stage rather than after a system is designed.",
-    positionClass: "architecturePolicy",
+    x: 400,
+    y: 43,
   },
 ];
 
@@ -152,42 +158,67 @@ export default function MissionPage() {
                 >
                   <defs>
                     <marker
-                      id="mission-flow-arrow"
-                      markerWidth="8"
-                      markerHeight="8"
-                      refX="7"
-                      refY="4"
-                      orient="auto"
+                      id="mission-flow-dot"
+                      markerWidth="10"
+                      markerHeight="10"
+                      refX="5"
+                      refY="5"
+                      markerUnits="userSpaceOnUse"
                     >
-                      <path d="M0,0 L8,4 L0,8 Z" />
+                      <circle className={styles.flowDot} cx="5" cy="5" r="4" />
+                    </marker>
+                    <marker
+                      id="mission-flow-dot-accent"
+                      markerWidth="10"
+                      markerHeight="10"
+                      refX="5"
+                      refY="5"
+                      markerUnits="userSpaceOnUse"
+                    >
+                      <circle className={styles.flowDotAccent} cx="5" cy="5" r="4" />
                     </marker>
                   </defs>
-                  <path className={styles.feedbackLine} d="M350 52 C105 52 55 150 105 400" />
-                  <path className={styles.feedbackLine} d="M450 52 C695 52 745 150 695 400" />
-                  <path d="M180 418 L180 330" markerEnd="url(#mission-flow-arrow)" />
-                  <path d="M238 275 L350 184" markerEnd="url(#mission-flow-arrow)" />
-                  <path d="M620 418 L620 330" markerEnd="url(#mission-flow-arrow)" />
-                  <path d="M562 275 L450 184" markerEnd="url(#mission-flow-arrow)" />
-                  <path className={styles.crossLine} d="M245 438 C375 410 455 392 555 330" markerEnd="url(#mission-flow-arrow)" />
-                  <path d="M400 127 L400 85" markerEnd="url(#mission-flow-arrow)" />
-                </svg>
-
-                <ol className={styles.architectureNodes}>
                   {architectureElements.map((element) => (
-                    <li
+                    <g
                       key={element.id}
-                      className={`${styles.architectureNode} ${styles[element.positionClass]}`}
+                      className={styles.architectureNode}
+                      transform={`translate(${element.x} ${element.y})`}
                     >
-                      <span>{element.number}</span>
-                      <strong>{element.title}</strong>
-                      <small>{element.subtitle}</small>
-                    </li>
+                      <rect x="-120" y="-42" width="240" height="84" />
+                      <text className={styles.architectureNumber} x="-105" y="-24">
+                        {element.number}
+                      </text>
+                      <text className={styles.architectureNodeTitle} x="0" y="-3">
+                        {element.title}
+                      </text>
+                      <text className={styles.architectureNodeSubtitle} x="0" y="21">
+                        {element.subtitle}
+                      </text>
+                    </g>
                   ))}
-                </ol>
+
+                  <g className={styles.architectureFlow}>
+                    <path d="M180 398 L180 327" markerEnd="url(#mission-flow-dot)" />
+                    <path d="M251 243 L329 197" markerEnd="url(#mission-flow-dot)" />
+                    <path d="M620 398 L620 327" markerEnd="url(#mission-flow-dot)" />
+                    <path d="M549 243 L471 197" markerEnd="url(#mission-flow-dot)" />
+                    <path
+                      className={styles.crossLine}
+                      d="M300 440 L500 440"
+                      markerEnd="url(#mission-flow-dot-accent)"
+                    />
+                    <path
+                      className={styles.crossLine}
+                      d="M300 285 L500 285"
+                      markerEnd="url(#mission-flow-dot-accent)"
+                    />
+                    <path d="M400 113 L400 85" markerEnd="url(#mission-flow-dot)" />
+                  </g>
+                </svg>
               </div>
               <figcaption>
-                Development moves upward through the system and loops back when
-                evidence changes a requirement, model, or operating assumption.
+                Development moves upward through the system. New evidence can
+                return any requirement, model, or operating assumption to review.
               </figcaption>
             </figure>
 
@@ -234,22 +265,21 @@ export default function MissionPage() {
         </section>
 
         <section className={styles.closing} aria-labelledby="closing-title">
-          <div className={styles.closingMark} aria-hidden="true">
-            Ω
-          </div>
           <div className={styles.closingContent}>
-            <p className={styles.eyebrow}>Next: The Orbiter</p>
-            <h2 id="closing-title">The mission begins with the vehicle.</h2>
-            <p>
-              Orbiter is the physical foundation of the Ascerex system: a
-              compact aerial vehicle being developed around the requirements
-              that personal flight places on payload, packaging, propulsion,
-              energy, control, and safe operation.
-            </p>
-            <Link href="/vehicle" className={styles.vehicleLink}>
-              Explore the vehicle
-              <span aria-hidden="true">↗</span>
-            </Link>
+            <div className={styles.closingHeading}>
+              <p className={styles.eyebrow}>Next: The Orbiter</p>
+              <h2 id="closing-title">The mission begins with the vehicle.</h2>
+            </div>
+            <div className={styles.closingNext}>
+              <p>
+                The Orbiter is the vehicle at the center of Ascerex—built around
+                the demands of personal flight.
+              </p>
+              <Link href="/vehicle" className={styles.vehicleLink}>
+                Explore the vehicle
+                <span aria-hidden="true">↗</span>
+              </Link>
+            </div>
           </div>
         </section>
       </main>

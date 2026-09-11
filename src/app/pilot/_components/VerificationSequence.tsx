@@ -22,12 +22,9 @@ export function VerificationSequence() {
     if (!root) return;
 
     gsap.registerPlugin(ScrollTrigger);
-    const media = gsap.matchMedia();
-
-    media.add("(min-width: 769px)", () => {
-      const context = gsap.context(() => {
+    const context = gsap.context(() => {
         root.dataset.motion = "true";
-        gsap.set("[data-verification-line]", { scaleX: 0 });
+        gsap.set("[data-verification-line]", { "--verification-progress": 0 });
         gsap.set("[data-verification-stage]", { opacity: 0.16 });
 
         const timeline = gsap.timeline({
@@ -41,19 +38,16 @@ export function VerificationSequence() {
           },
         });
 
-        timeline.to("[data-verification-line]", { scaleX: 1, duration: 1 }, 0);
+        timeline.to("[data-verification-line]", { "--verification-progress": 1, duration: 1 }, 0);
         stages.forEach((_, index) => {
           timeline.to(`[data-verification-stage='${index}']`, { opacity: 1, duration: 0.1 }, 0.08 + index * 0.145);
         });
-      }, root);
+    }, root);
 
-      return () => {
-        delete root.dataset.motion;
-        context.revert();
-      };
-    });
-
-    return () => media.revert();
+    return () => {
+      delete root.dataset.motion;
+      context.revert();
+    };
   }, []);
 
   return (

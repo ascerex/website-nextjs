@@ -9,6 +9,7 @@ const heroSections = [
       "Ascerex was founded to fulfill Henry Ford's unfinished legacy by developing the vehicles and infrastructure that will make personal aviation accessible, affordable, and practical for families and individuals everywhere.",
     href: "/mission",
     align: "left" as const,
+    readability: "none" as const,
     media: {
       type: "video" as const,
       src: "/images/skyline.mp4",
@@ -35,6 +36,7 @@ const heroSections = [
       "By mapping a seamless Skyway network of air traffic routes over existing paths, Ascerex plans to enable dense, scalable aerial transportation for the demands of tomorrow's airspace.",
     href: "/skyway",
     align: "left" as const,
+    readability: "strong" as const,
     media: {
       type: "image" as const,
       src: "/images/skyway.JPG",
@@ -68,6 +70,7 @@ export default function HomePage() {
             statement={section.statement}
             href={section.href}
             align={section.align}
+            readability={section.readability}
             media={section.media}
           />
         ))}

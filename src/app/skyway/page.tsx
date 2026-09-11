@@ -1,6 +1,5 @@
 import type { Metadata } from "next";
 import Image from "next/image";
-import Link from "next/link";
 import { Footer, Header, SkywayNetworkExplorer } from "@/components";
 import styles from "./skyway.module.css";
 
@@ -90,7 +89,7 @@ export default function SkywayPage() {
           <div className={styles.heroShade} aria-hidden="true" />
 
           <div className={styles.heroContent}>
-            <p className={styles.kicker}>Aerial operating infrastructure</p>
+            <p className={styles.kicker}>COORDINATED AIRSPACE NETWORK</p>
             <h1 id="skyway-title">The Skyway</h1>
             <p className={styles.heroThesis}>
               Flight needs structure between departure and destination.
@@ -108,9 +107,8 @@ export default function SkywayPage() {
           <div className={styles.heroStatus}>
             <span className={styles.statusPulse} aria-hidden="true" />
             <div>
-              <span>Current program</span>
-              <strong>Phase 1 // Synthetic infrastructure research</strong>
-              <small>No real routes or operational airspace</small>
+              <span>CURRENT DEVELOPMENT FOCUS</span>
+              <strong>Synthetic infrastructure research & Route Mapping</strong>
             </div>
           </div>
         </section>
@@ -169,39 +167,50 @@ export default function SkywayPage() {
             </header>
 
             <div className={styles.mappingWorkbench}>
-              <svg
-                className={styles.mappingDiagram}
-                viewBox="0 0 760 520"
-                preserveAspectRatio="xMidYMid meet"
-                role="img"
-                aria-labelledby="mapping-svg-title mapping-svg-desc"
-              >
-                <title id="mapping-svg-title">Layers used to construct a synthetic Skyway study</title>
-                <desc id="mapping-svg-desc">Existing aviation and geographic constraints shape candidate corridors connecting origins and destinations across operating layers.</desc>
-                <g className={styles.existingNetwork}>
-                  <path d="M70 390C190 330 260 350 345 280S520 220 690 250" />
-                  <path d="M110 150C230 205 310 185 420 125S585 85 690 115" />
-                  <path d="M180 460L250 70M540 470L610 60" />
-                </g>
-                <g className={styles.mappingExclusions}>
-                  <path d="M295 180L390 155L430 245L335 270Z" />
-                  <circle cx="575" cy="330" r="48" />
-                </g>
-                <g className={styles.candidateNetwork}>
-                  <path d="M95 420C205 405 255 305 330 300S470 350 535 270S625 170 680 92" />
-                  <path d="M95 420C190 245 330 100 505 105S625 115 680 92" />
-                  <path d="M330 300C415 235 455 175 505 105" />
-                </g>
-                <g className={styles.mappingPoints}>
-                  <g transform="translate(95 420)"><circle r="11" /><text x="0" y="30" textAnchor="middle">ORIGIN</text></g>
-                  <g transform="translate(680 92)"><circle r="11" /><text x="0" y="30" textAnchor="middle">DESTINATION</text></g>
-                  <circle cx="330" cy="300" r="5" /><circle cx="535" cy="270" r="5" /><circle cx="505" cy="105" r="5" />
-                </g>
-                <g className={styles.mappingLayerLabels}>
-                  <text x="40" y="55">DISTANCE / ALTITUDE / SPEED POLICY HYPOTHESES</text>
-                  <text x="40" y="495">EXISTING ROUTES + GEOGRAPHY + EXCLUSIONS</text>
-                </g>
-              </svg>
+              <div className={styles.mappingVisual}>
+                <svg
+                  className={styles.mappingDiagram}
+                  viewBox="0 0 760 520"
+                  preserveAspectRatio="xMidYMid meet"
+                  role="img"
+                  aria-labelledby="mapping-svg-title mapping-svg-desc"
+                >
+                  <title id="mapping-svg-title">Layers used to construct a synthetic Skyway study</title>
+                  <desc id="mapping-svg-desc">Existing aviation and geographic constraints shape candidate corridors connecting origins and destinations across operating layers.</desc>
+                  <g className={styles.existingNetwork}>
+                    <path d="M70 390C190 330 260 350 345 280S520 220 690 250" />
+                    <path d="M110 150C230 205 310 185 420 125S585 85 690 115" />
+                    <path d="M180 460L250 70M540 470L610 60" />
+                  </g>
+                  <g className={styles.mappingExclusions}>
+                    <path d="M295 180L390 155L430 245L335 270Z" />
+                    <circle cx="575" cy="330" r="48" />
+                  </g>
+                  <g className={styles.candidateNetwork}>
+                    <path d="M95 420C205 405 255 305 330 300S470 350 535 270S625 170 680 92" />
+                    <path d="M95 420C190 245 330 100 505 105S625 115 680 92" />
+                    <path d="M436 313C465 245 510 175 505 105" />
+                  </g>
+                  <g className={styles.mappingPoints}>
+                    <g transform="translate(95 420)"><circle r="11" /><text x="0" y="30" textAnchor="middle">ORIGIN</text></g>
+                    <g transform="translate(680 92)"><circle r="11" /><text x="0" y="30" textAnchor="middle">DESTINATION</text></g>
+                    <circle cx="436" cy="313" r="5" /><circle cx="505" cy="105" r="5" />
+                  </g>
+                  <g className={styles.mappingLayerLabels}>
+                    <text x="40" y="55">DISTANCE / ALTITUDE / SPEED POLICY HYPOTHESES</text>
+                    <text x="40" y="495">EXISTING ROUTES + GEOGRAPHY + EXCLUSIONS</text>
+                  </g>
+                </svg>
+
+                <div className={styles.mappingLegend} aria-label="Candidate network line types">
+                  <span><i className={styles.mappingLegendPrimary} />Candidate corridor A</span>
+                  <span><i className={styles.mappingLegendAlternate} />Candidate corridor B</span>
+                  <span><i className={styles.mappingLegendConnector} />Cross-network connector</span>
+                </div>
+                <p className={styles.mappingLegendNote}>
+                  These are network links, not simultaneous directions for one vehicle.
+                </p>
+              </div>
 
               <ol className={styles.mappingStages}>
                 {mappingStages.map((stage) => (
@@ -339,12 +348,21 @@ export default function SkywayPage() {
                   })}
                 </g>
                 <g className={styles.artifactLabels}>
-                  <text x="42" y="45">LONG DISTANCE</text>
-                  <text x="42" y="126">INTERMEDIATE</text>
-                  <text x="42" y="207">LOCAL</text>
+                  <text x="18" y="45">LONG DISTANCE</text>
+                  <text x="18" y="126">INTERMEDIATE</text>
+                  <text x="18" y="207">LOCAL</text>
                 </g>
               </svg>
-              <p>Synthetic geometry and arbitrary fixture layers—not proposed routes or operating altitudes.</p>
+              <div className={styles.artifactLegend} aria-label="Synthetic network path roles">
+                <span><i className={styles.artifactLegendPrimary} />Primary path</span>
+                <span><i className={styles.artifactLegendAlternate} />Alternate path</span>
+                <span><i className={styles.artifactLegendReserve} />Reserve connector</span>
+              </div>
+              <p>
+                Colored paths show alternative directed connections through the
+                same synthetic network. The geometry and layers are arbitrary
+                fixtures—not proposed routes or operating altitudes.
+              </p>
             </div>
           </div>
         </section>
@@ -395,17 +413,24 @@ export default function SkywayPage() {
 
         <section className={styles.systemLink} aria-labelledby="system-link-title">
           <div className={styles.systemCopy}>
-            <p className={styles.kicker}>Next: Flight autonomy</p>
-            <h2 id="system-link-title">The network defines where. The pilot must still know how.</h2>
-            <p>
-              Skyway navigation can provide an eligible route and its operating
-              constraints. Future flight autonomy must translate that guidance
-              into safe vehicle behavior for a specific aircraft and evidenced
-              operating envelope.
-            </p>
-            <Link href="/pilot" className={styles.primaryLink}>
-              Explore flight autonomy <span aria-hidden="true">↗</span>
-            </Link>
+            <div className={styles.systemRoute} aria-hidden="true">
+              <span />
+              <i />
+              <span />
+            </div>
+            <div className={styles.systemHeading}>
+              <p className={styles.kicker}>Next: Flight autonomy</p>
+              <h2 id="system-link-title">The Skyway defines the routes. Autonomy handles the flight.</h2>
+            </div>
+            <div className={styles.systemNext}>
+              <p>
+                Within the Skyway&apos;s operating boundaries, the Pilot continuously
+                controls and supervises the aircraft from departure through landing.
+              </p>
+              <a href="/pilot" className={styles.primaryLink}>
+                Explore flight autonomy <span aria-hidden="true">↗</span>
+              </a>
+            </div>
           </div>
         </section>
       </main>
