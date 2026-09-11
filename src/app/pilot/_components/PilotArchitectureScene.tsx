@@ -29,10 +29,7 @@ export function PilotArchitectureScene() {
     if (!root || !stage) return;
 
     gsap.registerPlugin(ScrollTrigger);
-    const media = gsap.matchMedia();
-
-    media.add("(min-width: 769px)", () => {
-      const context = gsap.context(() => {
+    const context = gsap.context(() => {
         root.dataset.motion = "true";
         const loopGuide = root.querySelector<SVGPathElement>("[data-control-loop-guide]");
         const loopPath = root.querySelector<SVGPathElement>("[data-control-loop-path]");
@@ -114,15 +111,12 @@ export function PilotArchitectureScene() {
         timeline
           .to("[data-loop-focus='4']", { opacity: 0, y: -12, duration: 0.04 }, 0.9)
           .to("[data-loop-node]", { opacity: 0.68, scale: 1, duration: 0.07 }, 0.9);
-      }, root);
+    }, root);
 
-      return () => {
-        delete root.dataset.motion;
-        context.revert();
-      };
-    });
-
-    return () => media.revert();
+    return () => {
+      delete root.dataset.motion;
+      context.revert();
+    };
   }, []);
 
   return (

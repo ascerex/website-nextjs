@@ -132,14 +132,13 @@
 .flightTrajectoryGuide,
 .flightTrajectoryActive { fill: none; vector-effect: non-scaling-stroke; }
 .flightTrajectoryGuide { stroke: rgba(245, 245, 242, 0.2); stroke-width: 1.5; stroke-dasharray: 4 8; }
-.flightTrajectoryActive { stroke: var(--pilot-accent); stroke-width: 2.5; filter: drop-shadow(0 0 6px rgba(240, 75, 47, 0.35)); }
+.flightTrajectoryActive { opacity: 0; stroke: var(--pilot-accent); stroke-width: 2.5; filter: drop-shadow(0 0 6px rgba(240, 75, 47, 0.35)); }
 .flightEndpoint circle { fill: var(--pilot-accent); }
 .flightEndpoint path { fill: rgba(245, 245, 242, 0.84); stroke: rgba(245, 245, 242, 0.92); stroke-width: 1.5; vector-effect: non-scaling-stroke; }
-.flightOrbiter { position: absolute; top: 0; left: 0; z-index: 6; width: clamp(4.5rem, 8vw, 7.5rem); color: var(--pilot-ink); }
-.flightOrbiterGlyph { display: block; width: 100%; }
-.flightOrbiter svg,
+.flightOrbiter { opacity: 0; filter: drop-shadow(0 0 7px rgba(5, 5, 5, 0.75)); }
+.flightOrbiter path:first-child { fill: rgba(245, 245, 242, 0.94); stroke: #050505; stroke-width: 2; vector-effect: non-scaling-stroke; }
+.flightOrbiter path + path { fill: none; stroke: var(--pilot-accent); stroke-width: 2; vector-effect: non-scaling-stroke; }
 .handoffOrbiter svg { display: block; width: 100%; fill: rgba(245, 245, 242, 0.94); stroke: #050505; stroke-width: 2; }
-.flightOrbiter svg path + path,
 .handoffOrbiter svg path + path { fill: none; stroke: var(--pilot-accent); stroke-width: 2; }
 .handoffOrbiter { position: absolute; top: 50%; left: 50%; z-index: 7; width: clamp(6rem, 11vw, 10rem); transform: translate(-50%, -50%); }
 
@@ -184,7 +183,7 @@
 .authorityRail span { color: var(--pilot-faint); font-size: 0.62rem; }
 
 .controlLoop { position: absolute; inset: calc(var(--header-height) + 7.5rem) clamp(1.25rem, 4vw, 4.5rem) 2.2rem; }
-.controlLoop > svg { position: absolute; top: 50%; left: 54%; width: min(61rem, 72vw); height: min(38rem, 68vh); overflow: visible; transform: translate(-50%, -50%); }
+.controlLoop > svg { position: absolute; top: 50%; left: 54%; width: min(61rem, 72vw, 125vh); height: auto; aspect-ratio: 1200 / 650; overflow: visible; transform: translate(-50%, -50%); }
 .controlLoopGuide,
 .controlLoopActive { fill: none; vector-effect: non-scaling-stroke; }
 .controlLoopGuide { stroke: rgba(245, 245, 242, 0.12); stroke-width: 1; }
@@ -198,9 +197,9 @@
 .controllerCore { fill: rgba(240, 75, 47, 0.08); stroke: var(--pilot-accent); stroke-width: 1.5px; }
 .loopCoreLabel { position: absolute; top: calc(50% + 5.5rem); left: 54%; color: var(--pilot-accent); font-size: 0.62rem; font-weight: 760; letter-spacing: 0.16em; text-transform: uppercase; transform: translateX(-50%); }
 
-.loopNodes { position: absolute; top: 50%; left: 54%; z-index: 7; width: min(61rem, 72vw); height: min(38rem, 68vh); list-style: none; transform: translate(-50%, -50%); }
+.loopNodes { position: absolute; top: 50%; left: 54%; z-index: 7; width: min(61rem, 72vw, 125vh); height: auto; aspect-ratio: 1200 / 650; list-style: none; transform: translate(-50%, -50%); }
 .loopNodes li { position: absolute; display: grid; gap: 0.22rem; min-width: 8rem; padding-top: 0.55rem; border-top: 1px solid var(--pilot-line); background: rgba(5, 5, 5, 0.86); }
-.loopNodes li:nth-child(1) { top: 1%; left: 46%; }
+.loopNodes li:nth-child(1) { top: -5%; left: 46%; }
 .loopNodes li:nth-child(2) { top: 31%; right: 0; text-align: right; }
 .loopNodes li:nth-child(3) { right: 12%; bottom: 1%; text-align: right; }
 .loopNodes li:nth-child(4) { bottom: 1%; left: 12%; }
@@ -230,6 +229,7 @@
 .deviationMarker path { fill: none; vector-effect: non-scaling-stroke; }
 .stateAxes path { stroke: rgba(245, 245, 242, 0.12); stroke-width: 1; }
 .expectedTrace { stroke: rgba(245, 245, 242, 0.42); stroke-width: 1.5; stroke-dasharray: 6 8; }
+.observedGuide { fill: none; stroke: none; }
 .observedTrace { stroke: var(--pilot-accent); stroke-width: 2.6; filter: drop-shadow(0 0 5px rgba(240, 75, 47, 0.24)); }
 .commandBoundary { fill: rgba(245, 245, 242, 0.035); stroke: rgba(245, 245, 242, 0.2); stroke-width: 1; stroke-dasharray: 5 7; vector-effect: non-scaling-stroke; }
 .deviationMarker circle { fill: var(--pilot-accent); }
@@ -239,6 +239,7 @@
 .axisLabels text { fill: var(--pilot-faint); font-family: ui-monospace, SFMono-Regular, Menlo, monospace; font-size: 11px; font-weight: 700; letter-spacing: 1.1px; }
 .axisLabels text { fill: rgba(245, 245, 242, 0.68); font-size: 10px; letter-spacing: 1.5px; }
 .deviationMarker text { fill: var(--pilot-accent); }
+.traceLabels .observedTraceLabel { fill: var(--pilot-accent); }
 .responseStages { position: absolute; top: 18%; left: 0; z-index: 8; list-style: none; }
 .responseStages li { position: absolute; top: 0; left: 0; display: grid; min-width: 42rem; gap: 0.3rem; }
 .responseStages span { color: var(--pilot-accent); font-family: ui-monospace, SFMono-Regular, Menlo, monospace; font-size: 0.7rem; }
@@ -248,6 +249,7 @@
 .safetyPayoff { position: absolute; bottom: 1%; left: 0; z-index: 9; max-width: 66rem; transform: translateY(16px); }
 .safetyPayoff h3 { font-size: clamp(2.3rem, 4.8vw, 5rem); font-weight: 520; letter-spacing: -0.055em; line-height: 0.94; }
 .safetyPayoff p { max-width: 43rem; margin-top: 0.9rem; color: var(--pilot-muted); font-size: 0.86rem; line-height: 1.6; }
+.noWrap { white-space: nowrap; }
 
 /* Scene 05 */
 
@@ -257,7 +259,7 @@
 .verificationHeader h2 { margin-top: 0.8rem; font-size: clamp(3.2rem, 8vw, 8rem); font-weight: 520; letter-spacing: -0.07em; line-height: 0.88; }
 .verificationHeader > p:last-child { max-width: 42rem; margin-top: 1.25rem; color: var(--pilot-muted); font-size: clamp(0.95rem, 1.35vw, 1.12rem); line-height: 1.6; }
 .verificationRail { position: relative; margin-top: clamp(3rem, 7vh, 5.5rem); }
-.verificationRail > i { position: absolute; top: 0; right: 0; left: 0; height: 1px; background: var(--pilot-accent); transform-origin: left; }
+.verificationRail > i { --verification-progress: 0; position: absolute; top: 0; right: 0; left: 0; height: 1px; background: var(--pilot-accent); transform: scaleX(var(--verification-progress)); transform-origin: left; }
 .verificationRail ol { display: grid; grid-template-columns: repeat(6, minmax(0, 1fr)); list-style: none; }
 .verificationRail li { position: relative; min-width: 0; padding: 1.25rem clamp(0.65rem, 1.5vw, 1.4rem) 0 0; }
 .verificationRail li::before { position: absolute; top: -0.25rem; left: 0; width: 0.5rem; height: 0.5rem; content: ""; border-radius: 50%; background: var(--pilot-accent); }
@@ -283,35 +285,32 @@
 .resolutionActions a:focus-visible { border-color: var(--pilot-accent); background: var(--pilot-accent); color: #050505; outline: none; }
 .resolutionActions a:focus-visible { box-shadow: 0 0 0 3px #050505, 0 0 0 5px var(--pilot-accent); }
 
-@media (min-width: 769px) {
-  .safetyScene [data-state-comparison],
-  .responseStages li { opacity: 0; }
+.safetyScene [data-state-comparison],
+.responseStages li { opacity: 0; }
 
-  .responseStages li:first-child { opacity: 1; }
+.responseStages li:first-child { opacity: 1; }
 
-  .verificationRail [data-verification-line],
-  .authorityRail [data-authority-line] { transform: scaleX(0); }
+.authorityRail [data-authority-line] { transform: scaleX(0); }
 
-  .verificationRail [data-verification-stage] { opacity: 0.16; }
+.verificationRail [data-verification-stage] { opacity: 0.16; }
 
-  .authorityRail [data-authority],
-  .controlLoop [data-loop-focus],
-  .controlLoop [data-loop-pulse] { opacity: 0; }
+.authorityRail [data-authority],
+.controlLoop [data-loop-focus],
+.controlLoop [data-loop-pulse] { opacity: 0; }
 
-  .controlLoop [data-control-loop-path],
-  .flightScene [data-flight-path] { opacity: 0; }
+.controlLoop [data-control-loop-path],
+.flightScene [data-flight-path] { opacity: 0; }
 
-  .controlLoop [data-loop-node] { opacity: 0.14; }
+.controlLoop [data-loop-node] { opacity: 0.14; }
 
-  .phaseNarrative li { opacity: 0; transform: translateY(22px); }
-  .phaseNarrative li:first-child { opacity: 1; transform: none; }
-  .handoffOrbiter { opacity: 0; }
-}
+.phaseNarrative li { opacity: 0; transform: translateY(22px); }
+.phaseNarrative li:first-child { opacity: 1; transform: none; }
+.handoffOrbiter { opacity: 0; }
 
 @media (max-width: 768px) {
-  .pinnedStage,
   .heroFrame { height: auto; min-height: auto; overflow: hidden; }
-  .sceneBar { position: relative; top: auto; right: auto; left: auto; margin: 0 1.25rem; padding-top: calc(var(--header-height) + 1.25rem); }
+  .pinnedStage { min-height: 38rem; }
+  .sceneBar { right: 1.25rem; left: 1.25rem; }
   .sceneBar small { display: none; }
 
   .heroScene { height: auto; }
@@ -320,62 +319,84 @@
   .heroCopy h1 { font-size: clamp(4.8rem, 24vw, 8rem); }
   .heroThesis { font-size: clamp(2rem, 9vw, 3.4rem); }
 
-  .flightScene .pinnedStage { min-height: auto; padding-bottom: 5rem; }
-  .flightWorld { height: 28rem; width: 100%; }
-  .flightTrajectory { top: 8rem; height: 23rem; }
-  .flightOrbiter { display: none; }
-  .handoffOrbiter { top: 22rem; width: 5rem; }
-  .phaseNarrative { position: relative; inset: auto; display: grid; margin: 25rem 1.25rem 0; border-top: 1px solid var(--pilot-line); }
-  .phaseNarrative li { position: relative; top: auto; left: auto; max-width: none; grid-template-columns: 2.2rem minmax(6.5rem, 0.7fr) 1.3fr; align-items: baseline; gap: 0.7rem; padding: 1.1rem 0; border-bottom: 1px solid var(--pilot-line); }
-  .phaseNarrative strong { font-size: 1rem; letter-spacing: 0.02em; line-height: 1.2; }
-  .phaseNarrative p { font-size: 0.8rem; }
+  .flightScene .pinnedStage { padding-bottom: 0; }
+  .flightWorld { width: 114%; height: auto; }
+  .flightTrajectory { top: 12%; height: 80%; }
+  .handoffOrbiter { top: 52%; width: 5rem; }
+  .phaseNarrative { position: absolute; inset: 0; display: block; margin: 0; border-top: 0; }
+  .phaseNarrative li { position: absolute; top: 23%; left: 1.25rem; display: grid; max-width: calc(100% - 2.5rem); grid-template-columns: none; gap: 0.45rem; padding: 0; border-bottom: 0; }
+  .phaseNarrative strong { font-size: clamp(2.5rem, 14vw, 4.25rem); letter-spacing: -0.06em; line-height: 0.9; }
+  .phaseNarrative p { max-width: 19rem; font-size: 0.88rem; line-height: 1.55; }
 
   .purposeFrame { display: block; padding: 7rem 1.25rem; }
   .purposeFrame h2 { font-size: clamp(2.5rem, 11vw, 4rem); }
   .purposeCopy { margin-top: 2.5rem; transform: none; }
   .responsibilityList > div { grid-template-columns: 2rem minmax(6.5rem, 0.6fr) 1fr; gap: 0.65rem; padding: 1.1rem 0; }
   .responsibilityList dt { font-size: 0.88rem; }
-  .responsibilityList dd { font-size: 0.74rem; }
+  .responsibilityList dd { font-size: 0.84rem; }
 
-  .architectureScene .pinnedStage { min-height: auto; padding-bottom: 4rem; }
-  .architectureTitle { position: relative; top: auto; left: auto; margin: 4rem 1.25rem 2.5rem; }
+  .architectureScene .pinnedStage { padding-bottom: 0; }
+  .architectureTitle { position: absolute; top: 20%; left: 1.25rem; max-width: calc(100% - 2.5rem); margin: 0; }
   .architectureTitle h2 { font-size: clamp(2.4rem, 11vw, 4rem); }
-  .authorityRail { position: relative; top: auto; right: auto; left: auto; grid-template-columns: 1fr; margin: 0 1.25rem 3rem; }
+  .authorityRail { position: absolute; top: calc(var(--header-height) + 4.5rem); right: 1.25rem; left: 1.25rem; grid-template-columns: repeat(3, minmax(0, 1fr)); margin: 0; }
   .authorityRail > div,
-  .authorityRail > div + div { padding: 0.85rem 0; border-bottom: 1px solid var(--pilot-line); border-left: 0; }
-  .authorityRail > i { display: none; }
-  .controlLoop { position: relative; inset: auto; margin: 0 1.25rem; }
+  .authorityRail > div + div { min-width: 0; padding: 0 0.45rem 0.65rem 0; border-bottom: 0; border-left: 0; }
+  .authorityRail > div + div { padding-left: 0.45rem; border-left: 1px solid var(--pilot-line); }
+  .authorityRail strong { font-size: 0.62rem; }
+  .authorityRail span { font-size: 0.62rem; line-height: 1.4; }
+  .authorityRail > i { display: block; }
+  .controlLoop { position: absolute; inset: calc(var(--header-height) + 7rem) 0.75rem 1rem; margin: 0; }
   .controlLoop > svg,
-  .loopPulse,
-  .loopNodes { display: none; }
-  .loopController { position: relative; top: auto; left: auto; width: 5.5rem; margin: 0 auto 0.5rem; transform: none; }
-  .loopCoreLabel { position: relative; top: auto; left: auto; display: block; padding-bottom: 1.5rem; text-align: center; transform: none; }
-  .loopFocus { position: relative; top: auto; left: auto; width: 100%; border-top: 1px solid var(--pilot-line); }
-  .loopFocus li { position: relative; inset: auto; grid-template-columns: minmax(5.5rem, 0.45fr) minmax(6.5rem, 0.55fr) 1fr; align-items: baseline; gap: 0.75rem; padding: 1rem 0; border-bottom: 1px solid var(--pilot-line); }
-  .loopFocus strong { font-size: 0.94rem; letter-spacing: 0.02em; line-height: 1.2; }
-  .loopFocus p { font-size: 0.74rem; }
+  .loopNodes { display: block; top: 56%; left: 50%; width: min(94vw, 125vh); height: auto; }
+  .loopPulse { display: block; }
+  .loopController { position: absolute; top: 53.5%; left: 50%; width: 4.6rem; margin: 0; transform: translate(-50%, -50%); }
+  .loopCoreLabel { position: absolute; top: calc(53.5% + 2.65rem); left: 50%; display: block; padding: 0; font-size: 0.62rem; text-align: center; transform: translateX(-50%); }
+  .loopNodes li { min-width: 4.5rem; padding: 0.35rem 0.2rem 0; background: #050505; }
+  .loopNodes li:nth-child(1) { top: -11%; left: 42%; }
+  .loopNodes span { font-size: 0.52rem; }
+  .loopNodes strong { font-size: 0.64rem; }
+  .loopFocus { position: absolute; top: 1.65rem; left: 0.5rem; width: calc(100% - 1rem); border-top: 0; }
+  .loopFocus li { position: absolute; inset: 0 auto auto 0; display: grid; grid-template-columns: none; gap: 0.35rem; padding: 0; border-bottom: 0; }
+  .loopFocus strong { font-size: clamp(2.2rem, 12vw, 3.8rem); letter-spacing: -0.055em; line-height: 0.9; }
+  .loopFocus p { max-width: 19rem; font-size: 0.84rem; line-height: 1.5; }
 
-  .safetyScene .pinnedStage { min-height: auto; padding-bottom: 5rem; }
-  .safetyStage { position: relative; inset: auto; margin: 0 1.25rem; padding-top: 3rem; }
-  .flightStateLabel { position: relative; top: auto; right: auto; margin-bottom: 1.5rem; }
-  .stateComparison { position: relative; inset: auto; height: 18rem; }
-  .responseStages { position: relative; top: auto; left: auto; display: grid; margin-top: 1.5rem; border-top: 1px solid var(--pilot-line); }
-  .responseStages li { position: relative; min-width: 0; grid-template-columns: 1.5rem minmax(6.5rem, 0.55fr) 1fr; align-items: baseline; gap: 0.55rem; padding: 0.9rem 0; border-bottom: 1px solid var(--pilot-line); }
-  .responseStages span { font-size: 0.55rem; }
-  .responseStages strong { font-size: 0.68rem; letter-spacing: 0.04em; line-height: 1.2; }
-  .responseStages p { font-size: 0.7rem; }
-  .safetyPayoff { position: relative; bottom: auto; left: auto; margin-top: 4rem; transform: none; }
-  .safetyPayoff h3 { font-size: clamp(2.3rem, 10vw, 3.8rem); }
+  .safetyScene .pinnedStage { padding-bottom: 0; }
+  .safetyStage { position: absolute; inset: calc(var(--header-height) + 3.4rem) 1.25rem 1.4rem; margin: 0; padding: 0; }
+  .flightStateLabel {
+    position: absolute;
+    top: 0.75rem;
+    right: 0;
+    display: grid;
+    gap: 0.25rem;
+    margin: 0;
+    white-space: nowrap;
+  }
+  .stateComparison { position: absolute; inset: 32% 0 31%; height: auto; }
+  .responseStages { position: absolute; top: 15%; left: 0; display: block; margin: 0; border-top: 0; }
+  .responseStages li { position: absolute; top: 0; left: 0; display: grid; min-width: min(90vw, 28rem); grid-template-columns: none; gap: 0.3rem; padding: 0; border-bottom: 0; }
+  .responseStages span { font-size: 0.58rem; }
+  .responseStages strong { font-size: clamp(2.25rem, 12vw, 4rem); letter-spacing: -0.06em; line-height: 0.9; }
+  .responseStages p { max-width: 19rem; font-size: 0.82rem; line-height: 1.5; }
+  .safetyPayoff { position: absolute; bottom: -0.75rem; left: 0; margin: 0; transform: translateY(16px); }
+  .safetyPayoff h3 { font-size: clamp(1.9rem, 7.5vw, 3rem); }
+  .safetyPayoff p { max-width: 22rem; font-size: 0.82rem; line-height: 1.55; }
+
+  .deviationMarker text { font-size: 20px; letter-spacing: 1.2px; }
+  .traceLabels text { font-size: 19px; letter-spacing: 1.2px; }
+  .axisLabels text { font-size: 18px; letter-spacing: 1.4px; }
 
   .verificationScene { min-height: auto; }
   .verificationStage { position: relative; min-height: auto; padding: calc(var(--header-height) + 4rem) 1.25rem 6rem; }
   .verificationHeader h2 { font-size: clamp(3.2rem, 15vw, 5rem); }
-  .verificationRail > i { top: 0; right: auto; bottom: 0; width: 1px; height: auto; transform: none !important; }
+  .verificationHeader > p:last-child { font-size: 1rem; line-height: 1.65; }
+  .verificationRail > i { top: 0; right: auto; bottom: 0; width: 1px; height: auto; transform: scaleY(var(--verification-progress)); transform-origin: top; }
   .verificationRail ol { grid-template-columns: 1fr; }
   .verificationRail li,
-  .verificationRail li + li { min-height: 8rem; padding: 1.2rem 0 1.2rem 1.4rem; border-left: 0; }
+  .verificationRail li + li { min-height: 9rem; padding: 1.35rem 0 1.35rem 1.4rem; border-left: 0; }
   .verificationRail li::before { top: 1.35rem; left: -0.24rem; }
-  .verificationRail strong { min-height: auto; margin-top: 0.4rem; }
+  .verificationRail li > span { font-size: 0.76rem; }
+  .verificationRail strong { min-height: auto; margin-top: 0.45rem; font-size: 1rem; line-height: 1.35; }
+  .verificationRail p { margin-top: 0.7rem; font-size: 0.88rem; line-height: 1.55; }
 
   .resolutionFrame { min-height: auto; padding: 7rem 1.25rem 6rem; }
   .resolutionFrame h2 { font-size: clamp(2.7rem, 12vw, 4.5rem); }
