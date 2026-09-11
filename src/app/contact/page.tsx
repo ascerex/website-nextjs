@@ -27,6 +27,10 @@ export default function ContactPage() {
               </p>
             </div>
 
+            <div className={styles.directContact}>
+              <span>Direct inquiry routing</span>
+              <p>Messages are reviewed directly and routed by inquiry type.</p>
+            </div>
           </div>
         </section>
 
@@ -46,6 +50,8 @@ export default function ContactPage() {
                 <li key={route.value}>
                   <span>{route.number}</span>
                   <div>
+                    <strong>{route.title}</strong>
+                    <small>{route.detail}</small>
                   </div>
                 </li>
               ))}
