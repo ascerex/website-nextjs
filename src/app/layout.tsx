@@ -27,9 +27,58 @@ const theme = createTheme({
   },
 });
 
+const siteUrl =
+  process.env.NEXT_PUBLIC_SITE_URL ??
+  process.env.URL ??
+  "https://www.ascerex.com";
+
 export const metadata: Metadata = {
+  metadataBase: new URL(siteUrl),
+  applicationName: "Ascerex",
   title: "Ascerex",
   description: "Revolutionizing Personal Flight Accessibility",
+  manifest: "/favicon/site.webmanifest",
+  icons: {
+    icon: [
+      {
+        url: "/favicon/favicon-white.svg",
+        type: "image/svg+xml",
+      },
+    ],
+    apple: [
+      {
+        url: "/favicon/apple-touch-icon.png",
+        sizes: "180x180",
+        type: "image/png",
+      },
+    ],
+  },
+  appleWebApp: {
+    capable: true,
+    title: "Ascerex",
+    statusBarStyle: "black",
+  },
+  openGraph: {
+    type: "website",
+    url: "/",
+    siteName: "Ascerex",
+    title: "Ascerex",
+    description: "Revolutionizing Personal Flight Accessibility",
+    images: [
+      {
+        url: "/favicon/social-preview.png",
+        width: 1200,
+        height: 630,
+        alt: "Ascerex company logo",
+      },
+    ],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Ascerex",
+    description: "Revolutionizing Personal Flight Accessibility",
+    images: ["/favicon/social-preview.png"],
+  },
 };
 
 export default function RootLayout({
@@ -41,10 +90,6 @@ export default function RootLayout({
     <html lang="en" data-mantine-color-scheme="dark">
       <head>
         <ColorSchemeScript defaultColorScheme="dark" />
-        <link rel="icon" type="image/svg+xml" href="/favicon/favicon-white.svg" />
-        <link rel="icon" type="image/png" sizes="96x96" href="/favicon/favicon-96x96W.png" />
-        <link rel="apple-touch-icon" sizes="180x180" href="/favicon/apple-touch-icon.png" />
-        <link rel="manifest" href="/favicon/site.webmanifest" />
         <meta name="theme-color" content="#0a0a0a" />
       </head>
       <body>
